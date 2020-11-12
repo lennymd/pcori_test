@@ -1,6 +1,6 @@
 let db_inputs = [];
 async function databaseManager() {
-  let dataset = await d3.csv('/public/data/pcori_1111.csv');
+  let dataset = await d3.csv('./public/data/pcori_1111.csv');
   d3.selectAll('.total_study_count').html(`${dataset.length}`);
 
   // ACCESSOR FUNCTIONS

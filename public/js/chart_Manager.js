@@ -1,7 +1,7 @@
 
 let input_chain = [];
 async function chartManager() {
-  let dataset = await d3.csv('/public/data/pcori_20200930c.csv');
+  let dataset = await d3.csv('./public/data/pcori_20200930c.csv');
   let data = dataset;
 
   // accessor functions -- help us access the columns we care about
