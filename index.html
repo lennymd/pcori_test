@@ -1,0 +1,2343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <title></title>
+  <!-- TODO add meta tags -->
+
+  <link rel="stylesheet" href="/public/css/pcori.css" />
+
+  <!-- TODO change CSS -->
+  <link href="/public/css/nouislider.css" rel="stylesheet" />
+  <script src="/public/js/nouislider.js"></script>
+</head>
+
+  <body>
+    <header><section class="project_header">
+  <div class="project_logo">
+    <img
+      src="/public/img/pcori_logo.svg"
+      alt="Patient-Centered Outcomes Research Institute"
+    />
+  </div>
+  <div class="project_title">
+    EVIDENCE MAP
+    <div class="project_sub">
+      SOCIAL NEEDS INTERVENTIONS AND HEALTH OUTCOMES
+    </div>
+  </div>
+</section>
+ <div class="col-12">
+  <div class="tab_container">
+    <div class="tab_spacer">&nbsp;</div>
+    <a id="tab_vis" class="tab_item tab_active" href="#"
+      >Interactive Visualization</a
+    >
+    <a id="tab_db" class="tab_item tab_inactive" href="#"
+      >Searchable Database</a
+    >
+    <div class="tab_spacer">&nbsp;</div>
+  </div>
+</div>
+</header>
+<main>
+  <section id="vis"><div class="reset_button hidden">
+  <div class="reset_button_img">
+    <img src="/public/img/reset_button_img.svg" alt="" />
+  </div>
+  <div class="reset_button_text">Click here to reset all filters</div>
+</div>
+
+<section><style></style>
+
+<ul class="nested_dropdown">
+  <!-- Type of intervention start -->
+  <li>
+    <div class="menu_category">Type of social need</div>
+    <!-- dropdown categories -->
+    <ul class="menu_options">
+      <li class="menu_description">
+        <p>
+          If you select an item below, only the studies that address that type
+          of intervention will remain on the display
+        </p>
+      </li>
+      <li class="a_menu_option" id="t0">Education</li>
+      <li class="a_menu_option" id="t1">Employment</li>
+      <li class="a_menu_option" id="t2">Financial strain</li>
+      <li class="a_menu_option" id="t3">Food insecurity</li>
+      <li class="a_menu_option" id="t4">Housing</li>
+      <li class="a_menu_option" id="t5">Legal services</li>
+      <li class="a_menu_option" id="t6">Not specified</li>
+      <li class="a_menu_option" id="t7">Social isolation</li>
+      <li class="a_menu_option" id="t8">Transportation</li>
+      <li class="a_menu_option" id="t9">Utilities</li>
+    </ul>
+  </li>
+  <!-- Type of intervention end -->
+  <!-- need of population start -->
+  <li>
+    <div class="menu_category">Needs of the population</div>
+    <ul class="menu_options">
+      <li class="menu_description">
+        <p>
+          When you select an item from this list, only the studies that address
+          the need you selected will remain on screen
+        </p>
+      </li>
+      <li class="a_menu_option" id="n0">Age</li>
+      <li class="a_menu_option" id="n1">Complex Needs</li>
+      <li class="a_menu_option" id="n2">Education</li>
+      <li class="a_menu_option" id="n3">High Utilization</li>
+      <li class="a_menu_option" id="n4">Homeless</li>
+      <li class="a_menu_option" id="n5">Immigration status</li>
+      <li class="a_menu_option" id="n6">Low income/SES</li>
+      <li class="a_menu_option" id="n7">Low-SES neighborhood</li>
+      <li class="a_menu_option" id="n8">Medical Eligibility</li>
+      <li class="a_menu_option" id="n9">Medicare/Medicaid</li>
+      <li class="a_menu_option" id="n10">Occupation</li>
+      <li class="a_menu_option" id="n11">Pregnancy</li>
+      <li class="a_menu_option" id="n12">Race/ethnicity</li>
+      <li class="a_menu_option" id="n13">Rural population</li>
+      <li class="a_menu_option" id="n14">Sex</li>
+      <li class="a_menu_option" id="n15">Sexual identity/orientation</li>
+      <li class="a_menu_option" id="n16">Social Needs</li>
+      <li class="a_menu_option" id="n17">Veteran Status</li>
+    </ul>
+  </li>
+  <!-- need of population end -->
+  <!-- population characteristics start -->
+  <li>
+    <div class="menu_category">Population Characteristics</div>
+    <ul class="menu_options">
+      <li class="menu_description">
+        <p>
+          When you select an item from this list, the studies will be sorted in
+          columns.
+        </p>
+      </li>
+      <li class="a_menu_option" id="c0">Age groups</li>
+      <li class="a_menu_option" id="c1">Majority ethnic/racial group</li>
+      <li class="a_menu_option" id="c2">Percentage of immigrations</li>
+      <li class="a_menu_option" id="c3">Sex (percentage male)</li>
+    </ul>
+  </li>
+  <!-- population characteristics start -->
+  <!-- Outcomes start -->
+  <li>
+    <div class="menu_category">Outcomes</div>
+    <!-- First level sub dropdown -->
+    <ul class="menu_options">
+      <li class="menu_description">
+        <p>
+          When you select an item from this list, the studies will be sorted in
+          rows.
+        </p>
+      </li>
+      <li>
+        <div>Behavioral</div>
+        <!-- Second level sub dropdown -->
+        <ul>
+          <li class="a_menu_option" id="o0">Changes in dietary intake</li>
+          <li class="a_menu_option" id="o1">Changes in substance use</li>
+          <li class="a_menu_option" id="o2">Other</li>
+        </ul>
+      </li>
+      <li>
+        <div>Health</div>
+        <!-- Second level sub dropdown -->
+        <ul>
+          <li class="a_menu_option" id="o3">Changes in self-reported health</li>
+          <li class="a_menu_option" id="o4">Changes in functional outcomes</li>
+          <li class="a_menu_option" id="o5">Child development outcomes</li>
+          <li class="a_menu_option" id="o6">Child development outcomes</li>
+          <li class="a_menu_option" id="o7">Low birth weight</li>
+          <li class="a_menu_option" id="o8">Mental health status</li>
+          <li class="a_menu_option" id="o9">Morbidity</li>
+          <li class="a_menu_option" id="o10">Mortality</li>
+          <li class="a_menu_option" id="o11">Quality-adjusted life-years</li>
+          <li class="a_menu_option" id="o12">Quality of life</li>
+          <li class="a_menu_option" id="o13">Sexual identity/orientation</li>
+        </ul>
+      </li>
+      <li>
+        <div>Healthcare utilization</div>
+        <!-- Second level sub dropdown -->
+        <ul>
+          <li class="a_menu_option" id="o12">Adherence to treatment</li>
+          <li class="a_menu_option" id="o13">Clinic attendance rate</li>
+          <li class="a_menu_option" id="o13">Emergency department visits</li>
+          <li class="a_menu_option" id="o13">Frequency of healthcare use</li>
+          <li class="a_menu_option" id="o13">Hospital days</li>
+          <li class="a_menu_option" id="o13">Hospital readmissions</li>
+          <li class="a_menu_option" id="o13">Immunizations</li>
+          <li class="a_menu_option" id="o13">Inpatient admissions</li>
+          <li class="a_menu_option" id="o13">Medical home</li>
+          <li class="a_menu_option" id="o13">Missed appointments</li>
+          <li class="a_menu_option" id="o13">Outpatient visits</li>
+          <li class="a_menu_option" id="o13">
+            Post hospital primary care visit
+          </li>
+          <li class="a_menu_option" id="o13">Prenatal care</li>
+          <li class="a_menu_option" id="o13">Preventive care utilization</li>
+          <li class="a_menu_option" id="o13">Sobering center use</li>
+          <li class="a_menu_option" id="o13">
+            Use of emergency transportation
+          </li>
+          <li class="a_menu_option" id="o13">Other</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <div class="menu_category">Quality of evidence</div>
+    <ul class="menu_options">
+      <li class="menu_description">
+        <p>
+          When you select an item from this list, the studies will be
+          color-coded.
+        </p>
+      </li>
+      <li>Risk of bias of the study</li>
+      <li>Study design</li>
+    </ul>
+  </li>
+</ul>
+</section>
+</section>
+  <section id="db" class="hidden"><section class="db_wrapper">
+  <div class="db_filters">
+    <div class="title_with_reset">
+      <h2 class="db_title">Filters</h2>
+      <div class="reset_button hidden">
+  <div class="reset_button_img">
+    <img src="/public/img/reset_button_img.svg" alt="" />
+  </div>
+  <div class="reset_button_text">Click here to reset all filters</div>
+</div>
+
+    </div>
+    <div class="db_content db_filters_content">
+      <div class="filter_container">
+  <div class="filter_accordion">
+    <!-- Heading -->
+    <div class="filter_category">
+      <!-- The title -->
+      <div class="filter_title">Target social need</div>
+
+      <!-- The toggle icon -->
+      <div class="filter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="filter_panel hidden">
+      <ul>
+  <li class="filter_option">
+    <input type="checkbox" name="a0" />
+    <label for="a0">Access to health care and primary care</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="a1" />
+    <label for="a1">Childcare access</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="a2" />
+    <label for="a2">Early childhood education and development</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="a3" />
+    <label for="a3">Education</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="a4" />
+    <label for="a4">Employment</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="a5" />
+    <label for="a5">Financial strain</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="a6" />
+    <label for="a6">Food insecurity</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="a7" />
+    <label for="a7">Housing</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="a8" />
+    <label for="a8">Interpersonal violence </label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="a9" />
+    <label for="a9">Legal services</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="a10" />
+    <label for="a10">Not specified</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="a11" />
+    <label for="a11">Social isolation</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="a12" />
+    <label for="a12">Transportation</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="a13" />
+    <label for="a13">Utilities</label>
+  </li>
+</ul>
+
+    </div>
+  </div>
+  <div class="filter_accordion">
+    <!-- Heading -->
+    <div class="filter_category">
+      <!-- The title -->
+      <div class="filter_title">Target population</div>
+
+      <!-- The toggle icon -->
+      <div class="filter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="filter_panel hidden">
+      <ul>
+  <li class="filter_option">
+    <input type="checkbox" name="b0" />
+    <label for="b0">Age</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="b1" />
+    <label for="b1">Complex needs</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="b2" />
+    <label for="b2">Education</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="b3" />
+    <label for="b3">High Utilization</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="b4" />
+    <label for="b4">Homeless</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="b5" />
+    <label for="b5">Immigration status</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="b6" />
+    <label for="b6">Low-income/SES</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="b7" />
+    <label for="b7">Low-SES neighborhood</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="b8" />
+    <label for="b8">Medical Eligibility</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="b9" />
+    <label for="b9">Medicare/Medicaid</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="b10" />
+    <label for="b10">Occupation</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="b11" />
+    <label for="b11">Pregnancy</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="b12" />
+    <label for="b12">Race/ethnicity</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="b13" />
+    <label for="b13">Rural population</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="b14" />
+    <label for="b14">Sex</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="b15" />
+    <label for="b15">Sexual identity/orientation</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="b16" />
+    <label for="b16">Social Needs</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="b17" />
+    <label for="b17">Veteran Status</label>
+  </li>
+</ul>
+
+    </div>
+  </div>
+  <div class="filter_accordion">
+    <!-- Heading -->
+    <div class="filter_category">
+      <!-- The title -->
+      <div class="filter_title">Population characteristics</div>
+
+      <!-- The toggle icon -->
+      <div class="filter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="filter_panel hidden">
+      <div class="filter_sub">
+  <h3>Age groups</h3>
+  <ul>
+    <li class="filter_option">
+      <input type="checkbox" name="c0" />
+      <label for="c0">Adolescents/ Young Adults</label>
+    </li>
+    <li class="filter_option">
+      <input type="checkbox" name="c1" />
+      <label for="c1">Adults</label>
+    </li>
+    <li class="filter_option">
+      <input type="checkbox" name="c2" />
+      <label for="c2">Older Adults</label>
+    </li>
+    <li class="filter_option">
+      <input type="checkbox" name="c3" />
+      <label for="c3">Pediatric</label>
+    </li>
+  </ul>
+</div>
+<div class="filter_sub">
+  <h3>Majority ethnic/racial group</h3>
+  <ul>
+    <li class="filter_option">
+      <input type="checkbox" name="c4" />
+      <label for="c4">Asian</label>
+    </li>
+    <li class="filter_option">
+      <input type="checkbox" name="c5" />
+      <label for="c5">Hispanic</label>
+    </li>
+    <li class="filter_option">
+      <input type="checkbox" name="c6" />
+      <label for="c6">Non-Hispanic Black</label>
+    </li>
+    <li class="filter_option">
+      <input type="checkbox" name="c7" />
+      <label for="c7">Non-Hispanic White</label>
+    </li>
+    <li class="filter_option">
+      <input type="checkbox" name="c8" />
+      <label for="c8">Other</label>
+    </li>
+  </ul>
+</div>
+<div class="filter_sub">
+  <h3>
+    Percentage Male
+    <span class="small_direction"> (select a range of values)</span>
+  </h3>
+  <div id="slider_male"></div>
+</div>
+<div class="filter_sub">
+  <h3>
+    Proportion of Immigrants
+    <span class="small_direction"> (select a range of values)</span>
+  </h3>
+  <div id="slider_immigrant"></div>
+</div>
+<script>
+  const male = document.getElementById('slider_male');
+  const immigrant = document.getElementById('slider_immigrant');
+
+  [male, immigrant].forEach(element =>
+    noUiSlider.create(element, {
+      start: [10, 60],
+      connect: true,
+      range: {
+        min: 0,
+        max: 100,
+      },
+    })
+  );
+</script>
+
+    </div>
+  </div>
+  <div class="filter_accordion">
+    <!-- Heading -->
+    <div class="filter_category">
+      <!-- The title -->
+      <div class="filter_title">Intervention target</div>
+
+      <!-- The toggle icon -->
+      <div class="filter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="filter_panel hidden">
+      <ul class="short_list">
+  <li class="filter_option">
+    <input type="checkbox" name="d0" />
+    <label for="d0">Caregiver</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="d1" />
+    <label for="d1">Doctor or other clinical staff</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="d2" />
+    <label for="d2">Patient</label>
+  </li>
+</ul>
+
+    </div>
+  </div>
+  <div class="filter_accordion">
+    <!-- Heading -->
+    <div class="filter_category">
+      <!-- The title -->
+      <div class="filter_title">Intervention setting</div>
+
+      <!-- The toggle icon -->
+      <div class="filter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="filter_panel hidden">
+      <ul>
+  <li class="filter_option">
+    <input type="checkbox" name="e0" />
+    <label for="e0">Emergency department</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="e1" />
+    <label for="e1">Home-based care</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="e2" />
+    <label for="e2">Hospital (inpatient)</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="e2" />
+    <label for="e2">Outpatient clinic</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="e2" />
+    <label for="e2">Primary care</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="e2" />
+    <label for="e2">Recruited from health plan membership</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="e2" />
+    <label for="e2">Telephone-based care</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="e2" />
+    <label for="e2">Transitional housing </label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="e2" />
+    <label for="e2">Urgent care</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="e2" />
+    <label for="e2">Web-based care</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="e2" />
+    <label for="e2">Other</label>
+  </li>
+</ul>
+
+    </div>
+  </div>
+  <div class="filter_accordion">
+    <!-- Heading -->
+    <div class="filter_category">
+      <!-- The title -->
+      <div class="filter_title">Specific intervention components</div>
+
+      <!-- The toggle icon -->
+      <div class="filter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="filter_panel hidden">
+      <ul>
+  <li class="filter_option">
+    <input type="checkbox" name="f0" />
+    <label for="f0">Active assistance with resources</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="f1" />
+    <label for="f1">Health provider education</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="f2" />
+    <label for="f2">Passive referrals</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="f3" />
+    <label for="f3">Patient education</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="f4" />
+    <label for="f4">Providing onsite resources</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="f5" />
+    <label for="f5">Screening</label>
+  </li>
+</ul>
+
+    </div>
+  </div>
+  <div class="filter_accordion">
+    <!-- Heading -->
+    <div class="filter_category">
+      <!-- The title -->
+      <div class="filter_title">Recruitment setting</div>
+
+      <!-- The toggle icon -->
+      <div class="filter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="filter_panel hidden">
+      <ul>
+  <li class="filter_option">
+    <input type="checkbox" name="g0" />
+    <label for="g0">Emergency department</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="g1" />
+    <label for="g1">Home-based care</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="g2" />
+    <label for="g2">Hospital (inpatient)</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="g3" />
+    <label for="g3">Outpatient clinic</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="g4" />
+    <label for="g4">Primary care</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="g5" />
+    <label for="g5">Recruited from health plan membership</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="g6" />
+    <label for="g6">Telephone-based care</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="g7" />
+    <label for="g7">Transitional housing</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="g8" />
+    <label for="g8">Urgent care</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="g9" />
+    <label for="g9">Web-based care</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="g10" />
+    <label for="g10">Other</label>
+  </li>
+</ul>
+
+    </div>
+  </div>
+  <div class="filter_accordion">
+    <!-- Heading -->
+    <div class="filter_category">
+      <!-- The title -->
+      <div class="filter_title">Characteristics and quality of the study</div>
+
+      <!-- The toggle icon -->
+      <div class="filter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="filter_panel hidden">
+      <div class="filter_sub">
+  <h3>Study Design</h3>
+  <ul>
+    <li class="filter_option">
+      <input type="checkbox" name="h0" />
+      <label for="h0">Case-control</label>
+    </li>
+    <li class="filter_option">
+      <input type="checkbox" name="h1" />
+      <label for="h1">Cohort study</label>
+    </li>
+    <li class="filter_option">
+      <input type="checkbox" name="h2" />
+      <label for="h2">Other observational</label>
+    </li>
+    <li class="filter_option">
+      <input type="checkbox" name="h3" />
+      <label for="h3">Pre-post</label>
+    </li>
+    <li class="filter_option">
+      <input type="checkbox" name="h4" />
+      <label for="h4">RCT</label>
+    </li>
+  </ul>
+</div>
+<div class="filter_sub">
+  <h3>Risk of bias</h3>
+  <ul class="short_list">
+    <li class="filter_option">
+      <input type="checkbox" name="h6" />
+      <label for="h6">High</label>
+    </li>
+    <li class="filter_option">
+      <input type="checkbox" name="h7" />
+      <label for="h7">Medium</label>
+    </li>
+    <li class="filter_option">
+      <input type="checkbox" name="h8" />
+      <label for="h8">Low</label>
+    </li>
+  </ul>
+</div>
+<div class="filter_sub">
+  <h3>
+    Sample size
+    <span class="small_direction"> (select a range of values)</span>
+  </h3>
+  <div id="slider_sample"></div>
+</div>
+<div class="filter_sub">
+  <h3>Individual vs. Systems intervention</h3>
+  <ul class="short_list">
+    <li class="filter_option">
+      <input type="checkbox" name="h9" />
+      <label for="h9">Individual</label>
+    </li>
+    <li class="filter_option">
+      <input type="checkbox" name="h10" />
+      <label for="h10">Systems</label>
+    </li>
+  </ul>
+</div>
+<script>
+  const sample = document.getElementById('slider_sample');
+
+  noUiSlider.create(sample, {
+    start: [10, 60],
+    connect: true,
+    range: {
+      min: 0,
+      max: 100,
+    },
+  });
+</script>
+
+    </div>
+  </div>
+  <div class="filter_accordion">
+    <!-- Heading -->
+    <div class="filter_category">
+      <!-- The title -->
+      <div class="filter_title">Study type by target domain</div>
+
+      <!-- The toggle icon -->
+      <div class="filter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="filter_panel hidden">
+      <ul>
+  <li class="filter_option">
+    <input type="checkbox" name="i0" />
+    <label for="i0">Any social need that arises in population addressed</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="i1" />
+    <label for="i1">Medical and social need program</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="i2" />
+    <label for="i2">More than one clearly defined social topic addressed</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="i3" />
+    <label for="i3">One social topic addressed</label>
+  </li>
+</ul>
+
+    </div>
+  </div>
+  <div class="filter_accordion">
+    <!-- Heading -->
+    <div class="filter_category">
+      <!-- The title -->
+      <div class="filter_title">Service provider</div>
+
+      <!-- The toggle icon -->
+      <div class="filter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="filter_panel hidden">
+      <ul>
+  <li class="filter_option">
+    <input type="checkbox" name="j0" />
+    <label for="j0">Community health workers/ Navigators</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="j1" />
+    <label for="j1">Healthcare providers</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="j2" />
+    <label for="j2">Lawyers</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="j3" />
+    <label for="j3">Social worker</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="j4" />
+    <label for="j4"
+      >Other non-professionals, including volunteers and study staff</label
+    >
+  </li>
+</ul>
+
+    </div>
+  </div>
+  <div class="filter_accordion">
+    <!-- Heading -->
+    <div class="filter_category">
+      <!-- The title -->
+      <div class="filter_title">Type of comparator</div>
+
+      <!-- The toggle icon -->
+      <div class="filter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="filter_panel hidden">
+      <ul>
+  <li class="filter_option">
+    <input type="checkbox" name="k0" />
+    <label for="k0">Active control</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="k1" />
+    <label for="k1">Pre-intervention data</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="k2" />
+    <label for="k2">Waitlist control</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="k3" />
+    <label for="k3">Other inactive control</label>
+  </li>
+  <li class="filter_option">
+    <input type="checkbox" name="k4" />
+    <label for="k4">Other</label>
+  </li>
+</ul>
+
+    </div>
+  </div>
+  <div class="filter_accordion">
+    <!-- Heading -->
+    <div class="filter_category">
+      <!-- The title -->
+      <div class="filter_title">Health outcomes</div>
+
+      <!-- The toggle icon -->
+      <div class="filter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="filter_panel hidden">
+      <div class="subfilter_container">
+  <!-- Changes in functional outcomes -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Changes in functional outcomes</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="results">
+        <h3>Results</h3>
+        <ul>
+          <li class="filter_option">
+            <input type="checkbox" name="li0" />
+            <label for="li0">Positive</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="li1" />
+            <label for="li1">Negative</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="li2" />
+            <label for="li2">Mixed results</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="li3" />
+            <label for="li3">No effect</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Changes in self-reported health -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Changes in self-reported health</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="results">
+        <h3>Results</h3>
+        <ul>
+          <li class="filter_option">
+            <input type="checkbox" name="la0" />
+            <label for="la0">Positive</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="la1" />
+            <label for="la1">Negative</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="la2" />
+            <label for="la2">Mixed results</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="la3" />
+            <label for="la3">No effect</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Child development outcomes -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Child development outcomes</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="results">
+        <h3>Results</h3>
+        <ul>
+          <li class="filter_option">
+            <input type="checkbox" name="lb0" />
+            <label for="lb0">Positive</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="lb1" />
+            <label for="lb1">Negative</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="lb2" />
+            <label for="lb2">Mixed results</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="lb3" />
+            <label for="lb3">No effect</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Low birth weight -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Low birth weight</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="results">
+        <h3>Results</h3>
+        <ul>
+          <li class="filter_option">
+            <input type="checkbox" name="lc0" />
+            <label for="lc0">Positive</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="lc1" />
+            <label for="lc1">Negative</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="lc2" />
+            <label for="lc2">Mixed results</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="lc3" />
+            <label for="lc3">No effect</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Mental health status -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Mental health status</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="results">
+        <h3>Results</h3>
+        <ul>
+          <li class="filter_option">
+            <input type="checkbox" name="ld0" />
+            <label for="ld0">Positive</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="ld1" />
+            <label for="ld1">Negative</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="ld2" />
+            <label for="ld2">Mixed results</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="ld3" />
+            <label for="ld3">No effect</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Morbidity -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Morbidity</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="results">
+        <h3>Results</h3>
+        <ul>
+          <li class="filter_option">
+            <input type="checkbox" name="le0" />
+            <label for="le0">Positive</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="le1" />
+            <label for="le1">Negative</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="le2" />
+            <label for="le2">Mixed results</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="le3" />
+            <label for="le3">No effect</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Mortality -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Mortality</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="results">
+        <h3>Results</h3>
+        <ul>
+          <li class="filter_option">
+            <input type="checkbox" name="lf0" />
+            <label for="lf0">Positive</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="lf1" />
+            <label for="lf1">Negative</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="lf2" />
+            <label for="lf2">Mixed results</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="lf3" />
+            <label for="lf3">No effect</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Other -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Other</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="results">
+        <h3>Results</h3>
+        <ul>
+          <li class="filter_option">
+            <input type="checkbox" name="lj0" />
+            <label for="lj0">Positive</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="lj1" />
+            <label for="lj1">Negative</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="lj2" />
+            <label for="lj2">Mixed results</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="lj3" />
+            <label for="lj3">No effect</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- QALY -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Quality-adjusted life-years</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="results">
+        <h3>Results</h3>
+        <ul>
+          <li class="filter_option">
+            <input type="checkbox" name="lg0" />
+            <label for="lg0">Positive</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="lg1" />
+            <label for="lg1">Negative</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="lg2" />
+            <label for="lg2">Mixed results</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="lg3" />
+            <label for="lg3">No effect</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Quality of life -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Quality of life</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="results">
+        <h3>Results</h3>
+        <ul>
+          <li class="filter_option">
+            <input type="checkbox" name="lh0" />
+            <label for="lh0">Positive</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="lh1" />
+            <label for="lh1">Negative</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="lh2" />
+            <label for="lh2">Mixed results</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="lh3" />
+            <label for="lh3">No effect</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+  <div class="filter_accordion">
+    <!-- Heading -->
+    <div class="filter_category">
+      <!-- The title -->
+      <div class="filter_title">Behavioral outcomes</div>
+
+      <!-- The toggle icon -->
+      <div class="filter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="filter_panel hidden">
+      <div class="subfilter_container">
+  <!-- Changes in dietary intake -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Changes in dietary intake</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="results">
+        <h3>Results</h3>
+        <ul>
+          <li class="filter_option">
+            <input type="checkbox" name="ma0" />
+            <label for="ma0">Positive</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="ma1" />
+            <label for="ma1">Negative</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="ma2" />
+            <label for="ma2">Mixed results</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="ma3" />
+            <label for="ma3">No effect</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Changes in substance use -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Changes in substance use</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="results">
+        <h3>Results</h3>
+        <ul>
+          <li class="filter_option">
+            <input type="checkbox" name="mb0" />
+            <label for="mb0">Positive</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="mb1" />
+            <label for="mb1">Negative</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="mb2" />
+            <label for="mb2">Mixed results</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="mb3" />
+            <label for="mb3">No effect</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Other -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Other</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="results">
+        <h3>Results</h3>
+        <ul>
+          <li class="filter_option">
+            <input type="checkbox" name="mc0" />
+            <label for="mc0">Positive</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="mc1" />
+            <label for="mc1">Negative</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="mc2" />
+            <label for="mc2">Mixed results</label>
+          </li>
+          <li class="filter_option">
+            <input type="checkbox" name="mc3" />
+            <label for="mc3">No effect</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+  <div class="filter_accordion">
+    <!-- Heading -->
+    <div class="filter_category">
+      <!-- The title -->
+      <div class="filter_title">Healthcare utilization outcomes</div>
+
+      <!-- The toggle icon -->
+      <div class="filter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="filter_panel hidden">
+      <div class="subfilter_container">
+  <!-- Adherence to treatment -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Adherence to treatment</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="division">
+        <div class="directions">
+          <h3>Expected direction</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="na4" />
+              <label for="na4">Increase</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="na5" />
+              <label for="na5">Decrease</label>
+            </li>
+          </ul>
+        </div>
+        <div class="results">
+          <h3>Results</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="na0" />
+              <label for="na0">Positive</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="na1" />
+              <label for="na1">Negative</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="na2" />
+              <label for="na2">Mixed results</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="na3" />
+              <label for="na3">No effect</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Clinic attendance rate -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Clinic attendance rate</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="division">
+        <div class="directions">
+          <h3>Expected direction</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nb4" />
+              <label for="nb4">Increase</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nb5" />
+              <label for="nb5">Decrease</label>
+            </li>
+          </ul>
+        </div>
+        <div class="results">
+          <h3>Results</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nb0" />
+              <label for="nb0">Positive</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nb1" />
+              <label for="nb1">Negative</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nb2" />
+              <label for="nb2">Mixed results</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nb3" />
+              <label for="nb3">No effect</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Emergency department visits -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Emergency department visits</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="division">
+        <div class="directions">
+          <h3>Expected direction</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nc4" />
+              <label for="nc4">Increase</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nc5" />
+              <label for="nc5">Decrease</label>
+            </li>
+          </ul>
+        </div>
+        <div class="results">
+          <h3>Results</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nc0" />
+              <label for="nc0">Positive</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nc1" />
+              <label for="nc1">Negative</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nc2" />
+              <label for="nc2">Mixed results</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nc3" />
+              <label for="nc3">No effect</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Frequency of healthcare use -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Frequency of healthcare use</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="division">
+        <div class="directions">
+          <h3>Expected direction</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nd4" />
+              <label for="nd4">Increase</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nd5" />
+              <label for="nd5">Decrease</label>
+            </li>
+          </ul>
+        </div>
+        <div class="results">
+          <h3>Results</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nd0" />
+              <label for="nd0">Positive</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nd1" />
+              <label for="nd1">Negative</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nd2" />
+              <label for="nd2">Mixed results</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nd3" />
+              <label for="nd3">No effect</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Hospital readmissions -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Hospital readmissions</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="division">
+        <div class="directions">
+          <h3>Expected direction</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="ne4" />
+              <label for="ne4">Increase</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="ne5" />
+              <label for="ne5">Decrease</label>
+            </li>
+          </ul>
+        </div>
+        <div class="results">
+          <h3>Results</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="ne0" />
+              <label for="ne0">Positive</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="ne1" />
+              <label for="ne1">Negative</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="ne2" />
+              <label for="ne2">Mixed results</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="ne3" />
+              <label for="ne3">No effect</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Hospital days -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Hospital days</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="division">
+        <div class="directions">
+          <h3>Expected direction</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nf4" />
+              <label for="nf4">Increase</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nf5" />
+              <label for="nf5">Decrease</label>
+            </li>
+          </ul>
+        </div>
+        <div class="results">
+          <h3>Results</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nf0" />
+              <label for="nf0">Positive</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nf1" />
+              <label for="nf1">Negative</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nf2" />
+              <label for="nf2">Mixed results</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nf3" />
+              <label for="nf3">No effect</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Immunizations -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Immunizations</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="division">
+        <div class="directions">
+          <h3>Expected direction</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="ng4" />
+              <label for="ng4">Increase</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="ng5" />
+              <label for="ng5">Decrease</label>
+            </li>
+          </ul>
+        </div>
+        <div class="results">
+          <h3>Results</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="ng0" />
+              <label for="ng0">Positive</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="ng1" />
+              <label for="ng1">Negative</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="ng2" />
+              <label for="ng2">Mixed results</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="ng3" />
+              <label for="ng3">No effect</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Inpatient admissions -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Inpatient admissions</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="division">
+        <div class="directions">
+          <h3>Expected direction</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nh4" />
+              <label for="nh4">Increase</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nh5" />
+              <label for="nh5">Decrease</label>
+            </li>
+          </ul>
+        </div>
+        <div class="results">
+          <h3>Results</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nh0" />
+              <label for="nh0">Positive</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nh1" />
+              <label for="nh1">Negative</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nh2" />
+              <label for="nh2">Mixed results</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nh3" />
+              <label for="nh3">No effect</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Medical home -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Medical home</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="division">
+        <div class="directions">
+          <h3>Expected direction</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="ni4" />
+              <label for="ni4">Increase</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="ni5" />
+              <label for="ni5">Decrease</label>
+            </li>
+          </ul>
+        </div>
+        <div class="results">
+          <h3>Results</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="ni0" />
+              <label for="ni0">Positive</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="ni1" />
+              <label for="ni1">Negative</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="ni2" />
+              <label for="ni2">Mixed results</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="ni3" />
+              <label for="ni3">No effect</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Missed appointments -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Missed appointments</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="division">
+        <div class="directions">
+          <h3>Expected direction</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nj4" />
+              <label for="nj4">Increase</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nj5" />
+              <label for="nj5">Decrease</label>
+            </li>
+          </ul>
+        </div>
+        <div class="results">
+          <h3>Results</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nj0" />
+              <label for="nj0">Positive</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nj1" />
+              <label for="nj1">Negative</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nj2" />
+              <label for="nj2">Mixed results</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nj3" />
+              <label for="nj3">No effect</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Outpatient visits -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Outpatient visits</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="division">
+        <div class="directions">
+          <h3>Expected direction</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nk4" />
+              <label for="nk4">Increase</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nk5" />
+              <label for="nk5">Decrease</label>
+            </li>
+          </ul>
+        </div>
+        <div class="results">
+          <h3>Results</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nk0" />
+              <label for="nk0">Positive</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nk1" />
+              <label for="nk1">Negative</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nk2" />
+              <label for="nk2">Mixed results</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nk3" />
+              <label for="nk3">No effect</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Post hospital primary care visit -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Post hospital primary care visit</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="division">
+        <div class="directions">
+          <h3>Expected direction</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nl4" />
+              <label for="nl4">Increase</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nl5" />
+              <label for="nl5">Decrease</label>
+            </li>
+          </ul>
+        </div>
+        <div class="results">
+          <h3>Results</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nl0" />
+              <label for="nl0">Positive</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nl1" />
+              <label for="nl1">Negative</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nl2" />
+              <label for="nl2">Mixed results</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nl3" />
+              <label for="nl3">No effect</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Prenatal care -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Prenatal care</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="division">
+        <div class="directions">
+          <h3>Expected direction</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nm4" />
+              <label for="nm4">Increase</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nm5" />
+              <label for="nm5">Decrease</label>
+            </li>
+          </ul>
+        </div>
+        <div class="results">
+          <h3>Results</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nm0" />
+              <label for="nm0">Positive</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nm1" />
+              <label for="nm1">Negative</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nm2" />
+              <label for="nm2">Mixed results</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nm3" />
+              <label for="nm3">No effect</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Preventive care utilization -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Preventive care utilization</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="division">
+        <div class="directions">
+          <h3>Expected direction</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nn4" />
+              <label for="nn4">Increase</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nn5" />
+              <label for="nn5">Decrease</label>
+            </li>
+          </ul>
+        </div>
+        <div class="results">
+          <h3>Results</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nn0" />
+              <label for="nn0">Positive</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nn1" />
+              <label for="nn1">Negative</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nn2" />
+              <label for="nn2">Mixed results</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nn3" />
+              <label for="nn3">No effect</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Sobering center use -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Sobering center use</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="division">
+        <div class="directions">
+          <h3>Expected direction</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="no4" />
+              <label for="no4">Increase</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="no5" />
+              <label for="no5">Decrease</label>
+            </li>
+          </ul>
+        </div>
+        <div class="results">
+          <h3>Results</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="no0" />
+              <label for="no0">Positive</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="no1" />
+              <label for="no1">Negative</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="no2" />
+              <label for="no2">Mixed results</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="no3" />
+              <label for="no3">No effect</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Use of emergency transportation -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Use of emergency transportation</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="division">
+        <div class="directions">
+          <h3>Expected direction</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="np4" />
+              <label for="np4">Increase</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="np5" />
+              <label for="np5">Decrease</label>
+            </li>
+          </ul>
+        </div>
+        <div class="results">
+          <h3>Results</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="np0" />
+              <label for="np0">Positive</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="np1" />
+              <label for="np1">Negative</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="np2" />
+              <label for="np2">Mixed results</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="np3" />
+              <label for="np3">No effect</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Other -->
+  <div class="subfilter_accordion">
+    <!-- Heading -->
+    <div class="subfilter_category">
+      <!-- The title -->
+      <div class="subfilter_title">Other</div>
+
+      <!-- The toggle icon -->
+      <div class="subfilter_toggle">▶</div>
+    </div>
+
+    <!-- The content -->
+    <div class="subfilter_panel hidden">
+      <div class="division">
+        <div class="directions">
+          <h3>Expected direction</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nq4" />
+              <label for="nq4">Increase</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nq5" />
+              <label for="nq5">Decrease</label>
+            </li>
+          </ul>
+        </div>
+        <div class="results">
+          <h3>Results</h3>
+          <ul>
+            <li class="filter_option">
+              <input type="checkbox" name="nq0" />
+              <label for="nq0">Positive</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nq1" />
+              <label for="nq1">Negative</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nq2" />
+              <label for="nq2">Mixed results</label>
+            </li>
+            <li class="filter_option">
+              <input type="checkbox" name="nq3" />
+              <label for="nq3">No effect</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+  <div class="db_results">
+    <h2 class="db_title">Filtered list of studies</h2>
+    <div class="db_content db_results_content">
+      <div class="results_container">
+  <div id="results_intro">
+    <div class="results_intro_text">
+      <!-- Turn 51 into a programmable number -->
+      <p>
+        This searchable database contains information about
+        <strong
+          ><span class="total_study_count">&nbsp;&nbsp;</span> studies</strong
+        >.
+      </p>
+      <p>
+        To begin showing studies on this window, select items from the menus on
+        the left.
+      </p>
+      <p>
+        You can also <strong>search for specific words</strong> on the search
+        box below to display only the studies that contain them.
+      </p>
+    </div>
+  </div>
+  <div id="results_box" class="hidden">
+    <p class="results_count">
+      Showing the
+      <strong class="relevant_studies"
+        ><span id="select_study_count">@@</span> studies</strong
+      >
+      (out of <strong class="total_study_count">51</strong>)<br />that fulfill
+      the criteria you selected.
+    </p>
+    <div id="download_studies_button">Download this list of studies</div>
+    <div id="results_ouput"></div>
+  </div>
+  <div class="search_box">
+    <img id="disabled_search" src="/public/img/search.png" alt="" />
+  </div>
+</div>
+
+    </div>
+  </div>
+</section>
+</section>
+</main>
+<script src="/public/js/d3.v5.min.js"></script>
+<script src="/public/js/tab_manager.js"></script>
+<script src="/public/js/database_manager.js"></script>
+<script>
+  let filter_category = document.getElementsByClassName('filter_category');
+  let i;
+  for (i = 0; i < filter_category.length; i++) {
+    filter_category[i].addEventListener('click', toggleAccordion);
+  }
+  function toggleAccordion() {
+    const parent = this.parentElement;
+    parent.children[1].classList.toggle('hidden');
+    const arrowBox = parent.children[0].children[1];
+    const arrow = arrowBox.textContent;
+    if (arrow == '▶') {
+      arrowBox.textContent = '▼';
+    } else {
+      arrowBox.textContent = '▶';
+    }
+  }
+</script>
+<script>
+  let subfilter_category = document.getElementsByClassName(
+    'subfilter_category'
+  );
+  let j;
+  for (j = 0; j < subfilter_category.length; j++) {
+    subfilter_category[j].addEventListener('click', toggleAccordion);
+  }
+  function toggleAccordion() {
+    const parent = this.parentElement;
+    parent.children[1].classList.toggle('hidden');
+    const arrowBox = parent.children[0].children[1];
+    const arrow = arrowBox.textContent;
+    if (arrow == '▶') {
+      arrowBox.textContent = '▼';
+    } else {
+      arrowBox.textContent = '▶';
+    }
+  }
+</script>
+
+  </body>
+</html>
