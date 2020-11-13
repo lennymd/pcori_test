@@ -1,8 +1,6 @@
 let db_inputs = [];
 async function databaseManager() {
   let dataset = await d3.csv('./public/data/pcori_1111.csv');
-  d3.selectAll('.total_study_count').html(`${dataset.length}`);
-
   // ACCESSOR FUNCTIONS
   const target_social_need = d => d.target_social_need;
   const title = d => d.title;
@@ -140,7 +138,9 @@ async function databaseManager() {
           .append('h3')
           .attr('class', 'relevant_study_title')
           .html(
-            `There are <span class="relevant_study_count">${filtered_data.length} studies</span> related to: <span class="relevant_criteria">${criteria_text}</span>`
+            `There are <span class="relevant_study_count">${studyCount(
+              filtered_data
+            )} studies</span> related to: <span class="relevant_criteria">${criteria_text}</span>`
           );
         // add a list for the studies
         const study_list = relevant_studies_box
@@ -171,9 +171,7 @@ async function databaseManager() {
       });
 
       // update total study count
-      // if we turn our total list of studies into a set, we remove duplicate entries and end up with the unique number of studies which we can use to change N in the template.
-      const unique_study_count = new Set(total_studies);
-      d3.select('#select_study_count').html(`${unique_study_count.size}`);
+      d3.select('#select_study_count').html(`${studyCount(total_studies)}`);
     } else {
       // hide results box and show results_intro
       d3.selectAll('.reset_button').classed('hidden', true);
@@ -661,6 +659,14 @@ async function databaseManager() {
   }
   function studyInfo() {
     alert('you have clicked on a study');
+  }
+
+  function studyCount(_dataset) {
+    const ref_id = d => d.ref_id;
+    const studies = d3.map(_dataset, ref_id).keys();
+    const unique_studies = new Set(studies);
+    console.log(_dataset.length, unique_studies.size);
+    return unique_studies.size;
   }
 }
 databaseManager();
