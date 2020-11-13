@@ -140,7 +140,7 @@ section.db_wrapper .active { background-color: #7a7ca5; }
 
 .relevant_studies .relevant_study_count { font-weight: 700; color: #ed2224; }
 
-.relevant_studies .relevant_criteria { color: #bada55; }
+.relevant_studies .relevant_criteria { font-weight: 600; }
 
 .relevant_studies .relevant_study_list { font-size: 14px; list-style-type: none; margin: 0; padding: 0; }
 
