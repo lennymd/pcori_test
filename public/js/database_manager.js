@@ -84,7 +84,7 @@ async function databaseManager() {
   const relevant_study_items = d3.selectAll('.relevant_study');
   // ACTIONS
   input_checkboxes.on('click', searchDatabase);
-  reset_button.on('click', resetSearch);
+  // reset_button.on('click', resetSearch);
   relevant_study_items.on('click', studyInfo);
   d3.select('#download_studies_button').on('click', disabledItem);
   d3.select('#disabled_search').on('click', disabledItem);
@@ -138,7 +138,7 @@ async function databaseManager() {
           .append('h3')
           .attr('class', 'relevant_study_title')
           .html(
-            `There are <span class="relevant_study_count">${studyCount(
+            `There are <span class="relevant_study_count">${countStudies(
               filtered_data
             )} studies</span> related to: <span class="relevant_criteria">${criteria_text}</span>`
           );
@@ -171,7 +171,7 @@ async function databaseManager() {
       });
 
       // update total study count
-      d3.select('#select_study_count').html(`${studyCount(total_studies)}`);
+      d3.select('#select_study_count').html(`${countStudies(total_studies)}`);
     } else {
       // hide results box and show results_intro
       d3.selectAll('.reset_button').classed('hidden', true);
@@ -181,28 +181,18 @@ async function databaseManager() {
     }
   }
 
-  function resetSearch() {
-    d3.selectAll('.reset_button').classed('hidden', true);
-    d3.select('#results_intro').classed('hidden', false);
-    d3.select('#results_box').classed('hidden', true);
-    d3.selectAll('.filter_panel').classed('hidden', true);
-    d3.selectAll('.subfilter_panel').classed('hidden', true);
-    input_checkboxes.property('checked', false);
-    db_inputs = [];
-  }
-
   function getCriteria(_inputs) {
     let criteria_chain = [];
-    _inputs.forEach(element => {
-      const filter = element[0];
-      const filter_text = d3.select(`[for=${element}]`).text().toString();
+    _inputs.forEach(input => {
+      const filter = input[0];
+      const filter_text = d3.select(`[for=${input}]`).text().toString().trim();
       let criteria;
       if (['l', 'm', 'n'].indexOf(filter) < 0) {
         // filter not by outcome
         criteria = ` ${filter_text}`;
       } else {
-        const variant = Number(element[2]);
-        const outcome_text = d3.select(`[name=${element}]`)._groups[0][0]
+        const variant = Number(input[2]);
+        const outcome_text = d3.select(`[name=${input}]`)._groups[0][0]
           .parentElement.parentElement.parentElement.parentElement.parentElement
           .children[0].children[0].textContent;
         if (variant < 4) {
@@ -217,15 +207,15 @@ async function databaseManager() {
   }
   function processInputs(_inputs, _dataset) {
     let temp_data = _dataset;
-    _inputs.forEach(element => {
+    _inputs.forEach(input => {
       if (temp_data.length > 0) {
         // process this input
-        const filter = element[0];
-        const filter_text = d3.select(`[for=${element}]`).text().toString();
-        // console.log(element, filter_text);
+        const filter = input[0];
+        const filter_text = d3.select(`[for=${input}]`).text().toString();
+        // console.log(input, filter_text);
         if (['l', 'm', 'n'].indexOf(filter) < 0) {
           // deal with the simple checkboxes
-          const val = Number(element.slice(1, element.length));
+          const val = Number(input.slice(1, input.length));
           if (filter == 'a') {
             // target_social_need
             temp_data = temp_data.filter(d =>
@@ -305,8 +295,8 @@ async function databaseManager() {
           }
         } else {
           // deal with outcomes which are funky as hell
-          const sub_filter = element[1];
-          const val = Number(element.slice(2, element.length));
+          const sub_filter = input[1];
+          const val = Number(input.slice(2, input.length));
 
           if (filter == 'l') {
             temp_data = temp_data.filter(
@@ -661,12 +651,12 @@ async function databaseManager() {
     alert('you have clicked on a study');
   }
 
-  function studyCount(_dataset) {
-    const ref_id = d => d.ref_id;
-    const studies = d3.map(_dataset, ref_id).keys();
-    const unique_studies = new Set(studies);
-    console.log(_dataset.length, unique_studies.size);
-    return unique_studies.size;
+  function countStudies(_dataset) {
+    // const ref_id = d => d.ref_id;
+    // const studies = d3.map(_dataset, ref_id).keys();
+    // const unique_studies = new Set(studies);
+    // return unique_studies.size;
+    return _dataset.length;
   }
 }
 databaseManager();

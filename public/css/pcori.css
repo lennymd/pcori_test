@@ -58,6 +58,16 @@ strong { font-weight: 700; }
 
 .nested_dropdown .menu_description:hover { background-color: #dfebd0; }
 
+.vis_content { max-width: 90vw; }
+
+.vis_content .vis_text { max-width: 900px; margin: 0 auto; font-size: 21px; text-align: center; margin-top: 20px; }
+
+.vis_content .vis_text .total_study_highlight { padding: 0 4px; background-color: #8bbe56; font-weight: 700; }
+
+.vis_content .vis_text .dot_color { color: #8bbe56; font-weight: 700; }
+
+.vis_content .vis_text .criteria_category { background-color: #cecedd; padding: 0 4px; }
+
 section.db_wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
 section.db_wrapper .db_title { font-weight: 700; margin: 0; padding: 0; text-transform: uppercase; }
