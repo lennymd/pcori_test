@@ -1,0 +1,27 @@
+---
+---
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+@import url('https://rsms.me/inter/inter.css');
+
+body {
+  padding: 1% 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header {
+  margin-bottom: 1rem;
+}
+strong {
+  font-weight: 700;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@import 'pcori_header', 'tabs', 'reset_button', 'menu', 'vis', 'db';

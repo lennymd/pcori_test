@@ -1,6 +1,6 @@
 let db_inputs = [];
 async function databaseManager() {
-  let dataset = await d3.csv('./public/data/pcori_1111.csv');
+  let dataset = await d3.csv('./public/data/pcori_1111--fudged.csv');
   // ACCESSOR FUNCTIONS
   const target_social_need = d => d.target_social_need;
   const title = d => d.title;
