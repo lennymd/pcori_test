@@ -69,7 +69,7 @@ async function visualizationManager() {
   const vis_active = d3.selectAll('.vis_active');
 
   // INITIAL setup
-  // TODO draw initial dots
+  initializeVisualization(dataset);
 
   // INTERACTIONS
   menu_options.on('click', visualizeStudies);
@@ -163,6 +163,7 @@ async function visualizationManager() {
           );
         }
       } else if (category == 'e') {
+        temp_data = temp_data;
       } else {
         alert('Something is wrong. Check your input categories');
       }
@@ -190,73 +191,144 @@ async function visualizationManager() {
       input_categories.push(input[0]);
     });
 
-    let display_text_intro = `You are seeing <span id="filters_the" class="hidden">the</span>
+    const study_word = _data.length > 1 ? 'studies' : 'study';
+    let display_text_intro = `You are seeing <span 
       <span class="total_study_highlight"
-        ><span class="select_study_count">${_data.length}</span> studies</span
+        ><span class="select_study_count">${_data.length}</span> ${study_word}</span
       >`;
     let display_info = '';
     const input_string = input_categories.toString().trim();
+
+    let multi_study = ['have', 'their', 'they address', 'They', 'are'];
+    let single_study = ['has', 'its', 'it addresses', 'It', 'is'];
+    const tense = _data.length > 1 ? single_study : multi_study;
     if (
       input_string.includes('a') &&
       input_string.includes('b') &&
       input_string.includes('c') &&
       input_string.includes('d')
     ) {
-      display_info = `that have <strong class="criteria_category">${label_text[0]}</strong> as one of their target interventions and have <strong class="criteria_category">${label_text[1]}</strong> as one of the needs they address. They are sorted by <strong class="criteria_category">${label_text[2]}</strong>. They are also sorted by <strong class="criteria_category">${label_text[3]}</strong> outcomes.`;
+      display_info = `that ${tense[0]} <strong class="criteria_category">${label_text[0]}</strong> as one of ${tense[1]} target interventions and ${tense[0]} <strong class="criteria_category">${label_text[1]}</strong> as one of the needs ${tense[2]}. ${tense[3]} are sorted by <strong class="criteria_category">${label_text[2]}</strong>. ${tense[3]} are also sorted by <strong class="criteria_category">${label_text[3]}</strong> outcomes.`;
     } else if (
       input_string.includes('a') &&
       input_string.includes('b') &&
       input_string.includes('c')
     ) {
-      display_info = `that have <strong class="criteria_category">${label_text[0]}</strong> as one of their target interventions and have <strong class="criteria_category">${label_text[1]}</strong> as one of the needs they address. They are sorted by <strong class="criteria_category">${label_text[2]}</strong>.`;
+      display_info = `that ${tense[0]} <strong class="criteria_category">${label_text[0]}</strong> as one of ${tense[1]} target interventions and ${tense[0]} <strong class="criteria_category">${label_text[1]}</strong> as one of the needs ${tense[2]}. ${tense[3]} are sorted by <strong class="criteria_category">${label_text[2]}</strong>.`;
     } else if (
       input_string.includes('a') &&
       input_string.includes('b') &&
       input_string.includes('d')
     ) {
-      display_info = `that have <strong class="criteria_category">${label_text[0]}</strong> as one of their target interventions and have <strong class="criteria_category">${label_text[1]}</strong> as one of the needs they address. They are sorted by <strong class="criteria_category">${label_text[3]}</strong> outcomes.`;
+      display_info = `that ${tense[0]} <strong class="criteria_category">${label_text[0]}</strong> as one of ${tense[1]} target interventions and ${tense[0]} <strong class="criteria_category">${label_text[1]}</strong> as one of the needs ${tense[2]}. ${tense[3]} are sorted by <strong class="criteria_category">${label_text[3]}</strong> outcomes.`;
     } else if (input_string.includes('a') && input_string.includes('b')) {
-      display_info = `that have <strong class="criteria_category">${label_text[0]}</strong> as one of their target interventions and have <strong class="criteria_category">${label_text[1]}</strong> as one of the needs they address.`;
+      display_info = `that ${tense[0]} <strong class="criteria_category">${label_text[0]}</strong> as one of ${tense[1]} target interventions and have <strong class="criteria_category">${label_text[1]}</strong> as one of the needs ${tense[2]}.`;
     } else if (
       input_string.includes('a') &&
       input_string.includes('c') &&
       input_string.includes('d')
     ) {
-      display_info = `that have <strong class="criteria_category">${label_text[0]}</strong> as one of their target interventions. They are sorted by <strong class="criteria_category">${label_text[2]}</strong>. They are also sorted by <strong class="criteria_category">${label_text[3]}</strong> outcomes.`;
+      display_info = `that ${tense[0]} <strong class="criteria_category">${label_text[0]}</strong> as one of ${tense[1]} target interventions. ${tense[3]} are sorted by <strong class="criteria_category">${label_text[2]}</strong>. ${tense[3]} are also sorted by <strong class="criteria_category">${label_text[3]}</strong> outcomes.`;
     } else if (input_string.includes('a') && input_string.includes('c')) {
-      display_info = `that have <strong class="criteria_category">${label_text[0]}</strong> as one of their target interventions. They are sorted by <strong class="criteria_category">${label_text[2]}</strong>.`;
+      display_info = `that ${tense[0]} <strong class="criteria_category">${label_text[0]}</strong> as one of ${tense[1]} target interventions. ${tense[3]} are sorted by <strong class="criteria_category">${label_text[2]}</strong>.`;
     } else if (input_string.includes('a') && input_string.includes('d')) {
-      display_info = `that have <strong class="criteria_category">${label_text[0]}</strong> as one of their target interventions. They are sorted by <strong class="criteria_category">${label_text[3]}</strong> outcomes.`;
+      display_info = `that ${tense[0]} <strong class="criteria_category">${label_text[0]}</strong> as one of ${tense[1]} target interventions. ${tense[3]} are sorted by <strong class="criteria_category">${label_text[3]}</strong> outcomes.`;
     } else if (input_string.includes('a')) {
-      display_info = `that have <strong class="criteria_category">${label_text[0]}</strong> as one of their target interventions.`;
+      display_info = `that ${tense[0]} <strong class="criteria_category">${label_text[0]}</strong> as one of ${tense[1]} target interventions.`;
     } else if (
       input_string.includes('b') &&
       input_string.includes('c') &&
       input_string.includes('d')
     ) {
-      display_info = `that have <strong class="criteria_category">${label_text[1]}</strong> as one of the needs they address. They are sorted by <strong class="criteria_category">${label_text[2]}</strong>. They are also sorted by <strong class="criteria_category">${label_text[3]}</strong> outcomes.`;
+      display_info = `that ${tense[0]} <strong class="criteria_category">${label_text[1]}</strong> as one of the needs ${tense[2]}. ${tense[3]} are sorted by <strong class="criteria_category">${label_text[2]}</strong>. ${tense[3]} are also sorted by <strong class="criteria_category">${label_text[3]}</strong> outcomes.`;
     } else if (input_string.includes('b') && input_string.includes('c')) {
-      display_info = `that have <strong class="criteria_category">${label_text[0]}</strong> as one of their target interventions and have <strong class="criteria_category">${label_text[1]}</strong> as one of the needs they address. They are sorted by <strong class="criteria_category">${label_text[2]}</strong>.`;
+      display_info = `that ${tense[0]} <strong class="criteria_category">${label_text[0]}</strong> as one of ${tense[1]} target interventions and have <strong class="criteria_category">${label_text[1]}</strong> as one of the needs ${tense[2]}. ${tense[3]} are sorted by <strong class="criteria_category">${label_text[2]}</strong>.`;
     } else if (input_string.includes('b') && input_string.includes('d')) {
-      display_info = `that have <strong class="criteria_category">${label_text[1]}</strong> as one of the needs they address. They are sorted by <strong class="criteria_category">${label_text[3]}</strong> outcomes.`;
+      display_info = `that ${tense[0]} <strong class="criteria_category">${label_text[1]}</strong> as one of the needs ${tense[2]}. ${tense[3]} are sorted by <strong class="criteria_category">${label_text[3]}</strong> outcomes.`;
     } else if (input_string.includes('b')) {
-      display_info = `that have <strong class="criteria_category">${label_text[1]}</strong> as one of the needs they address.`;
+      display_info = `that ${tense[0]} <strong class="criteria_category">${label_text[1]}</strong> as one of the needs ${tense[2]}.`;
     } else if (input_string.includes('c') && input_string.includes('d')) {
-      display_info = `that are sorted by <strong class="criteria_category">${label_text[2]}</strong>. They are also sorted by <strong class="criteria_category">${label_text[3]}</strong> outcomes.`;
+      display_info = `that ${tense[4]} sorted by <strong class="criteria_category">${label_text[2]}</strong>. ${tense[3]} are also sorted by <strong class="criteria_category">${label_text[3]}</strong> outcomes.`;
     } else if (input_string.includes('c')) {
-      display_info = `that are sorted by <strong class="criteria_category">${label_text[2]}</strong>.`;
+      display_info = `that ${tense[4]} sorted by <strong class="criteria_category">${label_text[2]}</strong>.`;
     } else if (input_string.includes('d')) {
-      display_info = `that are sorted by <strong class="criteria_category">${label_text[3]}</strong> outcomes.`;
-    } else {
-      alert('test me');
+      display_info = `that ${tense[4]} sorted by <strong class="criteria_category">${label_text[3]}</strong> outcomes.`;
     }
-    const display_text = `${display_text_intro.trim()} ${display_info.trim()}`.trim();
-    d3.selectAll('.vis_active').html(`${display_text}`);
+    // TODO what should happen on text when we sort by quality?
+    let display_text;
+    if (
+      input_string.includes('e') &&
+      !input_string.includes('a') &&
+      !input_string.includes('b') &&
+      !input_string.includes('c') &&
+      !input_string.includes('d')
+    ) {
+      display_text = `${display_text_intro.trim()}.`;
+    } else {
+      display_text = `${display_text_intro.trim()} ${display_info.trim()}`.trim();
+    }
+    d3.selectAll('.vis_active').html(display_text);
   }
 
   function updateVisualization(_inputs, _data) {
     const data = _data;
     let input_categories = [];
+
+    let results_health = [
+      result_functional,
+      result_self_health,
+      result_child_development,
+      result_low_birth_weight,
+      result_mental_health_status,
+      result_morbidity,
+      result_mortality,
+      result_QALY,
+      result_quality_of_life,
+      result_other_health,
+    ];
+    let results_healthcare_use = [
+      result_adherence,
+      result_clinic_attendance,
+      result_emergency_visits,
+      result_frequency_healthcare_use,
+      result_hospital_days,
+      result_hospital_readmission,
+      result_immunizations,
+      result_inpatient_admission,
+      result_medical_home,
+      result_missed_appointments,
+      result_outpatient_visits,
+      result_post_primarycare_visits,
+      result_prenatal,
+      result_preventive,
+      result_sober_center,
+      result_emergency_transport,
+      result_other_healthcareuse,
+    ];
+    let results_behavioral = [
+      result_diet,
+      result_substance_use,
+      result_other_behavior,
+    ];
+    let characteristics = [
+      age_group,
+      race_ethnicity_majority,
+      proportion_immigrant,
+      proportion_male,
+    ];
+    let column_categories = [
+      ['Adolescents/ Young Adults', 'Adults', 'Older Adults', 'Pediatric'],
+      [
+        'Asian',
+        'Hispanic',
+        'Non-Hispanic Black',
+        'Non-Hispanic White',
+        'Other',
+      ],
+      ['0–24%', '25%–49%', '50%–74%', '75%–100%', 'Not Reported'],
+      ['0–24%', '25%–49%', '50%–74%', '75%–100%', 'Not Reported'],
+    ];
+    let outcome_values = ['Positive', 'Negative', 'Mixed results', 'No effect'];
     _inputs.forEach(input => input_categories.push(input[0]));
     const input_string = input_categories.toString().trim();
     if (input_string.includes('c') || input_string.includes('d')) {
@@ -266,6 +338,130 @@ async function visualizationManager() {
         d3.select('#chart1').classed('hidden', true);
         d3.select('#chart2').classed('hidden', true);
         d3.select('#chart3').classed('hidden', false);
+        const c_index = input_categories.indexOf('c');
+        const c = _inputs[c_index];
+        const d_index = input_categories.indexOf('d');
+        const d = _inputs[d_index];
+        const d_category = d[1];
+        const c_value = Number(c.slice(1, c.length));
+        const d_value = Number(d.slice(2, d.length));
+        const column_names = column_categories[c_value];
+        const column_number = column_names.length;
+
+        const grid = d3.select('#grid_rows_columns');
+        grid.html('');
+        grid.style(
+          'grid-template-columns',
+          `repeat(${column_number + 1}, 1fr)`
+        );
+
+        for (i = 0; i < 5; i++) {
+          for (j = 0; j < column_number + 1; j++) {
+            grid
+              .append('div')
+              .attr('id', `grid_${i}_${j}`)
+              .attr('class', `grid_box row_${i} col_${j}`);
+          }
+        }
+
+        // fill outcome box grid_0_0
+        const outcome_box = d3
+          .select('#grid_0_0')
+          .text('')
+          .attr('class', 'border_right grid_box');
+
+        outcome_box.append('span').attr('class', 'small_title').text('Outcome');
+        outcome_box.append('br');
+        outcome_box
+          .append('span')
+          .attr('class', 'outcome_label')
+          .text(document.getElementById(d).textContent.trim());
+
+        // add column names
+        column_names.forEach((name, index) => {
+          const box = d3
+            .select(`#grid_0_${index + 1}`)
+            .text('')
+            .attr('class', 'border_right');
+          box.append('h3').attr('class', 'column_category').text(name);
+        });
+
+        outcome_values.forEach((name, index) => {
+          d3.select(`#grid_${index + 1}_0`)
+            .text('')
+            .attr('class', 'border_right border_top')
+            .append('span')
+            .attr('class', 'grid_outcome_label')
+            .html(`${name}`);
+        });
+
+        // add data for each group:
+        outcome_values.forEach((row, i) => {
+          column_names.forEach((col, j) => {
+            console.log(row, col, i, j);
+            const box = d3
+              .select(`#grid_${i + 1}_${j + 1}`)
+              .style('display', 'flex')
+              .style('flex-wrap', 'wrap')
+              .style('flex-direction', 'row')
+              .attr('class', 'border_right border_top');
+
+            let data_slice = data;
+            let column_filter = characteristics[c_value];
+            // filter column first
+            if (col == 'Adults') {
+              data_slice = data_slice.filter(d =>
+                column_filter(d).includes('Adult')
+              );
+            } else if (col == '0–24%') {
+              data_slice = data_slice.filter(
+                d => Number(column_filter(d)) < 25
+              );
+            } else if (col == '25%–49%') {
+              data_slice = data_slice
+                .filter(d => Number(column_filter(d)) > 24)
+                .filter(d => Number(column_filter(d)) < 50);
+            } else if (col == '50%–74%') {
+              data_slice = data_slice
+                .filter(d => Number(column_filter(d)) > 49)
+                .filter(d => Number(column_filter(d)) < 75);
+            } else if (col == '75%–100%') {
+              data_slice = data_slice.filter(
+                d => Number(column_filter(d)) > 74
+              );
+            } else if (col == 'Not Reported') {
+              data_slice = data_slice.filter(
+                d => Number(column_filter(d)) == 'NR'
+              );
+            } else {
+              data_slice = data_slice.filter(d =>
+                column_filter(d).includes(col)
+              );
+            }
+
+            // filter by row value
+            let row_filter;
+            if (d_category == 'a') {
+              row_filter = results_behavioral[d_value];
+            } else if (d_category == 'b') {
+              row_filter = results_health[d_value];
+            } else if (d_category == 'c') {
+              row_filter = results_healthcare_use[d_value];
+            }
+            data_slice = data_slice.filter(d => row_filter(d) == row);
+            box
+              .selectAll('div.dot_study')
+              .data(data_slice)
+              .join(
+                enter => enter.append('div'),
+                update => update,
+                exit => exit.remove()
+              )
+              .attr('class', 'dot_study');
+          });
+        });
+
+        // end of chart 3 code
       } else if (input_string.includes('d')) {
         // switch to chart2 -- rows
         d3.select('#chart0').classed('hidden', true);
@@ -276,24 +472,19 @@ async function visualizationManager() {
         const d = _inputs[d_index];
         const sub_category = d[1];
         const value = Number(d.slice(2, d.length));
-        console.log(d, sub_category, value);
 
         d3.selectAll('.outcome_label').text(
-          `${document.getElementById(`${d}`).textContent.trim()}`
+          document.getElementById(d).textContent.trim()
         );
         let positive = d3.select('#positive_outcome');
         let negative = d3.select('#negative_outcome');
         let mixed = d3.select('#mixed_outcome');
         let no_effect = d3.select('#noeffect_outcome');
-        outcome_areas = [positive, negative, mixed, no_effect];
-        outcome_values = ['Positive', 'Negative', 'Mixed results', 'No effect'];
+        const outcome_areas = [positive, negative, mixed, no_effect];
+
         if (sub_category == 'a') {
           // dealing with behavioral outcomes
-          let results_behavioral = [
-            result_diet,
-            result_substance_use,
-            result_other_behavior,
-          ];
+
           outcome_values.forEach((outcome, index) => {
             outcome_areas[index]
               .selectAll('div.dot_study')
@@ -307,18 +498,7 @@ async function visualizationManager() {
           });
         } else if (sub_category == 'b') {
           // dealing with health outcomes
-          let results_health = [
-            result_functional,
-            result_self_health,
-            result_child_development,
-            result_low_birth_weight,
-            result_mental_health_status,
-            result_morbidity,
-            result_mortality,
-            result_QALY,
-            result_quality_of_life,
-            result_other_health,
-          ];
+
           outcome_values.forEach((outcome, index) => {
             outcome_areas[index]
               .selectAll('div.dot_study')
@@ -332,24 +512,7 @@ async function visualizationManager() {
           });
         } else if (sub_category == 'c') {
           // dealing with healthcare use outcomes
-          let results_healthcare_use = [
-            result_adherence,
-            result_clinic_attendance,
-            result_emergency_visits,
-            result_frequency_healthcare_use,
-            result_hospital_days,
-            result_hospital_readmission,
-            result_immunizations,
-            result_inpatient_admission,
-            result_medical_home,
-            result_missed_appointments,
-            result_outpatient_visits,
-            result_post_primarycare_visits,
-            result_prenatal,
-            result_preventive,
-            result_sober_center,
-            result_other_healthcareuse,
-          ];
+
           outcome_values.forEach((outcome, index) => {
             outcome_areas[index]
               .selectAll('div.dot_study')
@@ -365,22 +528,192 @@ async function visualizationManager() {
           });
         }
       } else if (input_string.includes('c')) {
-        // TODO switch to chart1 -- columns
+        // switch to chart1 -- columns
         d3.select('#chart0').classed('hidden', true);
         d3.select('#chart2').classed('hidden', true);
         d3.select('#chart3').classed('hidden', true);
         d3.select('#chart1').classed('hidden', false);
+
+        // create the sections and append the column titles
+        const c_index = input_categories.indexOf('c');
+        const c = _inputs[c_index];
+        const value = c[1];
+        const current_categories = column_categories[value];
+        d3.selectAll('.grid_columns').remove();
+        const col_grid = d3.select('#grid_columns');
+        col_grid.style(
+          'grid-template-columns',
+          `repeat(${current_categories.length},1fr)`
+        );
+        const category_container = col_grid
+          .selectAll('columns')
+          .data(current_categories)
+          .join(
+            enter => enter.append('div'),
+            update => update,
+            exit => exit.remove()
+          )
+          .attr('class', 'grid_columns border_right');
+
+        category_container
+          .append('div')
+          .append('h3')
+          .text((d, i) => `${current_categories[i]}`)
+          .attr('class', 'column_category ');
+
+        category_container
+          .append('div')
+          .attr('id', (d, i) => `group_${i}`)
+          .style('display', 'flex')
+          .style('flex-direction', 'row')
+          .style('flex-wrap', 'wrap')
+          .style('flex', 1)
+          .style('width', '100%')
+          .style('margin', '0 auto');
+        // Add circles to each group
+
+        current_categories.forEach((category, index) => {
+          let group, group_data;
+          if (value == 0) {
+            // age_group
+            if (category == 'Adults') {
+              group = 'Adult';
+            } else {
+              group = category;
+            }
+            group_data = data.filter(d =>
+              characteristics[value](d).includes(group)
+            );
+          } else if (value == 1) {
+            // race/ethnicity
+            group_data = data.filter(d =>
+              characteristics[value](d).includes(category)
+            );
+          } else if (value == 2 || value == 3) {
+            // proportion immigrant
+            if (index == 0) {
+              // 0 - 24
+              group_data = data.filter(
+                d => Number(characteristics[value](d)) < 25
+              );
+            } else if (index == 1) {
+              // 25-49
+              group_data = data
+                .filter(d => Number(characteristics[value](d)) > 24)
+                .filter(d => Number(characteristics[value](d)) < 50);
+            } else if (index == 2) {
+              // 50 - 75
+              group_data = data
+                .filter(d => Number(characteristics[value](d)) > 49)
+                .filter(d => Number(characteristics[value](d)) < 75);
+            } else if (index == 3) {
+              // 75 - 100
+              group_data = data.filter(
+                d => Number(characteristics[value](d)) > 75
+              );
+            } else {
+              group_data = data.filter(d => characteristics[value](d) === 'NR');
+            }
+          }
+          d3.select(`#group_${index}`)
+            .selectAll('div.dot_study')
+            .data(group_data)
+            .join(
+              enter => enter.append('div'),
+              update => update,
+              exit => exit.remove()
+            )
+            .attr('class', 'dot_study');
+        });
       }
     } else {
       // stay with chart0
-      // TODO update the circles in the visualization
+      d3.select('#initial')
+        .selectAll('div.dot_study')
+        .data(data)
+        .join(
+          enter => enter.append('div'),
+          update => update,
+          exit => exit.remove()
+        )
+        .attr('class', 'dot_study');
     }
 
     if (input_string.includes('e')) {
-      // TODO color code things.
-      d3.select('#color_legend').classed('hidden', false);
+      console.log('color');
+      // color code things.
+      const quality = [risk_of_bias, study_design];
+      const e_index = input_categories.indexOf('e');
+      const e = _inputs[e_index];
+
+      // setup color scale
+      const color_range = [
+        '#00429d',
+        '#96ffea',
+        'yellow',
+        '#b30051',
+        '#93003a',
+      ];
+      const color_domain =
+        e[1] == 0
+          ? ['High', 'Medium', 'Low', 'NA']
+          : [
+              'Case-control',
+              'Cohort study',
+              'Pre-post',
+              'RCT',
+              'Other observational',
+            ];
+      const color_scale = d3
+        .scaleOrdinal()
+        .range(color_range)
+        .domain(color_domain);
+
+      const color_legend_box = d3
+        .select('#color_legend')
+        .classed('hidden', false);
+
+      color_legend_box.selectAll('div').remove();
+
+      const legend_box = color_legend_box
+        .append('div')
+        .attr('class', 'legend_box');
+
+      color_domain.forEach((element, i) => {
+        box = legend_box.append('div').attr('class', 'legend_item');
+        box
+          .append('div')
+          .attr('class', 'legend_dot')
+          .style('background-color', color_scale(element));
+        box.append('div').html(element);
+      });
+
+      // color circles
+      d3.selectAll('div.dot_study')
+        .data(data)
+        .join(
+          enter => enter.append('div'),
+          update => update,
+          exit => exit.remove()
+        )
+        .style('background-color', d => color_scale(quality[e[1]](d)));
     }
   }
 }
+function initializeVisualization(_data) {
+  d3.select('#chart0').classed('hidden', false);
+  d3.select('#chart1').classed('hidden', true);
+  d3.select('#chart2').classed('hidden', true);
+  d3.select('#chart3').classed('hidden', true);
 
+  d3.select('#initial')
+    .selectAll('div.dot_study')
+    .data(_data)
+    .join(
+      enter => enter.append('div'),
+      update => update,
+      exit => exit.remove()
+    )
+    .attr('class', 'dot_study');
+}
 visualizationManager();

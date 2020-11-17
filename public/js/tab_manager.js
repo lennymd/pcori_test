@@ -1,14 +1,20 @@
-const tab_vis = document.getElementById('tab_vis');
-const tab_db = document.getElementById('tab_db');
-const content_vis = document.getElementById('vis');
-const content_db = document.getElementById('db');
+const tab_vis = d3.select('#tab_vis');
+const tab_db = d3.select('#tab_db');
+const content_vis = d3.select('#vis');
+const content_db = d3.select('#db');
 
-tab_vis.addEventListener('click', switchView);
-tab_db.addEventListener('click', switchView);
+tab_db.on('click', switchToDatabase);
+tab_vis.on('click', switchToVisualization);
 
-function switchView() {
-  tab_db.classList.toggle('tab_active');
-  tab_vis.classList.toggle('tab_active');
-  content_vis.classList.toggle('hidden');
-  content_db.classList.toggle('hidden');
+function switchToDatabase() {
+  tab_vis.classed('tab_active', false);
+  content_vis.classed('hidden', true);
+  tab_db.classed('tab_active', true);
+  content_db.classed('hidden', false);
+}
+function switchToVisualization() {
+  tab_vis.classed('tab_active', true);
+  content_vis.classed('hidden', false);
+  tab_db.classed('tab_active', false);
+  content_db.classed('hidden', true);
 }
