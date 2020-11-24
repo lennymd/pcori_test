@@ -119,6 +119,7 @@ async function visualization_manager(_data) {
   }
 
   function update(_inputs, _data) {
+    _inputs = _inputs.sort();
     if (vis_inputs.length > 0) {
       // Update graphic layout and dots based on based on vis_inputs
       d3.selectAll('.export_button_main').classed('hidden', true);
@@ -159,6 +160,7 @@ async function visualization_manager(_data) {
   }
 
   function filter_data(_inputs, _data) {
+    _inputs.sort();
     let temp = _data;
     if (_inputs.length == 0) {
       return temp;
@@ -171,8 +173,6 @@ async function visualization_manager(_data) {
         if (i < 2) {
           // 0 is target social need; 1 is target population
           temp = temp.filter(d => vis_filters[i](d).includes(option_text));
-        } else {
-          temp = temp;
         }
       });
       return temp;
@@ -180,7 +180,7 @@ async function visualization_manager(_data) {
   }
 
   function update_visualization(_inputs, _data) {
-    console.log(_inputs);
+    _inputs = _inputs.sort();
     if (_data.length > 0) {
       d3.selectAll('.visualization_area').classed('hidden', false);
       d3.select('#color_legend').classed('hidden', true);
@@ -191,14 +191,13 @@ async function visualization_manager(_data) {
         categories.push(Number(split_input[1]));
       });
 
-      // Grouped variables for use
+      // indices
       const i = categories.indexOf(2);
       const j = categories.indexOf(3);
       const q = categories.indexOf(4);
 
       if (categories.includes(2) && categories.includes(3)) {
-        console.log('test');
-        // switch to rows & col chart
+        // switch to matrix chart
         const chart = d3.select('#chart_matrix');
         d3.selectAll('.chart').classed('hidden', true);
         chart.classed('hidden', false);
@@ -207,15 +206,15 @@ async function visualization_manager(_data) {
         const col_definer = _inputs[i];
         const col_category = col_definer.split('_')[2];
         const cols = column_category_names[col_category];
+
         const row_definer = _inputs[j];
         const row_category = row_definer.split('_')[2];
         const rows = outcome_types[row_category];
 
         const row_type = d3.select(`#${row_definer}`).text();
 
-        d3.selectAll('.matrix_container').remove();
-
         // generate grid with proper rows and cols
+        d3.selectAll('.matrix_container').remove();
         const matrix_container = chart
           .append('div')
           .attr('class', 'matrix_container')
@@ -252,21 +251,22 @@ async function visualization_manager(_data) {
         });
 
         // create boxes
-        for (let n = 0; n < rows.length + 1; n++) {
-          for (let m = 0; m < cols.length + 1; m++) {
-            matrix_container.append('div').attr('id', `group_${m}_${n}`);
+        for (let n1 = 0; n1 < rows.length + 1; n1++) {
+          for (let m1 = 0; m1 < cols.length + 1; m1++) {
+            matrix_container.append('div').attr('id', `group_${m1}_${n1}`);
           }
         }
+
         // start filling out grid boxes
         for (let n = 0; n < rows.length + 1; n++) {
           for (let m = 0; m < cols.length + 1; m++) {
-            const group = d3.select(`#group_${m}_${n}`);
+            console.log(m, n);
+            const group = matrix_container.select(`#group_${m}_${n}`);
             const box = group
               .append('div')
-              .attr('class', 'matrix_grid_box border_right ');
+              .attr('class', 'matrix_grid_box border_right');
 
             if (n == 0 && m == 0) {
-              console.log(`group_${m}_${n}`);
               box.style('margin-top', '1em');
               box
                 .append('h4')
@@ -274,16 +274,15 @@ async function visualization_manager(_data) {
                 .html(
                   `Interventions sorted by ${row_type.toLowerCase()} outcomes<br /><span class="row_arrow">↓</span>`
                 );
-              box.append('h4').text('test');
             } else if (n == 0 && m > 0) {
               // if n == 0, and m > 0 set all the column names
+              if (m == cols.length) {
+                box.classed('border_right', false);
+              }
               box
                 .append('h3')
                 .attr('class', 'matrix_section_head')
                 .html(cols[m - 1]);
-              if (m == cols.length) {
-                box.classed('border_right', false);
-              }
             } else if (m == 0 && n > 0) {
               //  if m == 0, and n > 0 set all the row names
               box.classed('border_top', true);
@@ -382,6 +381,7 @@ async function visualization_manager(_data) {
                   .html('No interventions.')
                   .style('margin-top', 0);
               }
+
               intervention_box
                 .selectAll('div.dot_intervention')
                 .data(group_data)
@@ -533,7 +533,10 @@ async function visualization_manager(_data) {
             }
           }
 
-          const sort_box = d3.select('#group_0_0').html('').append('div');
+          const sort_box = row_container
+            .select('#group_0_0')
+            .html('')
+            .append('div');
           sort_box
             .append('h4')
             .attr('class', 'row_outcome_type')
@@ -573,7 +576,7 @@ async function visualization_manager(_data) {
           for (let n = 0; n < outcomes.length + 1; n++) {
             for (let m = 0; m < 3; m++) {
               if (n == 0 && m > 0) {
-                d3.select(`div#group_${m}_${n}`).html('');
+                row_container.select(`group_${m}_${n}`).html('');
               } else if (n > 0) {
                 const box = d3
                   .select(`div#group_${m}_${n}`)
