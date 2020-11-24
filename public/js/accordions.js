@@ -14,9 +14,10 @@ function toggleAccordion() {
   parent.children[1].classList.toggle('hidden');
   const arrowBox = parent.children[0].children[1];
   const arrow = arrowBox.textContent;
-  if (arrow == '▶') {
+  if (arrow == '▼') {
+    arrowBox.textContent = '▲';
+  }
+  if (arrow == '▲') {
     arrowBox.textContent = '▼';
-  } else {
-    arrowBox.textContent = '▶';
   }
 }

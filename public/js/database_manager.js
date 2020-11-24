@@ -1,93 +1,14 @@
 let db_inputs = [];
 async function databaseManager() {
-  let dataset = await d3.csv('./public/data/pcori_1111--fudged.csv');
-  // ACCESSOR FUNCTIONS
-  const target_social_need = d => d.target_social_need;
-  const title = d => d.title;
-  const author = d => d.author;
-  const year = d => d.year;
-  const target_population = d => d.target_population;
-  const age_group = d => d.age_group;
-  const race_ethnicity_majority = d => d.race_ethnicity_majority;
-  const intervention_target = d => d.intervention_target;
-  const intervention_setting = d => d.intervention_setting;
-  const specific_intervention_components = d =>
-    d.specific_intervention_components;
-  const recruitment_setting = d => d.recruitment_setting;
-  const study_type = d => d.study_type;
-  const service_provider = d => d.service_provider;
-  const comparator = d => d.comparator;
-  const study_design = d => d.study_design;
-  const risk_of_bias = d => d.risk_of_bias;
-  const individual_systems_intervention = d =>
-    d.individual_systems_intervention;
-  const addresses_health_outcomes = d => d.addresses_health_outcomes;
-  const health_outcomes = d => d.health_outcomes;
-  const addresses_behavioral_outcomes = d => d.addresses_behavioral_outcomes;
-  const behavioral_outcomes = d => d.behavioral_outcomes;
-  const addresses_healthcareuse_outcomes = d =>
-    d.addresses_healthcareuse_outcomes;
-  const healthcareuse_outcomes = d => d.healthcareuse_outcomes;
-  const result_QALY = d => d.result_QALY;
-  const result_mortality = d => d.result_mortality;
-  const result_mental_health_status = d => d.result_mental_health_status;
-  const result_functional = d => d.result_functional;
-  const result_morbidity = d => d.result_morbidity;
-  const result_quality_of_life = d => d.result_quality_of_life;
-  const result_self_health = d => d.result_self_health;
-  const result_low_birth_weight = d => d.result_low_birth_weight;
-  const result_child_development = d => d.result_child_development;
-  const result_other_health = d => d.result_other_health;
-  const result_substance_use = d => d.result_substance_use;
-  const result_diet = d => d.result_diet;
-  const result_other_behavior = d => d.result_other_behavior;
-  const result_hospital_readmission = d => d.result_hospital_readmission;
-  const direction_hospital_readmission = d => d.direction_hospital_readmission;
-  const result_frequency_healthcare_use = d =>
-    d.result_frequency_healthcare_use;
-  const direction_frequency_healthcare_use = d =>
-    direction_frequency_healthcare_use;
-  const result_adherence = d => d.result_adherence;
-  const direction_adherence = d => d.direction_adherence;
-  const result_missed_appointments = d => d.result_missed_appointments;
-  const direction_missed_appointments = d => d.direction_missed_appointments;
-  const result_preventive = d => d.result_preventive;
-  const direction_preventive = d => d.direction_preventive;
-  const result_outpatient_visits = d => d.result_outpatient_visits;
-  const direction_outpatient_visits = d => d.direction_outpatient_visits;
-  const result_emergency_visits = d => d.result_emergency_visits;
-  const direction_emergency_visits = d => d.direction_emergency_visits;
-  const result_clinic_attendance = d => d.result_clinic_attendance;
-  const direction_clinic_attendance = d => d.direction_clinic_attendance;
-  const result_post_primarycare_visits = d => d.result_post_primarycare_visits;
-  const direction_post_primarycare_visits = d =>
-    d.direction_post_primarycare_visits;
-  const result_prenatal = d => d.result_prenatal;
-  const direction_prenatal = d => d.direction_prenatal;
-  const result_inpatient_admission = d => d.result_inpatient_admission;
-  const direction_inpatient_admission = d => d.direction_inpatient_admission;
-  const result_hospital_days = d => d.result_hospital_days;
-  const direction_hospital_days = d => d.direction_hospital_days;
-  const result_sober_center = d => d.result_sober_center;
-  const direction_sober_center = d => d.direction_sober_center;
-  const result_medical_home = d => d.result_medical_home;
-  const direction_medical_home = d => d.direction_medical_home;
-  const result_immunizations = d => d.result_immunizations;
-  const direction_immunizations = d => d.direction_immunizations;
-  const result_other_healthcareuse = d => d.result_other_healthcareuse;
-  const direction_other_healthcareuse = d => d.direction_other_healthcareuse;
-  const result_emergency_transport = d => d.result_emergency_transport;
-  const direction_emergency_transport = d => d.direction_emergency_transport;
+  let dataset = await d3.csv('./public/data/pcori_1111--qced.csv');
 
-  const reset_button = d3.selectAll('.reset_button');
   const input_checkboxes = d3.selectAll('.filter_option > input');
   const relevant_study_items = d3.selectAll('.relevant_study');
   // ACTIONS
   input_checkboxes.on('click', searchDatabase);
-  // reset_button.on('click', resetSearch);
   relevant_study_items.on('click', studyInfo);
-  d3.select('#download_studies_button').on('click', disabledItem);
-  d3.select('#disabled_search').on('click', disabledItem);
+  // d3.select('#download_studies_button').on('click', disabledItem);
+  // d3.select('#disabled_search').on('click', disabledItem);
   // FUNCTIONS
   function searchDatabase() {
     // Check whether button was turned on or off.
@@ -138,9 +59,7 @@ async function databaseManager() {
           .append('h3')
           .attr('class', 'relevant_study_title')
           .html(
-            `There are <span class="relevant_study_count">${countStudies(
-              filtered_data
-            )} studies</span> related to: <span class="relevant_criteria">${criteria_text}</span>`
+            `Studies related to: <span class="relevant_criteria">${criteria_text}</span>`
           );
         // add a list for the studies
         const study_list = relevant_studies_box

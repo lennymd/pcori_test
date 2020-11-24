@@ -41,224 +41,269 @@
 </div>
 </header>
 <main>
-  <section id="vis"><div class="reset_button hidden">
-  <div class="reset_button_img">
-    <img src="./public/img/reset_button_img.svg" alt="" />
+  <section id="vis"><section>
+  <!-- <strong class="filter_title">Filters: </strong> -->
+  <section class="dropdown_grid">
+  <div class="vis_dropdown_menu">
+    <ul class="nested_dropdown">
+      <li>
+        <div class="menu_category">Type of social need</div>
+        <!-- dropdown categories -->
+        <ul class="menu_options">
+          <li class="menu_description">
+            <p>
+              If you select an item below, only the interventions addressing
+              that type of social need will remain on the display.
+            </p>
+          </li>
+          <!-- TODO recreate this using JS and the values from the right data column -->
+          <li class="a_menu_option" id="vis_0_0">Education</li>
+          <li class="a_menu_option" id="vis_0_1">Employment</li>
+          <li class="a_menu_option" id="vis_0_2">Financial strain</li>
+          <li class="a_menu_option" id="vis_0_3">Food insecurity</li>
+          <li class="a_menu_option" id="vis_0_4">Housing</li>
+          <li class="a_menu_option" id="vis_0_5">Legal services</li>
+          <li class="a_menu_option" id="vis_0_6">Not specified</li>
+          <li class="a_menu_option" id="vis_0_7">Social isolation</li>
+          <li class="a_menu_option" id="vis_0_8">Transportation</li>
+          <li class="a_menu_option" id="vis_0_9">Utilities</li>
+        </ul>
+      </li>
+    </ul>
   </div>
-  <div class="reset_button_text">Click here to reset all filters</div>
-</div>
-
-<section><style></style>
-
-<ul class="nested_dropdown">
-  <!-- Type of intervention start -->
-  <li>
-    <div class="menu_category">Type of social need</div>
-    <!-- dropdown categories -->
-    <ul class="menu_options">
-      <li class="menu_description">
-        <p>
-          If you select an item below, only the studies that address that type
-          of intervention will remain on the display
-        </p>
-      </li>
-      <li class="a_menu_option" id="a0">Education</li>
-      <li class="a_menu_option" id="a1">Employment</li>
-      <li class="a_menu_option" id="a2">Financial strain</li>
-      <li class="a_menu_option" id="a3">Food insecurity</li>
-      <li class="a_menu_option" id="a4">Housing</li>
-      <li class="a_menu_option" id="a5">Legal services</li>
-      <li class="a_menu_option" id="a6">Not specified</li>
-      <li class="a_menu_option" id="a7">Social isolation</li>
-      <li class="a_menu_option" id="a8">Transportation</li>
-      <li class="a_menu_option" id="a9">Utilities</li>
-    </ul>
-  </li>
-  <!-- Type of intervention end -->
-  <!-- need of population start -->
-  <li>
-    <div class="menu_category">Needs of the population</div>
-    <ul class="menu_options">
-      <li class="menu_description">
-        <p>
-          When you select an item from this list, only the studies that address
-          the need you selected will remain on screen
-        </p>
-      </li>
-      <li class="a_menu_option" id="b0">Age</li>
-      <li class="a_menu_option" id="b1">Complex Needs</li>
-      <li class="a_menu_option" id="b2">Education</li>
-      <li class="a_menu_option" id="b3">High Utilization</li>
-      <li class="a_menu_option" id="b4">Homeless</li>
-      <li class="a_menu_option" id="b5">Immigration status</li>
-      <li class="a_menu_option" id="b6">Low income/SES</li>
-      <li class="a_menu_option" id="b7">Low-SES neighborhood</li>
-      <li class="a_menu_option" id="b8">Medical Eligibility</li>
-      <li class="a_menu_option" id="b9">Medicare/Medicaid</li>
-      <li class="a_menu_option" id="b10">Occupation</li>
-      <li class="a_menu_option" id="b11">Pregnancy</li>
-      <li class="a_menu_option" id="b12">Race/ethnicity</li>
-      <li class="a_menu_option" id="b13">Rural population</li>
-      <li class="a_menu_option" id="b14">Sex</li>
-      <li class="a_menu_option" id="b15">Sexual identity/orientation</li>
-      <li class="a_menu_option" id="b16">Social Needs</li>
-      <li class="a_menu_option" id="b17">Veteran Status</li>
-    </ul>
-  </li>
-  <!-- need of population end -->
-  <!-- population characteristics start -->
-  <li>
-    <div class="menu_category">Population Characteristics</div>
-    <ul class="menu_options">
-      <li class="menu_description">
-        <p>
-          When you select an item from this list, the studies will be sorted in
-          columns.
-        </p>
-      </li>
-      <li class="a_menu_option" id="c0">Age groups</li>
-      <li class="a_menu_option" id="c1">Majority ethnic/racial group</li>
-      <li class="a_menu_option" id="c2">Percentage of immigrations</li>
-      <li class="a_menu_option" id="c3">Sex (percentage male)</li>
-    </ul>
-  </li>
-  <!-- population characteristics start -->
-  <!-- Outcomes start -->
-  <li>
-    <div class="menu_category">Outcomes</div>
-    <!-- First level sub dropdown -->
-    <ul class="menu_options">
-      <li class="menu_description">
-        <p>
-          When you select an item from this list, the studies will be sorted in
-          rows.
-        </p>
-      </li>
+  <div class="vis_dropdown_menu">
+    <ul class="nested_dropdown">
+      <!-- need of population start -->
       <li>
-        <div>Behavioral</div>
-        <!-- Second level sub dropdown -->
-        <ul>
-          <li class="a_menu_option" id="da0">Changes in dietary intake</li>
-          <li class="a_menu_option" id="da1">Changes in substance use</li>
-          <li class="a_menu_option" id="da2">Other</li>
-        </ul>
-      </li>
-      <li>
-        <div>Health</div>
-        <!-- Second level sub dropdown -->
-        <ul>
-          <li class="a_menu_option" id="db0">Changes in functional outcomes</li>
-          <li class="a_menu_option" id="db1">
-            Changes in self-reported health
+        <div class="menu_category">Target population</div>
+        <ul class="menu_options">
+          <li class="menu_description">
+            <p>
+              When you pick an item from this list, only interventions that
+              target the selected criterion will remain.
+            </p>
           </li>
-          <li class="a_menu_option" id="db2">Child development outcomes</li>
-          <li class="a_menu_option" id="db3">Low birth weight</li>
-          <li class="a_menu_option" id="db4">Mental health status</li>
-          <li class="a_menu_option" id="db5">Morbidity</li>
-          <li class="a_menu_option" id="db6">Mortality</li>
-          <li class="a_menu_option" id="db7">Quality-adjusted life-years</li>
-          <li class="a_menu_option" id="db8">Quality of life</li>
-          <li class="a_menu_option" id="db9">Other</li>
-        </ul>
-      </li>
-      <li>
-        <div>Healthcare utilization</div>
-        <!-- Second level sub dropdown -->
-        <ul>
-          <li class="a_menu_option" id="dc0">Adherence to treatment</li>
-          <li class="a_menu_option" id="dc1">Clinic attendance rate</li>
-          <li class="a_menu_option" id="dc2">Emergency department visits</li>
-          <li class="a_menu_option" id="dc3">Frequency of healthcare use</li>
-          <li class="a_menu_option" id="dc4">Hospital days</li>
-          <li class="a_menu_option" id="dc5">Hospital readmissions</li>
-          <li class="a_menu_option" id="dc6">Immunizations</li>
-          <li class="a_menu_option" id="dc7">Inpatient admissions</li>
-          <li class="a_menu_option" id="dc8">Medical home</li>
-          <li class="a_menu_option" id="dc9">Missed appointments</li>
-          <li class="a_menu_option" id="dc10">Outpatient visits</li>
-          <li class="a_menu_option" id="dc11">
-            Post hospital primary care visit
+          <!-- TODO recreate this using JS and the values from the right data column -->
+          <li class="a_menu_option" id="vis_1_0">Complex Needs</li>
+          <li class="a_menu_option" id="vis_1_1">Education</li>
+          <li class="a_menu_option" id="vis_1_2">High Utilization</li>
+          <li class="a_menu_option" id="vis_1_3">Homeless</li>
+          <li class="a_menu_option" id="vis_1_4">Low income/SES</li>
+          <li class="a_menu_option" id="vis_1_5">Low-SES neighborhood</li>
+          <li class="a_menu_option" id="vis_1_6">Medical Eligibility</li>
+          <li class="a_menu_option" id="vis_1_7">Medicare/Medicaid</li>
+          <li class="a_menu_option" id="vis_1_8">Occupation</li>
+          <li class="a_menu_option" id="vis_1_9">Pregnancy</li>
+          <li class="a_menu_option" id="vis_1_10">Rural population</li>
+          <li class="a_menu_option" id="vis_1_11">
+            Sexual identity/orientation
           </li>
-          <li class="a_menu_option" id="dc12">Prenatal care</li>
-          <li class="a_menu_option" id="dc13">Preventive care utilization</li>
-          <li class="a_menu_option" id="dc14">Sobering center use</li>
-          <li class="a_menu_option" id="dc15">
-            Use of emergency transportation
-          </li>
-          <li class="a_menu_option" id="dc16">Other</li>
+          <li class="a_menu_option" id="vis_1_12">Social Needs</li>
+          <li class="a_menu_option" id="vis_1_13">Veteran Status</li>
         </ul>
       </li>
     </ul>
-  </li>
-  <li>
-    <div class="menu_category">Quality of evidence</div>
-    <ul class="menu_options">
-      <li class="menu_description">
-        <p>
-          When you select an item from this list, the studies will be
-          color-coded.
-        </p>
-      </li>
-      <li class="a_menu_option" id="e0">Risk of bias of the study</li>
-      <li class="a_menu_option" id="e1">Study design</li>
-    </ul>
-  </li>
-</ul>
-</section>
-<section class="vis_content">
-  <div class="vis_text">
-    <p class="vis_intro">
-      This evidence map contains information about
-      <span class="total_study_highlight"
-        ><span class="total_study_count">XX</span> studies</span
-      >. Each study is represented by a <span class="dot_color">dot</span>. You
-      can use the menus to filter the studies, sort them, and color code them.
-      You can also hover over each <span class="dot_color">dot</span> or click
-      on it to obtain more information about each study.
-    </p>
-    <p class="vis_active hidden">
-      <span class="vis_text_variable"></span>
-    </p>
   </div>
-  <div class="visualization_area">
-    <div id="color_legend" class="hidden"></div>
-    <div id="chart0" class="chart">
-      <div id="initial"></div>
-    </div>
-    <div id="chart1" class="chart hidden">
-      <!-- columns -->
-      <div id="grid_columns"></div>
-    </div>
-    <div id="chart2" class="chart hidden">
-      <!-- rows -->
-      <div id="grid_rows">
-        <div class="border_right">
-          <span class="small_title">Outcome</span><br />
-          <span class="outcome_label">XXXXXXXXX</span>
+  <div class="vis_dropdown_menu">
+    <ul class="nested_dropdown">
+      <!-- population characteristics start -->
+      <li>
+        <div class="menu_category">Demographics</div>
+        <ul class="menu_options">
+          <li class="menu_description">
+            <p>
+              When you select an item from this list, interventions will be
+              sorted in columns.
+            </p>
+          </li>
+          <!-- TODO recreate this using JS and the values from the right data column -->
+          <li class="a_menu_option" id="vis_2_0">Age groups</li>
+          <li class="a_menu_option" id="vis_2_1">
+            Majority ethnic/racial group
+          </li>
+          <li class="a_menu_option" id="vis_2_2">Percentage of immigrants</li>
+          <li class="a_menu_option" id="vis_2_3">Sex (percentage male)</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="vis_dropdown_menu">
+    <ul class="nested_dropdown">
+      <!-- Outcomes start -->
+      <li>
+        <div class="menu_category">Type of outcome</div>
+        <!-- First level sub dropdown -->
+        <ul class="menu_options">
+          <li class="menu_description">
+            <p>
+              When you select an item from this list, only interventions that
+              address the selected type of outcome will remain on screen.
+              Interventions will be sorted in rows per sub-type of outcome.
+            </p>
+          </li>
+          <!-- TODO recreate this using JS and the values from the right data column -->
+          <li class="a_menu_option" id="vis_3_0">Behavioral</li>
+          <li class="a_menu_option" id="vis_3_1">Health</li>
+          <li class="a_menu_option" id="vis_3_2">Healthcare utilization</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="vis_dropdown_menu">
+    <ul class="nested_dropdown">
+      <li>
+        <div class="menu_category">Quality and results</div>
+        <ul class="menu_options">
+          <li class="menu_description">
+            <p>
+              When you select an item from this list, interventions will be
+              color-coded.
+            </p>
+          </li>
+          <!-- TODO recreate this using JS and the values from the right data column -->
+          <li class="a_menu_option" id="vis_4_0">Risk of bias of the study</li>
+          <li class="a_menu_option" id="vis_4_1">Study design</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div
+    id="vis_0_selection"
+    class="dropdown_selection"
+    style="visibility: hidden"
+  >
+    <div class="selection_info">
+      You selected:<br />
+      <div id="vis_0_reset" class="selection_reset_button">
+        <div class="selection_reset_img">
+          <img src="./public/img/reset_button_img.svg" alt="" />
         </div>
-        <div class="empty"></div>
-        <div class="border_top border_right">
-          <span class="grid_outcome_label">Positive</span>
-        </div>
-        <div class="border_top" id="positive_outcome"></div>
-        <div class="border_top border_right">
-          <span class="grid_outcome_label">Negative</span>
-        </div>
-        <div class="border_top" id="negative_outcome"></div>
-        <div class="border_top border_right">
-          <span class="grid_outcome_label">Mixed results</span>
-        </div>
-        <div class="border_top" id="mixed_outcome"></div>
-        <div class="border_top border_right">
-          <span class="grid_outcome_label">No effect</span>
-        </div>
-        <div class="border_top" id="noeffect_outcome"></div>
+        <strong id="vis_0_option" class="selection_reset_option">
+          Financial Strain
+        </strong>
       </div>
     </div>
-    <div id="chart3" class="chart hidden">
-      <!-- rows & columns -->
-      <div id="grid_rows_columns"></div>
+  </div>
+  <div
+    id="vis_1_selection"
+    class="dropdown_selection"
+    style="visibility: hidden"
+  >
+    <div class="selection_info">
+      You selected:<br />
+      <div id="vis_1_reset" class="selection_reset_button">
+        <div class="selection_reset_img">
+          <img src="./public/img/reset_button_img.svg" alt="" />
+        </div>
+        <strong id="vis_1_option" class="selection_reset_option">
+          Financial Strain
+        </strong>
+      </div>
     </div>
+  </div>
+  <div
+    id="vis_2_selection"
+    class="dropdown_selection"
+    style="visibility: hidden"
+  >
+    <div class="selection_info">
+      You selected:<br />
+      <div id="vis_2_reset" class="selection_reset_button">
+        <div class="selection_reset_img">
+          <img src="./public/img/reset_button_img.svg" alt="" />
+        </div>
+        <strong id="vis_2_option" class="selection_reset_option">
+          Financial Strain
+        </strong>
+      </div>
+    </div>
+  </div>
+  <div
+    id="vis_3_selection"
+    class="dropdown_selection"
+    style="visibility: hidden"
+  >
+    <div class="selection_info">
+      You selected:<br />
+      <div id="vis_3_reset" class="selection_reset_button">
+        <div class="selection_reset_img">
+          <img src="./public/img/reset_button_img.svg" alt="" />
+        </div>
+        <strong id="vis_3_option" class="selection_reset_option">
+          Financial Strain
+        </strong>
+      </div>
+    </div>
+  </div>
+  <div
+    id="vis_4_selection"
+    class="dropdown_selection"
+    style="visibility: hidden"
+  >
+    <div class="selection_info">
+      You selected:<br />
+      <div id="vis_4_reset" class="selection_reset_button">
+        <div class="selection_reset_img">
+          <img src="./public/img/reset_button_img.svg" alt="" />
+        </div>
+        <strong id="vis_4_option" class="selection_reset_option">
+          Financial Strain
+        </strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+</section>
+
+<section class="vis_text vis_intro">
+  <p>
+    This evidence map contains information about
+    <strong><span class="total_study_count">XX</span> studies</strong>
+    on social needs interventions.
+  </p>
+  <p>
+    <strong>
+      Each
+      <span class="inline_dot">
+        <span class="sample_dot"></span>
+        &nbsp;<span>dot</span>
+      </span>
+      represents an intervention.
+    </strong>
+  </p>
+  <p>
+    <strong class="menu_signal">You can use these menus</strong> to filter the
+    interventions, sort them, and color code them.
+  </p>
+  <p>
+    You can also click on any <strong class="inline_dot">dot</strong> to obtain
+    more information about each intervention and its corresponding study.
+  </p>
+</section>
+<section class="visualization_area">
+  <div class="color_legend_box">
+    <div id="color_legend" class="color_legend hidden">
+      <strong id="legend_category">Outcome results</strong>
+      <div id="legend_colors"></div>
+    </div>
+  </div>
+  <div class="chart" div id="chart_array"></div>
+  <div class="chart hidden" id="chart_row"></div>
+  <div class="chart hidden" id="chart_col"></div>
+  <div class="chart hidden" id="chart_matrix"></div>
+</section>
+
+<section class="vis_text vis_active hidden">
+  <p id="vis_criteria_text"></p>
+</section>
+<section class="export_button_main">
+  <div class="export_button_area export_button">
+    <img src="./public/img/export.svg" alt="" />
+  </div>
+  <div class="export_button_explainer">
+    Throughout this application, clicking on this icon will bring up the list of
+    studies that fulfill the filters and search criteria you’ve chosen.
   </div>
 </section>
 </section>
@@ -283,7 +328,7 @@
       <div class="filter_title">Target social need</div>
 
       <!-- The toggle icon -->
-      <div class="filter_toggle">▶</div>
+      <div class="filter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -356,7 +401,7 @@
       <div class="filter_title">Target population</div>
 
       <!-- The toggle icon -->
-      <div class="filter_toggle">▶</div>
+      <div class="filter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -445,7 +490,7 @@
       <div class="filter_title">Population characteristics</div>
 
       <!-- The toggle icon -->
-      <div class="filter_toggle">▶</div>
+      <div class="filter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -535,7 +580,7 @@
       <div class="filter_title">Intervention target</div>
 
       <!-- The toggle icon -->
-      <div class="filter_toggle">▶</div>
+      <div class="filter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -564,7 +609,7 @@
       <div class="filter_title">Intervention setting</div>
 
       <!-- The toggle icon -->
-      <div class="filter_toggle">▶</div>
+      <div class="filter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -625,7 +670,7 @@
       <div class="filter_title">Specific intervention components</div>
 
       <!-- The toggle icon -->
-      <div class="filter_toggle">▶</div>
+      <div class="filter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -666,7 +711,7 @@
       <div class="filter_title">Recruitment setting</div>
 
       <!-- The toggle icon -->
-      <div class="filter_toggle">▶</div>
+      <div class="filter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -727,7 +772,7 @@
       <div class="filter_title">Characteristics and quality of the study</div>
 
       <!-- The toggle icon -->
-      <div class="filter_toggle">▶</div>
+      <div class="filter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -816,7 +861,7 @@
       <div class="filter_title">Study type by target domain</div>
 
       <!-- The toggle icon -->
-      <div class="filter_toggle">▶</div>
+      <div class="filter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -849,7 +894,7 @@
       <div class="filter_title">Service provider</div>
 
       <!-- The toggle icon -->
-      <div class="filter_toggle">▶</div>
+      <div class="filter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -888,7 +933,7 @@
       <div class="filter_title">Type of comparator</div>
 
       <!-- The toggle icon -->
-      <div class="filter_toggle">▶</div>
+      <div class="filter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -925,7 +970,7 @@
       <div class="filter_title">Health outcomes</div>
 
       <!-- The toggle icon -->
-      <div class="filter_toggle">▶</div>
+      <div class="filter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -939,7 +984,7 @@
       <div class="subfilter_title">Changes in functional outcomes</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -975,7 +1020,7 @@
       <div class="subfilter_title">Changes in self-reported health</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1011,7 +1056,7 @@
       <div class="subfilter_title">Child development outcomes</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1039,7 +1084,6 @@
       </div>
     </div>
   </div>
-
   <!-- Low birth weight -->
   <div class="subfilter_accordion">
     <!-- Heading -->
@@ -1048,7 +1092,7 @@
       <div class="subfilter_title">Low birth weight</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1084,7 +1128,7 @@
       <div class="subfilter_title">Mental health status</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1120,7 +1164,7 @@
       <div class="subfilter_title">Morbidity</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1156,7 +1200,7 @@
       <div class="subfilter_title">Mortality</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1192,7 +1236,7 @@
       <div class="subfilter_title">Other</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1228,7 +1272,7 @@
       <div class="subfilter_title">Quality-adjusted life-years</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1264,7 +1308,7 @@
       <div class="subfilter_title">Quality of life</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1303,7 +1347,7 @@
       <div class="filter_title">Behavioral outcomes</div>
 
       <!-- The toggle icon -->
-      <div class="filter_toggle">▶</div>
+      <div class="filter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1317,7 +1361,7 @@
       <div class="subfilter_title">Changes in dietary intake</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1353,7 +1397,7 @@
       <div class="subfilter_title">Changes in substance use</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1389,7 +1433,7 @@
       <div class="subfilter_title">Other</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1428,7 +1472,7 @@
       <div class="filter_title">Healthcare utilization outcomes</div>
 
       <!-- The toggle icon -->
-      <div class="filter_toggle">▶</div>
+      <div class="filter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1442,7 +1486,7 @@
       <div class="subfilter_title">Adherence to treatment</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1493,7 +1537,7 @@
       <div class="subfilter_title">Clinic attendance rate</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1544,7 +1588,7 @@
       <div class="subfilter_title">Emergency department visits</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1595,7 +1639,7 @@
       <div class="subfilter_title">Frequency of healthcare use</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1646,7 +1690,7 @@
       <div class="subfilter_title">Hospital readmissions</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1697,7 +1741,7 @@
       <div class="subfilter_title">Hospital days</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1748,7 +1792,7 @@
       <div class="subfilter_title">Immunizations</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1799,7 +1843,7 @@
       <div class="subfilter_title">Inpatient admissions</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1850,7 +1894,7 @@
       <div class="subfilter_title">Medical home</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1901,7 +1945,7 @@
       <div class="subfilter_title">Missed appointments</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -1952,7 +1996,7 @@
       <div class="subfilter_title">Outpatient visits</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -2003,7 +2047,7 @@
       <div class="subfilter_title">Post hospital primary care visit</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -2054,7 +2098,7 @@
       <div class="subfilter_title">Prenatal care</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -2105,7 +2149,7 @@
       <div class="subfilter_title">Preventive care utilization</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -2156,7 +2200,7 @@
       <div class="subfilter_title">Sobering center use</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -2207,7 +2251,7 @@
       <div class="subfilter_title">Use of emergency transportation</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -2258,7 +2302,7 @@
       <div class="subfilter_title">Other</div>
 
       <!-- The toggle icon -->
-      <div class="subfilter_toggle">▶</div>
+      <div class="subfilter_toggle">▼</div>
     </div>
 
     <!-- The content -->
@@ -2321,13 +2365,13 @@
         <strong><span class="total_study_count">XX</span> studies</strong>.
       </p>
       <p>
-        To begin showing studies on this window, select items from the menus on
+        To begin showing studies in this window, select items from the menus on
         the left.
       </p>
-      <p>
+      <!-- <p>
         You can also <strong>search for specific words</strong> on the search
         box below to display only the studies that contain them.
-      </p>
+      </p> -->
     </div>
   </div>
   <div id="results_box" class="hidden">
@@ -2336,14 +2380,14 @@
       <strong class="relevant_studies"
         ><span id="select_study_count">XX</span> studies</strong
       >
-      (out of <strong class="total_study_count">XX</strong>)<br />that fulfill
+      (out of <strong class="total_study_count">XX</strong>)&nbsp;that fulfill
       the criteria you selected.
     </p>
-    <div id="download_studies_button">Download this list of studies</div>
+
     <div id="results_ouput"></div>
   </div>
-  <div class="search_box">
-    <img id="disabled_search" src="./public/img/search.png" alt="" />
+  <div class="search_box hidden">
+    <div id="download_studies_button">Download this list of studies</div>
   </div>
 </div>
 
@@ -2352,20 +2396,25 @@
 </section>
 </section>
 </main>
+<script src="./public/js/lodash.js"></script>
 <script src="./public/js/d3.v5.min.js"></script>
 <script src="./public/js/tab_manager.js"></script>
 <script>
   // populate total_study_count areas
+  // TODO group this into an input manager
   async function totalStudyCount() {
-    let dataset = await d3.csv('./public/data/pcori_1111--fudged.csv');
-    // const ref_id = d => d.ref_id;
-    // const studies = d3.map(dataset, ref_id).keys();
-    // const unique_studies = new Set(studies);
-    d3.selectAll('.total_study_count').html(`${dataset.length}`);
+    let dataset = await d3.csv('./public/data/pcori_1111--qced.csv');
+    // TODO uncomment this if we use interventions
+    const ref_id = d => d.ref_id;
+    const studies = d3.map(dataset, ref_id).keys();
+    const unique_studies = new Set(studies);
+    d3.selectAll('.total_study_count').html(`${unique_studies.size}`);
   }
   totalStudyCount();
 </script>
 <script src="./public/js/accordions.js"></script>
+<script src="./public/js/accessors.js"></script>
+<script src="./public/js/helper_functions.js"></script>
 <script src="./public/js/visualization_manager.js"></script>
 <script src="./public/js/database_manager.js"></script>
 <script src="./public/js/reset_tool.js"></script>
