@@ -74,7 +74,7 @@ async function visualization_manager(_data) {
   ];
   color_ranges = [
     ['#00a9ea', '#b3a589', '#c86f61', '#888888'],
-    ['#d7191c', '#f07a49', '#d3d300', '#71a8bb', '#2c7bb6'],
+    ['#d7191c', '#e46430', '#e49d32', '#a5b580', '#6e98ab', '#2c7bb6'],
     // ['#d7191c', '#fdae61', '#ffffbf', '#abd9e9', '#2c7bb6'],
   ];
 
