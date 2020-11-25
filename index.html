@@ -47,26 +47,15 @@
   <div class="vis_dropdown_menu">
     <ul class="nested_dropdown">
       <li>
-        <div class="menu_category">Type of social need</div>
+        <div class="menu_category" id="vis_0_category">Type of social need</div>
         <!-- dropdown categories -->
-        <ul class="menu_options">
+        <ul class="menu_options" id="vis_0_options">
           <li class="menu_description">
             <p>
               If you select an item below, only the interventions addressing
               that type of social need will remain on the display.
             </p>
           </li>
-          <!-- TODO recreate this using JS and the values from the right data column -->
-          <li class="a_menu_option" id="vis_0_0">Education</li>
-          <li class="a_menu_option" id="vis_0_1">Employment</li>
-          <li class="a_menu_option" id="vis_0_2">Financial strain</li>
-          <li class="a_menu_option" id="vis_0_3">Food insecurity</li>
-          <li class="a_menu_option" id="vis_0_4">Housing</li>
-          <li class="a_menu_option" id="vis_0_5">Legal services</li>
-          <li class="a_menu_option" id="vis_0_6">Not specified</li>
-          <li class="a_menu_option" id="vis_0_7">Social isolation</li>
-          <li class="a_menu_option" id="vis_0_8">Transportation</li>
-          <li class="a_menu_option" id="vis_0_9">Utilities</li>
         </ul>
       </li>
     </ul>
@@ -75,31 +64,14 @@
     <ul class="nested_dropdown">
       <!-- need of population start -->
       <li>
-        <div class="menu_category">Target population</div>
-        <ul class="menu_options">
+        <div class="menu_category" id="vis_1_category">Target population</div>
+        <ul class="menu_options" id="vis_1_options">
           <li class="menu_description">
             <p>
               When you pick an item from this list, only interventions that
               target the selected criterion will remain.
             </p>
           </li>
-          <!-- TODO recreate this using JS and the values from the right data column -->
-          <li class="a_menu_option" id="vis_1_0">Complex Needs</li>
-          <li class="a_menu_option" id="vis_1_1">Education</li>
-          <li class="a_menu_option" id="vis_1_2">High Utilization</li>
-          <li class="a_menu_option" id="vis_1_3">Homeless</li>
-          <li class="a_menu_option" id="vis_1_4">Low income/SES</li>
-          <li class="a_menu_option" id="vis_1_5">Low-SES neighborhood</li>
-          <li class="a_menu_option" id="vis_1_6">Medical Eligibility</li>
-          <li class="a_menu_option" id="vis_1_7">Medicare/Medicaid</li>
-          <li class="a_menu_option" id="vis_1_8">Occupation</li>
-          <li class="a_menu_option" id="vis_1_9">Pregnancy</li>
-          <li class="a_menu_option" id="vis_1_10">Rural population</li>
-          <li class="a_menu_option" id="vis_1_11">
-            Sexual identity/orientation
-          </li>
-          <li class="a_menu_option" id="vis_1_12">Social Needs</li>
-          <li class="a_menu_option" id="vis_1_13">Veteran Status</li>
         </ul>
       </li>
     </ul>
@@ -108,21 +80,14 @@
     <ul class="nested_dropdown">
       <!-- population characteristics start -->
       <li>
-        <div class="menu_category">Demographics</div>
-        <ul class="menu_options">
+        <div class="menu_category" id="vis_2_category">Demographics</div>
+        <ul class="menu_options" id="vis_2_options">
           <li class="menu_description">
             <p>
               When you select an item from this list, interventions will be
               sorted in columns.
             </p>
           </li>
-          <!-- TODO recreate this using JS and the values from the right data column -->
-          <li class="a_menu_option" id="vis_2_0">Age groups</li>
-          <li class="a_menu_option" id="vis_2_1">
-            Majority ethnic/racial group
-          </li>
-          <li class="a_menu_option" id="vis_2_2">Percentage of immigrants</li>
-          <li class="a_menu_option" id="vis_2_3">Sex (percentage male)</li>
         </ul>
       </li>
     </ul>
@@ -131,9 +96,9 @@
     <ul class="nested_dropdown">
       <!-- Outcomes start -->
       <li>
-        <div class="menu_category">Type of outcome</div>
+        <div class="menu_category" id="vis_3_category">Type of outcome</div>
         <!-- First level sub dropdown -->
-        <ul class="menu_options">
+        <ul class="menu_options" id="vis_3_options">
           <li class="menu_description">
             <p>
               When you select an item from this list, only interventions that
@@ -141,10 +106,6 @@
               Interventions will be sorted in rows per sub-type of outcome.
             </p>
           </li>
-          <!-- TODO recreate this using JS and the values from the right data column -->
-          <li class="a_menu_option" id="vis_3_0">Behavioral</li>
-          <li class="a_menu_option" id="vis_3_1">Health</li>
-          <li class="a_menu_option" id="vis_3_2">Healthcare utilization</li>
         </ul>
       </li>
     </ul>
@@ -152,17 +113,14 @@
   <div class="vis_dropdown_menu">
     <ul class="nested_dropdown">
       <li>
-        <div class="menu_category">Quality and results</div>
-        <ul class="menu_options">
+        <div class="menu_category" id="vis_4_category">Study quality</div>
+        <ul class="menu_options" id="vis_4_options">
           <li class="menu_description">
             <p>
               When you select an item from this list, interventions will be
               color-coded.
             </p>
           </li>
-          <!-- TODO recreate this using JS and the values from the right data column -->
-          <li class="a_menu_option" id="vis_4_0">Risk of bias of the study</li>
-          <li class="a_menu_option" id="vis_4_1">Study design</li>
         </ul>
       </li>
     </ul>
@@ -298,7 +256,7 @@
   <p id="vis_criteria_text"></p>
 </section>
 <section class="export_button_main">
-  <div class="export_button_area export_button">
+  <div class="export_button_area export_button" id="filter_none">
     <img src="./public/img/export.svg" alt="" />
   </div>
   <div class="export_button_explainer">
@@ -306,6 +264,34 @@
     studies that fulfill the filters and search criteria you’ve chosen.
   </div>
 </section>
+
+<div id="study_modal" class="modal">
+  <!-- Modal content -->
+  <!-- TODO make header & filters sticky on the top -->
+  <div class="modal-content">
+    <div class="modal_header">
+      <div class="modal_header_img">
+        <img src="./public/img/reset_button_img.svg" alt="" />
+      </div>
+      <div class="modal_header_text">
+        List of studies fulfilling the filters you have selected:
+      </div>
+    </div>
+    <div class="modal_list hidden">
+      <div class="modal_filters"></div>
+      <div class="modal_studies"></div>
+    </div>
+    <div class="modal_single hidden">
+      <div class="single_study_info"></div>
+      <div class="study_tba">
+        <em>
+          More information about the study will be available in the future.
+        </em>
+      </div>
+    </div>
+  </div>
+</div>
+
 </section>
   <section id="db" class="hidden"><section class="db_wrapper">
   <div class="db_filters">
@@ -2403,7 +2389,7 @@
   // populate total_study_count areas
   // TODO group this into an input manager
   async function totalStudyCount() {
-    let dataset = await d3.csv('./public/data/pcori_1111--qced.csv');
+    let dataset = await d3.csv('./public/data/pcori_1124.csv');
     // TODO uncomment this if we use interventions
     const ref_id = d => d.ref_id;
     const studies = d3.map(dataset, ref_id).keys();

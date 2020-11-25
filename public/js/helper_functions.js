@@ -1,4 +1,5 @@
 function initialize_visualization(_data) {
+  console.log('initializing');
   d3.selectAll('.chart').classed('hidden', true);
   d3.select('#chart_array').classed('hidden', false);
   d3.select('#chart_array')
@@ -14,8 +15,9 @@ function initialize_visualization(_data) {
     .style('background-color', '#8bbe56');
 }
 
-async function get_values() {
-  let data = await d3.csv('./public/data/column_values.csv');
+async function get_values(_url) {
+  let url = _url.toString();
+  let data = await d3.csv(url);
   const cols = data.columns;
   let values = {};
   cols.forEach(

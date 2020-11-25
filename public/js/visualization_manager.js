@@ -1,13 +1,27 @@
 let vis_inputs = [];
 async function visualization_manager(_data) {
-  let dataset = await d3.csv('./public/data/pcori_1111--qced.csv');
+  let dataset = await d3.csv('./public/data/pcori_1124.csv');
 
   // COLUMN VALUES & GROUPINGS for filtering and update later
-  let value_object = await get_values();
+  let data_dictionary = await get_values(
+    './public/data/data_dictionary_1124.csv'
+  );
 
+  let all_menu_options = [
+    data_dictionary['target_social_need'],
+    data_dictionary['target_population'],
+    [
+      'Age group',
+      'Majority ethnic/racial group',
+      'Percentage of immigrants',
+      'Sex (percentage male',
+    ],
+    ['Behavioral', 'Health', 'Healthcare utilization'],
+    ['Risk of bias', 'Study design'],
+  ];
   // Groups for column names for demographics & matrix
-  let age_groups = value_object['age_group'];
-  let race_ethnicity_groups = value_object['race_ethnicity_majority'].filter(
+  let age_groups = data_dictionary['age_group'];
+  let race_ethnicity_groups = data_dictionary['race_ethnicity_majority'].filter(
     d => d
   );
   let proportion_groups = [
@@ -27,9 +41,9 @@ async function visualization_manager(_data) {
 
   // Groups for working with outcomes
   let outcome_types = [
-    value_object['behavioral_outcomes'],
-    value_object['health_outcomes'],
-    value_object['healthcareuse_outcomes'],
+    data_dictionary['behavioral_outcomes'],
+    data_dictionary['health_outcomes'],
+    data_dictionary['healthcareuse_outcomes'],
   ];
   let result_types = [
     results_behavioral,
@@ -44,13 +58,13 @@ async function visualization_manager(_data) {
 
   // Groups for working with color-coding
   let color_filters = [risk_of_bias, study_design];
-  let outcome_valence = value_object['result_other_health'];
+  let outcome_valence = data_dictionary['result_other_health'];
 
   let risks = [];
-  value_object['risk_of_bias'].forEach(element => risks.push(element));
+  data_dictionary['risk_of_bias'].forEach(element => risks.push(element));
   risks.push('');
 
-  let color_domains = [risks, value_object['study_design']];
+  let color_domains = [risks, data_dictionary['study_design']];
   let vis_filters = [
     target_social_need,
     target_population,
@@ -64,7 +78,19 @@ async function visualization_manager(_data) {
     // ['#d7191c', '#fdae61', '#ffffbf', '#abd9e9', '#2c7bb6'],
   ];
 
-  // INITIAL setup
+  // INITIAL setup -- add column_options
+  for (let i = 0; i < 5; i++) {
+    const options = all_menu_options[i];
+    const option_list = d3.select(`#vis_${i}_options`);
+    options.forEach((element, index) => {
+      option_list
+        .append('li')
+        .attr('class', 'a_menu_option')
+        .attr('id', `vis_${i}_${index}`)
+        .text(element.split('(')[0]);
+    });
+  }
+  // INITIAL setup -- make visual
   initialize_visualization(dataset);
 
   // PARTS OF PAGE for interaction
@@ -73,7 +99,7 @@ async function visualization_manager(_data) {
   const vis_active = d3.selectAll('.vis_active');
   const clear_filter_buttons = d3.selectAll('.dropdown_selection');
 
-  // INTERACTIONS
+  // INTERACTIONS -- PART 1
   menu_options.on('click', modify_visualization);
   // when you click on the selections you remove it from the data and re-run the visualization (maybe use data-something)
   clear_filter_buttons.on('click', clear_filter);
@@ -81,6 +107,13 @@ async function visualization_manager(_data) {
   // when you hover over a dot, highlight (maybe a border) around other dots with same ref_id
   d3.selectAll('.chart .dot_intervention').on('mouseenter', show_companions);
   d3.selectAll('.chart .dot_intervention').on('mouseleave', hide_companions);
+
+  // when clicking export buttons show correct study list
+  d3.selectAll('.export_button_area').on('click', show_study_list);
+  d3.selectAll('.export_button_area_small').on('click', show_study_list);
+
+  // TODO when clicking on an intervention, show study page
+  d3.selectAll('.dot_intervention').on('click', show_study_page);
 
   function modify_visualization() {
     vis_intro.classed('hidden', true);
@@ -114,7 +147,6 @@ async function visualization_manager(_data) {
       .style('height', '0px');
 
     let refiltered_data = filter_data(vis_inputs, dataset);
-
     update(vis_inputs, refiltered_data);
   }
 
@@ -173,6 +205,8 @@ async function visualization_manager(_data) {
         if (i < 2) {
           // 0 is target social need; 1 is target population
           temp = temp.filter(d => vis_filters[i](d).includes(option_text));
+        } else {
+          temp == temp;
         }
       });
       return temp;
@@ -180,7 +214,6 @@ async function visualization_manager(_data) {
   }
 
   function update_visualization(_inputs, _data) {
-    _inputs = _inputs.sort();
     if (_data.length > 0) {
       d3.selectAll('.visualization_area').classed('hidden', false);
       d3.select('#color_legend').classed('hidden', true);
@@ -260,8 +293,7 @@ async function visualization_manager(_data) {
         // start filling out grid boxes
         for (let n = 0; n < rows.length + 1; n++) {
           for (let m = 0; m < cols.length + 1; m++) {
-            console.log(m, n);
-            const group = matrix_container.select(`#group_${m}_${n}`);
+            const group = matrix_container.select(`div#group_${m}_${n}`);
             const box = group
               .append('div')
               .attr('class', 'matrix_grid_box border_right');
@@ -313,8 +345,8 @@ async function visualization_manager(_data) {
                 .attr('class', 'export_button_area_small')
                 .attr(
                   'id',
-                  `filter_matrix_${row_category}_${n - 1}_${col_category}_${
-                    m - 1
+                  `filter_matrix_${col_category}_${m - 1}_${row_category}_${
+                    n - 1
                   }`
                 );
               export_button
@@ -391,6 +423,7 @@ async function visualization_manager(_data) {
                   exit => exit.remove()
                 )
                 .attr('class', d => `dot_intervention study_${ref_id(d)}`)
+                .attr('data-ref_id', d => ref_id(d))
                 .style('background-color', d =>
                   outcome_colors(result_accessors[n - 1](d))
                 );
@@ -469,7 +502,7 @@ async function visualization_manager(_data) {
             const export_button = col_section
               .append('div')
               .attr('class', 'export_button_area')
-              .attr('id', `filter_col_${index}`)
+              .attr('id', `filter_col_${col_category}_${index}`)
               .style('margin-top', '45px');
 
             export_button.append('img').attr('src', './public/img/export.svg');
@@ -484,7 +517,7 @@ async function visualization_manager(_data) {
                 .append('div')
                 .append('p')
                 .attr('class', 'evidence_gap')
-                .html('No interventions')
+                .html('No interventions.')
                 .style('margin-top', 0);
             }
 
@@ -514,8 +547,8 @@ async function visualization_manager(_data) {
 
           const outcome_type_name = d3.select(`#${_inputs[j]}`).text();
           const input = _inputs[j];
-          const outcome_type_index = input.split('_')[2];
-          const outcomes = outcome_types[outcome_type_index];
+          const row_category = input.split('_')[2];
+          const outcomes = outcome_types[row_category];
           // generate grid with n rows based on based on outcome type and 3 columns that could be (2fr auto 8fr)
           d3.select('.row_container').remove();
 
@@ -545,7 +578,7 @@ async function visualization_manager(_data) {
             );
 
           // create color scale
-          const result_accessors = result_types[outcome_type_index];
+          const result_accessors = result_types[row_category];
           const outcome_colors = d3
             .scaleOrdinal()
             .domain(outcome_valence)
@@ -608,7 +641,7 @@ async function visualization_manager(_data) {
                   const export_button = study_list
                     .append('div')
                     .attr('class', 'export_button_area_small')
-                    .attr('id', `filter_row_${outcome_type_index}_${n - 1}`);
+                    .attr('id', `filter_row_${row_category}_${n - 1}`);
                   export_button
                     .append('img')
                     .attr('src', './public/img/export.svg');
@@ -621,16 +654,14 @@ async function visualization_manager(_data) {
 
                   const intervention_box = intervention_list
                     .append('div')
-                    .attr('class', `interventions_${outcome_type_index}`)
-                    .attr('id', `interventions_${outcome_type_index}_${n - 1}`)
+                    .attr('class', `interventions_${row_category}`)
+                    .attr('id', `interventions_${row_category}_${n - 1}`)
                     .style('display', 'flex')
                     .style('flex-flow', 'row wrap')
                     .style('justify-content', 'start');
 
                   let group_data = _data.filter(d =>
-                    outcome_accessors[outcome_type_index](d).includes(
-                      outcomes[n - 1]
-                    )
+                    outcome_accessors[row_category](d).includes(outcomes[n - 1])
                   );
                   if (group_data.length < 2) {
                     export_button.style('visibility', 'hidden');
@@ -640,9 +671,9 @@ async function visualization_manager(_data) {
                     // display no studies text
                     intervention_box
                       .append('div')
-                      .style('align-self', 'center')
                       .append('p')
-                      .html('<strong>No studies.</strong>')
+                      .attr('class', 'evidence_gap')
+                      .html('No interventions.')
                       .style('margin-top', 0);
                   } else {
                     intervention_box
@@ -654,6 +685,7 @@ async function visualization_manager(_data) {
                         exit => exit.remove()
                       )
                       .attr('class', d => `dot_intervention study_${ref_id(d)}`)
+                      .attr('data-ref_id', d => ref_id(d))
                       .style('background-color', d =>
                         outcome_colors(result_accessors[n - 1](d))
                       );
@@ -669,10 +701,27 @@ async function visualization_manager(_data) {
         const chart = d3.select('#chart_array');
         d3.selectAll('.chart').classed('hidden', true);
         chart.classed('hidden', false);
+        // add export button for array right below the chart_array
+        d3.select('#array_export_area').remove();
 
+        const export_area = d3
+          .select('.visualization_area')
+          .append('div')
+          .attr('id', 'array_export_area');
+
+        const export_button = export_area
+          .append('div')
+          .attr('class', 'export_button_area')
+          .attr('id', 'filter_array');
+        export_button.append('img').attr('src', './public/img/export.svg');
+        let group_data = _data;
+
+        if (group_data.length < 2) {
+          export_button.style('visibility', 'hidden');
+        }
         chart
           .selectAll('div.dot_intervention')
-          .data(_data)
+          .data(group_data)
           .join(
             enter => enter.append('div'),
             update => update,
@@ -684,7 +733,7 @@ async function visualization_manager(_data) {
       }
 
       if (categories.includes(4)) {
-        // TODO* color code charts based on whatever is in quality and outcomes
+        // color code charts based on whatever is in quality and outcomes
 
         const color_definer = _inputs[q];
         const color_category = color_definer.split('_')[2];
@@ -726,6 +775,7 @@ async function visualization_manager(_data) {
           .style('background-color', d => color_scale(color_accessor(d)))
           .attr('class', d => `dot_intervention ${color_accessor(d)}`);
       }
+      // INTERACTIONS -- PART 2
       d3.selectAll('.chart .dot_intervention').on(
         'mouseenter',
         show_companions
@@ -734,10 +784,12 @@ async function visualization_manager(_data) {
         'mouseleave',
         hide_companions
       );
-      // TODO when clicking export buttons show correct study list
+      // when clicking export buttons show correct study list
       d3.selectAll('.export_button_area').on('click', show_study_list);
+      d3.selectAll('.export_button_area_small').on('click', show_study_list);
+
       // TODO when clicking on an intervention, show study page
-      d3.selectAll('.chart .dot_intervention').on('click', show_study_page);
+      d3.selectAll('.dot_intervention').on('click', show_study_page);
     } else {
       // there is not data to visualize
       d3.selectAll('.visualization_area').classed('hidden', true);
@@ -803,21 +855,227 @@ async function visualization_manager(_data) {
     text_labels.forEach((id, index) => d3.select(id).text(labels[index]));
   }
   function show_study_page() {
-    console.log('WIP');
+    // console.log(this.dataset.ref_id);
+    d3.selectAll('.modal').style('display', 'block');
+    d3.selectAll('.modal_header_text').text(
+      'Study that addresses the intervention you selected:'
+    );
+    d3.select('.modal_list').classed('hidden', true);
+    d3.select('.modal_single').classed('hidden', false);
+
+    const ref = this.dataset.ref_id;
+    const study = dataset.filter(d => ref_id(d) == ref);
+    const s = study[0];
+    const study_info = d3.select('.single_study_info');
+    study_info.html('');
+    study_info.append('div').text(author(s));
+    study_info.append('div').text(`(${year(s)})`);
+    study_info.append('div').html(`<strong>${title(s)}</strong>`);
+    if (journal(s).length > 1) {
+      study_info.append('span').text(`${journal(s)} `);
+      if (volume(s).length >= 1) {
+        study_info.append('span').text(`Volume ${volume(s)}`);
+      }
+    }
   }
   function show_study_list() {
     const id = this.id;
     const id_split = id.split('_');
     const chart_type = id_split[1];
-    if (chart_type == 'col') {
-      // TODO show studies for col filter
-    } else if (chart_type == 'row') {
-      // TODO show studies for row filter
-    } else if (chart_type == 'matrix') {
-      // TODO show studies for matrix filters
-    } else if (chart_type == 'array') {
-      // TODO show studies for array filters
-    }
+
+    // show modal screen
+    d3.select('.modal').style('display', 'block');
+    d3.selectAll('.modal_header.text').text(
+      'List of studies fulfilling the filters you have selected:'
+    );
+    d3.select('.modal_list').classed('hidden', false);
+    d3.select('.modal_single').classed('hidden', true);
+
+    // TODO filter studies
+    let filtered_data = filter_data(vis_inputs, dataset);
+
+    let sub_filter = id_split;
+    sub_filter.splice(0, 2);
+    // process sub_filters so they're easier to work with:
+    let sf_options = [];
+    let sf_sub_options = [];
+    sub_filter.forEach((element, index) => {
+      if (index % 2 == 0) {
+        sf_options.push(element);
+      } else {
+        sf_sub_options.push(element);
+      }
+    });
+
+    let group_data = filtered_data;
+    // work with sf_options to filter data for a group
+    sf_options.forEach((element, i) => {
+      const sub_option = sf_sub_options[i];
+      if (chart_type == 'matrix') {
+        // process for matrix
+        if (i % 2 == 0) {
+          group_data = filter_cols(element, sub_option, filtered_data);
+        } else {
+          group_data = filter_rows(element, sub_option, group_data);
+        }
+        console.log(sub_option);
+      } else if (chart_type == 'col') {
+        // process for col chart
+        group_data = filter_cols(element, sub_option, filtered_data);
+      } else if (chart_type == 'row') {
+        // process for row chart
+        group_data = filter_rows(element, sub_option, filtered_data);
+      } else {
+        // array
+        group_data = filtered_data;
+      }
+      function filter_rows(_option, _sub, _data) {
+        let temp;
+        const rows = outcome_types[_option];
+        const row = rows[_sub];
+        const row_function = outcome_accessors[_option];
+        temp = _data.filter(d => row_function(d).includes(row));
+        return temp;
+      }
+      function filter_cols(_option, _sub, _data) {
+        let temp;
+        const cols = column_category_names[_option];
+        const col = cols[_sub];
+        const col_function = vis_demographics[_option];
+        if (_option == 0) {
+          temp = _data.filter(d => col_function(d).split(',').includes(col));
+        } else if (_option == 1) {
+          temp = _data.filter(d => col_function(d) == col);
+        } else {
+          const numeric_filters = [
+            _data.filter(d => col_function(d) < 25),
+            _data
+              .filter(d => col_function(d) > 24)
+              .filter(d => col_function(d) < 50),
+            _data
+              .filter(d => col_function(d) > 49)
+              .filter(d => col_function(d) < 75),
+            _data.filter(d => col_function(d) > 74),
+            _data.filter(d => col_function(d) == 'NR'),
+          ];
+          temp = numeric_filters[sub_option];
+        }
+        return temp;
+      }
+    });
+
+    d3.selectAll('.modal_filter_group').remove();
+    const filter_list = d3.select('.modal_filters');
+    vis_inputs.forEach(input => {
+      const split = input.split('_');
+      const category = split[1];
+      const option = split[2];
+      const filter_group = filter_list
+        .append('div')
+        .attr('class', 'modal_filter_group');
+
+      filter_group
+        .append('span')
+        .attr('class', 'modal_filter_category')
+        .text(d3.select(`#vis_${category}_category`).text());
+
+      filter_group
+        .append('strong')
+        .attr('class', 'modal_filter_value')
+        .attr('id', `modal_${category}_${option}`)
+        .text(d3.select(`#vis_${category}_${option}`).text());
+    });
+
+    // add subfilters to demographics and outcome options
+    let col_picked = false;
+    let row_picked = false;
+    sf_options.forEach((element, i) => {
+      const sub_option = sf_sub_options[i];
+
+      if (chart_type == 'matrix') {
+        // process for matrix
+        if (i % 2 == 0) {
+          sub_col(element, sub_option);
+        } else {
+          sub_row(element, sub_option);
+        }
+      } else if (chart_type == 'col') {
+        // process for col chart
+        sub_col(element, sub_option);
+      } else if (chart_type == 'row') {
+        // process for row chart
+        sub_row(element, sub_option);
+      }
+      function sub_row(_option, _sub) {
+        const sub_row = outcome_types[_option][_sub];
+        d3.select(`#modal_3_${_option}`)
+          .append('span')
+          .html(`:<br><em>${sub_row}</em>`);
+      }
+      function sub_col(_option, _sub) {
+        let sub_col = column_category_names[_option][_sub];
+        sub_col = sub_col == 'Adult' ? 'Adults' : sub_col;
+        d3.select(`#modal_2_${_option}`)
+          .append('span')
+          .html(`:<br><em>${sub_col}</em>`);
+      }
+    });
+
+    // get unique ref_id from filtered_data
+    const a_study_list = d3.map(group_data, ref_id).keys();
+    const unique_studies = new Set(a_study_list);
+    let studies = Array.from(unique_studies);
+
+    // append a group div for each unique ref_id
+    const study_list = d3.select('.modal_studies');
+
+    studies.forEach(study => {
+      const data = dataset.filter(d => ref_id(d) == study);
+      const s = data[0];
+      const study_group = study_list.append('div').attr('class', `modal_study`);
+
+      const study_dot = study_group
+        .append('div')
+        .attr('class', d => `dot_intervention_small study_${study}`);
+
+      const study_info = study_group
+        .append('div')
+        .attr('class', 'modal_study_info');
+
+      study_info
+        .append('span')
+        .attr('class', 'modal_study_authors')
+        .text(`${author(s)} `);
+      study_info
+        .append('span')
+        .attr('class', 'modal_study_year')
+        .text(`(${year(s)}), `);
+      study_info
+        .append('span')
+        .attr('class', 'modal_study_title')
+        .text(`"${title(s)}"`);
+      if (journal(s).length > 1) {
+        study_info
+          .append('span')
+          .attr('class', 'modal_study_journal')
+          .text(` ${journal(s)} `);
+      }
+      if (volume(s).length >= 1) {
+        study_info
+          .append('span')
+          .attr('class', 'modal_study_volume')
+          .text(`, Volume ${volume(s)}`);
+      }
+    });
+
+    // TODO update dot colors if it makes sense
+  }
+
+  // INTERACTIONS -- PART 3
+  d3.selectAll('.modal_header_img').on('click', close_modal);
+  // d3.selectAll('.modal').on('click', close_modal);
+  function close_modal() {
+    d3.select('.modal').style('display', 'none');
   }
 }
 visualization_manager();

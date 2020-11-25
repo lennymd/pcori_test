@@ -1,6 +1,7 @@
 let db_inputs = [];
+// TODO put database manager and visualization manager in a huge aync main function
 async function databaseManager() {
-  let dataset = await d3.csv('./public/data/pcori_1111--qced.csv');
+  let dataset = await d3.csv('./public/data/pcori_1124.csv');
 
   const input_checkboxes = d3.selectAll('.filter_option > input');
   const relevant_study_items = d3.selectAll('.relevant_study');

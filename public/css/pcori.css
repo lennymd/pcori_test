@@ -41,7 +41,7 @@ strong { font-weight: 700; }
 
 .dropdown_selection .selection_info { text-align: center; border: 1px solid #9f9fbe; border-top-color: transparent; }
 
-.dropdown_selection .selection_reset_button { display: flex; align-items: center; justify-content: center; font-size: 13px; cursor: pointer; }
+.dropdown_selection .selection_reset_button { display: flex; align-items: center; justify-content: center; font-size: 12px; width: 90%; margin: 0 auto; cursor: pointer; }
 
 .dropdown_selection .selection_reset_button .selection_reset_img { width: 20px; margin-right: 5px; }
 
@@ -75,7 +75,7 @@ strong { font-weight: 700; }
 
 .nested_dropdown .menu_description:hover { background-color: #dfebd0; border: 1px solid transparent; }
 
-.vis_text { max-width: 900px; display: block; margin: 2rem auto; text-align: center; line-height: 1.4; }
+.vis_text { max-width: 900px; display: block; margin: 2rem auto 1rem auto; text-align: center; line-height: 1.4; }
 
 .vis_text p { margin: 0 0 3px 0; }
 
@@ -101,7 +101,9 @@ strong { font-weight: 700; }
 
 .color_legend_box { display: flex; flex-direction: row; justify-content: flex-end; margin-bottom: 10px; }
 
-.color_legend_box .color_legend { width: 51vw; border-top: 1px solid black; border-bottom: 1px solid black; margin-bottom: 20px; padding: 10px 5px; font-size: 14px; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; }
+.color_legend_box .color_legend { max-width: 86vw; border-top: 1px solid black; border-bottom: 1px solid black; margin-bottom: 20px; padding: 10px 5px; font-size: 14px; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; }
+
+.color_legend_box .color_legend #legend_category { margin-right: 25px; }
 
 .color_legend_box .color_legend #legend_colors { display: flex; flex-direction: row; }
 
@@ -109,7 +111,11 @@ strong { font-weight: 700; }
 
 .color_legend_box .color_legend .color_guide_sample .color_box_sample { height: 20px; width: 20px; border-radius: 50%; margin-right: 3px; }
 
-.visualization_area { min-height: 50px; margin-top: 20px; }
+.dot_intervention_small { background-color: #8bbe56; width: 18px; height: 18px; background-color: #8bbe56; border: 3px solid transparent; border-radius: 50%; margin: 4px 3px; }
+
+.visualization_area { min-height: 50px; }
+
+.visualization_area #array_export_area { margin-top: 15px; display: flex; flex-direction: row; justify-content: center; align-items: center; }
 
 .visualization_area .chart { width: 90%; margin: 0 auto; }
 
@@ -121,13 +127,13 @@ strong { font-weight: 700; }
 
 .visualization_area .study_list_button { padding-top: 5px; }
 
-.visualization_area #chart_array { width: 360px; margin: 0 auto; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; }
+.visualization_area #chart_array { width: 648px; margin: 0 auto; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; }
 
 .visualization_area .col_container { grid-template-rows: 1fr; }
 
 .visualization_area .col_container .col_section { display: flex; flex-direction: column; justify-content: space-between; align-items: center; }
 
-.visualization_area .col_section_head, .visualization_area .matrix_section_head { text-align: center; font-size: 18px; }
+.visualization_area .col_section_head, .visualization_area .matrix_section_head { font-size: 18px; align-self: center; }
 
 .visualization_area .row_outcome_type { font-size: 15px; margin: 0; }
 
@@ -137,7 +143,7 @@ strong { font-weight: 700; }
 
 .row_grid_1x2 { display: grid; grid-template-columns: auto 1fr; grid-template-rows: 1fr; height: 100%; }
 
-.evidence_gap { font-size: 12px; font-weight: 700; color: #666666; }
+.evidence_gap { font-size: 14px; font-weight: 600; color: #333; }
 
 section.db_wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
@@ -242,5 +248,39 @@ div#results_box::-webkit-scrollbar, div.filter_container::-webkit-scrollbar { wi
 div#results_box::-webkit-scrollbar-track, div.filter_container::-webkit-scrollbar-track { background: #efeaef; }
 
 div#results_box::-webkit-scrollbar-thumb, div.filter_container::-webkit-scrollbar-thumb { background-color: #8bbe56; border-radius: 20px; border: 3px solid #efeaef; }
+
+.modal { display: none; /* Hidden by default */ position: fixed; /* Stay in place */ z-index: 1; /* Sit on top */ padding-top: 50px; /* Location of the box */ left: 0; top: 0; width: 100%; /* Full width */ height: 100%; /* Full height */ overflow: auto; /* Enable scroll if needed */ background-color: black; /* Fallback color */ background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */ }
+
+.modal-content { background-color: #fefefe; margin: auto; padding: 10px; border: 1px solid #888; width: 50%; max-height: 530px; overflow-x: hidden; }
+
+.modal_header { display: flex; flex-direction: row; align-items: center; margin-bottom: 10px; }
+
+.modal_header .modal_header_img { width: 20px; margin-right: 5px; }
+
+.modal_header .modal_header_img img { width: 100%; }
+
+.modal_header .modal_header_text { font-weight: 700; padding-bottom: 5px; color: #7a7ca5; }
+
+.modal_filters, .modal_studies { margin-bottom: 20px; width: 85%; }
+
+.modal_filters { margin: 0 auto; font-size: 16px; }
+
+.modal_filters .modal_filter_group { margin-top: 5px; display: flex; flex-direction: row; align-items: baseline; justify-content: space-between; padding-bottom: 7px; border-bottom: 2px solid #7a7ca5; }
+
+.modal_filters .modal_filter_category { flex: 1; }
+
+.modal_filters .modal_filter_value { flex: 1; }
+
+.modal_studies { margin: 0 auto; padding-top: 20px; font-size: 14px; overflow-x: hidden; overflow-y: scroll; }
+
+.modal_studies .modal_study { margin-top: 10px; display: grid; grid-template-columns: auto 1fr; column-gap: 10px; }
+
+.modal_studies .modal_study_info { border-bottom: 1px dashed #b1b3b6; padding-bottom: 4px; }
+
+.modal_studies .modal_study_info .modal_study_title { font-weight: 600; }
+
+.modal_single { padding-top: 20px; width: 90%; margin: auto; }
+
+.modal_single .study_tba { font-weight: 700; height: 150px; display: flex; align-items: center; justify-content: center; color: #666; }
 
 /*# sourceMappingURL=pcori.css.map */

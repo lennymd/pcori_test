@@ -3,6 +3,9 @@ let ref_id = d => d.ref_id;
 let title = d => d.title;
 let author = d => d.author;
 let year = d => d.year;
+let volume = d => d.volume;
+let issue = d => d.issue;
+let journal = d => d.journal;
 let study_name = d => d.study_name;
 let kaiser_ref_id = d => d.kaiser_ref_id;
 let companions = d => d.companions;
@@ -42,6 +45,7 @@ let result_other_health = d => d.result_other_health;
 // BEHAVIORAL OUTCOMES
 let addresses_behavioral_outcomes = d => d.addresses_behavioral_outcomes;
 let behavioral_outcomes = d => d.behavioral_outcomes;
+let result_physical_activity = d => d.result_physical_activity;
 let result_substance_use = d => d.result_substance_use;
 let result_diet = d => d.result_diet;
 let result_other_behavior = d => d.result_other_behavior;
@@ -123,6 +127,7 @@ let results_health = [
 let results_behavioral = [
   result_diet,
   result_substance_use,
+  result_physical_activity,
   result_other_behavior,
 ];
 
