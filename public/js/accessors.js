@@ -150,3 +150,23 @@ let results_healthcareuse = [
   result_immunizations,
   result_other_healthcareuse,
 ];
+
+let directions_healthcareuse = [
+  direction_hospital_readmission,
+  direction_frequency_healthcare_use,
+  direction_adherence,
+  direction_preventive,
+  direction_outpatient_visits,
+  direction_emergency_visits,
+  direction_clinic_attendance,
+  direction_emergency_transport,
+  direction_post_primarycare_visits,
+  direction_prenatal,
+  direction_inpatient_admission,
+  direction_hospital_days,
+  direction_sober_center,
+  direction_medical_home,
+  direction_missed_appointments,
+  direction_immunizations,
+  direction_other_healthcareuse,
+];

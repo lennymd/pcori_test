@@ -1,582 +1,246 @@
 let db_inputs = [];
-// TODO put database manager and visualization manager in a huge aync main function
-async function databaseManager() {
+let search_categories = [
+  'target_social_need',
+  'target_population',
+  'age_group',
+  'race_ethnicity_majority',
+  'intervention_target',
+  'intervention_setting',
+  'specific_intervention_components',
+  'recruitment_setting',
+  'study_design',
+  'risk_of_bias',
+  'individual_systems_intervention',
+  'study_type',
+  'service_provider',
+  'comparator',
+];
+
+let search_accessors = [
+  target_social_need,
+  target_population,
+  age_group,
+  race_ethnicity_majority,
+  intervention_target,
+  intervention_setting,
+  specific_intervention_components,
+  recruitment_setting,
+  study_design,
+  risk_of_bias,
+  individual_systems_intervention,
+  study_type,
+  service_provider,
+  comparator,
+  [[], results_behavioral],
+  [[], results_health],
+  [directions_healthcareuse, results_healthcareuse],
+];
+
+let slider_accessors = [proportion_immigrant, proportion_male, sample_size];
+
+// TODO put database manager and visualization manager in a huge async main function
+async function database_manager() {
   let dataset = await d3.csv('./public/data/pcori_1124.csv');
+  let data_dictionary = await get_values(
+    './public/data/data_dictionary_1124.csv'
+  );
+  // populate_filters() in helper_functions.js
+  populateFilters(data_dictionary, search_categories);
 
-  const input_checkboxes = d3.selectAll('.filter_option > input');
-  const relevant_study_items = d3.selectAll('.relevant_study');
-  // ACTIONS
-  input_checkboxes.on('click', searchDatabase);
-  relevant_study_items.on('click', studyInfo);
-  // d3.select('#download_studies_button').on('click', disabledItem);
-  // d3.select('#disabled_search').on('click', disabledItem);
-  // FUNCTIONS
-  function searchDatabase() {
-    // Check whether button was turned on or off.
-    const input = d3.select(this);
-    if (input.property('checked')) {
-      // if on, add to input chain
-      db_inputs.push(this.name);
+  // INTERACTION -- Toggle both kinds of accordions
+  // toggleAccordion() in helper_functions.js
+  d3.selectAll('.filter_category').on('click', toggleAccordion);
+  d3.selectAll('.subfilter_category').on('click', toggleAccordion);
+
+  // INTERACTION -- when you click an input, check the database
+  d3.selectAll('.filter_item').on('click', search_database);
+  function search_database() {
+    if (d3.select(this).classed('slider')) {
+      // process slider
+      alert('This is not available at the moment');
     } else {
-      // if off, remove from input chain
-      db_inputs.splice(db_inputs.indexOf(this.name), 1);
-    }
-    if (db_inputs.length > 0) {
-      // show reset button & results box
-      d3.selectAll('.reset_button').classed('hidden', false);
-      d3.select('#results_intro').classed('hidden', true);
-      d3.select('#results_box').classed('hidden', false);
+      // update db_inputs
+      if (db_inputs.includes(this.name)) {
+        db_inputs.splice(db_inputs.indexOf(this.name), 1);
+      } else {
+        db_inputs.push(this.name);
+      }
 
-      // clean results_output to draw again
-      d3.selectAll('#search_output').remove();
-      const results_output = d3.select('#results_box');
-      const output_region = results_output
-        .append('div')
-        .attr('id', 'search_output');
+      if (db_inputs.length > 0) {
+        // generateCombinations() in helper_functions.js
+        const combos = generateCombinations(db_inputs);
 
-      // create all combinations
-      const combo = allCombinations(db_inputs);
-      // const combo = allCombinations(['a6', 'a7']);
+        d3.selectAll('.combination_study_list').remove();
+        var relevant_studies = [];
 
-      // run each combination
-      let total_studies = [];
-      combo.forEach(input_chain => {
-        // filter data based on that combination
-        let data = dataset;
-        const filtered_data = processInputs(input_chain, data);
-        const criteria_text = getCriteria(input_chain);
-        // console.log(input_chain, filtered_data);
-
-        // add filtered data to a list for later cleaning
-        total_studies.push(...filtered_data);
-        // add a div to #results_output
-        const relevant_studies_box = output_region
-          .append('section')
-          .attr('class', 'relevant_studies');
-
-        // inside div add a smaller title with studies count & criteria specifics
-        // TODO get labels from input_chain for criteria text
-        relevant_studies_box
-          .append('h3')
-          .attr('class', 'relevant_study_title')
-          .html(
-            `Studies related to: <span class="relevant_criteria">${criteria_text}</span>`
+        combos.forEach(_combo => {
+          let filtered_data = filterData_db(
+            _combo,
+            dataset,
+            search_accessors,
+            data_dictionary,
+            search_categories
           );
-        // add a list for the studies
-        const study_list = relevant_studies_box
-          .append('ul')
-          .attr('class', 'relevant_study_list');
+          // Identify unique studies from interventions
+          let unique_studies = d3.map(filtered_data, ref_id).keys();
+          relevant_studies.push(...unique_studies);
 
-        // for each item in filtered data, add a list item reference.
-        const relevant_study = study_list
-          .selectAll('li.relevant_study')
-          .data(filtered_data)
-          .enter()
-          .append('li')
-          .attr('class', 'relevant_study');
+          // display studies
+          d3.select('#results_intro').classed('hidden', true);
+          d3.select('.search_results').classed('hidden', false);
 
-        relevant_study
-          .append('span')
-          .attr('class', 'study_author')
-          .text(d => `${author(d)} `);
-        relevant_study
-          .append('span')
-          .attr('class', 'study_year')
-          .text(d => `(${year(d)}), `);
-        relevant_study
-          .append('span')
-          .attr('class', 'study_title')
-          .text(d => `"${title(d)}"`);
-        // TODO add other study info
-      });
+          const combination_container = d3.select('.combination_results');
+          if (filtered_data.length > 0) {
+            let combination_text = generateCombinationText(
+              _combo,
+              search_categories,
+              data_dictionary
+            );
 
-      // update total study count
-      d3.select('#select_study_count').html(`${countStudies(total_studies)}`);
-    } else {
-      // hide results box and show results_intro
-      d3.selectAll('.reset_button').classed('hidden', true);
-      d3.select('#results_intro').classed('hidden', false);
-      d3.select('#results_box').classed('hidden', true);
-      d3.selectAll('.subfilter_panel').classed('hidden', true);
+            const combo_section = combination_container
+              .append('div')
+              .attr('class', 'combination_study_list');
+
+            const section = combo_section
+              .append('h3')
+              .attr('class', 'combination_info')
+              .html(
+                `Studies related to: <strong>${combination_text.toString()}</strong>`
+              );
+            const study_list = section.append('ul').attr('class', 'study_list');
+            unique_studies.forEach(element => {
+              const s = dataset.filter(d => ref_id(d) == element)[0];
+              const template = `<span class="study_author">${
+                author(s).split(',')[0]
+              }, et al. </span>
+            <span class="study_year">(${year(s)}), </span>
+            <strong class="study_title">"${title(s)} "</strong>
+            <span class="study_journal">${journal(s)}</span>`;
+              study_list
+                .append('li')
+                .attr('class', 'relevant_study')
+                .attr('data-ref_id', ref_id(s))
+                .html(template);
+            });
+          }
+        });
+        // update relevant_study_count
+        d3.select('#relevant_study_count').text(
+          Array.from(new Set(relevant_studies)).length
+        );
+        d3.selectAll('.relevant_study').on('click', show_study_page);
+      } else {
+        d3.select('#results_intro').classed('hidden', false);
+        d3.select('.search_results').classed('hidden', true);
+      }
     }
   }
 
-  function getCriteria(_inputs) {
-    let criteria_chain = [];
-    _inputs.forEach(input => {
-      const filter = input[0];
-      const filter_text = d3.select(`[for=${input}]`).text().toString().trim();
-      let criteria;
-      if (['l', 'm', 'n'].indexOf(filter) < 0) {
-        // filter not by outcome
-        criteria = ` ${filter_text}`;
-      } else {
-        const variant = Number(input[2]);
-        const outcome_text = d3.select(`[name=${input}]`)._groups[0][0]
-          .parentElement.parentElement.parentElement.parentElement.parentElement
-          .children[0].children[0].textContent;
-        if (variant < 4) {
-          criteria = ` ${filter_text} results for ${outcome_text}`;
+  function filterData_db(
+    _combo,
+    _data,
+    _accessors,
+    data_dictionary,
+    search_categories
+  ) {
+    // TODO somehow add sliders to this later -- use a shorter input for slider's name
+    // loop through chain and filter by each accessor
+    let temp = _data;
+    _combo.forEach(_input => {
+      const input = _input.split('_');
+      if (input.length < 4) {
+        let filter_accessor = _accessors[input[1]];
+        let filter_name = search_categories[input[1]];
+        let filter_value = data_dictionary[filter_name][input[2]];
+        if (filter_name == 'age_group') {
+          temp = temp.filter(d =>
+            filter_accessor(d).split(',').includes(filter_value)
+          );
         } else {
-          criteria = ` Expected ${filter_text.toLowerCase()} for ${outcome_text}`;
-        }
-      }
-      criteria_chain.push(criteria);
-    });
-    return criteria_chain;
-  }
-  function processInputs(_inputs, _dataset) {
-    let temp_data = _dataset;
-    _inputs.forEach(input => {
-      if (temp_data.length > 0) {
-        // process this input
-        const filter = input[0];
-        const filter_text = d3.select(`[for=${input}]`).text().toString();
-        // console.log(input, filter_text);
-        if (['l', 'm', 'n'].indexOf(filter) < 0) {
-          // deal with the simple checkboxes
-          const val = Number(input.slice(1, input.length));
-          if (filter == 'a') {
-            // target_social_need
-            temp_data = temp_data.filter(d =>
-              target_social_need(d).includes(filter_text)
-            );
-          } else if (filter == 'b') {
-            // target_population
-            temp_data = temp_data.filter(d =>
-              target_population(d).includes(filter_text)
-            );
-          } else if (filter == 'c') {
-            if (val < 4) {
-              // deal with age_group
-              // correct for difference between Adults and Adults
-              if (filter_text == 'Adults') {
-                temp_data = temp_data.filter(d =>
-                  age_group(d).split(',').includes('Adult')
-                );
-              } else {
-                temp_data = temp_data.filter(d =>
-                  age_group(d).includes(filter_text)
-                );
-              }
-            } else if (val > 4 && val < 10) {
-              // deal with race_ethnicity_majority
-              temp_data = temp_data.filter(d =>
-                race_ethnicity_majority(d).includes(filter_text)
-              );
-            } else {
-              // TODO process sliders
-            }
-          } else if (filter == 'd') {
-            temp_data = temp_data.filter(d =>
-              intervention_target(d).includes(filter_text)
-            );
-          } else if (filter == 'e') {
-            temp_data = temp_data.filter(d =>
-              intervention_setting(d).includes(filter_text)
-            );
-          } else if (filter == 'f') {
-            temp_data = temp_data.filter(d =>
-              specific_intervention_components(d).includes(filter_text)
-            );
-          } else if (filter == 'g') {
-            temp_data = temp_data.filter(d =>
-              recruitment_setting(d).includes(filter_text)
-            );
-          } else if (filter == 'h') {
-            if (val < 5) {
-              // study design
-              temp_data = temp_data.filter(d => study_design(d) == filter_text);
-            } else if (val > 4 && val < 9) {
-              // risk of bias
-              temp_data = temp_data
-                .filter(d => risk_of_bias(d) != 'NR')
-                .filter(d => risk_of_bias(d) == filter_text);
-            } else if (val > 8) {
-              // individual vs systems
-              temp_data = temp_data.filter(
-                d =>
-                  individual_systems_intervention(d) ==
-                  `${filter_text} Intervention`
-              );
-            }
-          } else if (filter == 'i') {
-            temp_data = temp_data.filter(d =>
-              study_type(d).includes(filter_text)
-            );
-          } else if (filter == 'j') {
-            temp_data = temp_data.filter(d =>
-              service_provider(d).includes(filter_text)
-            );
-          } else if (filter == 'k') {
-            temp_data = temp_data.filter(d =>
-              comparator(d).includes(filter_text)
-            );
-          }
-        } else {
-          // deal with outcomes which are funky as hell
-          const sub_filter = input[1];
-          const val = Number(input.slice(2, input.length));
-
-          if (filter == 'l') {
-            temp_data = temp_data.filter(
-              d => addresses_health_outcomes(d) == 'Yes'
-            );
-
-            if (temp_data.length > 0) {
-              // there are lines with this outcome, so let's figure out the type so we can count
-              if (sub_filter == 'a') {
-                // changes in self-reported health
-                temp_data = temp_data.filter(
-                  d => result_self_health(d) == filter_text
-                );
-              } else if (sub_filter == 'b') {
-                // child development outcomes
-                temp_data = temp_data.filter(
-                  d => result_child_development(d) == filter_text
-                );
-              } else if (sub_filter == 'c') {
-                // low birth weight
-                temp_data = temp_data.filter(
-                  d => result_low_birth_weight(d) == filter_text
-                );
-              } else if (sub_filter == 'd') {
-                // mental health status
-                temp_data = temp_data.filter(
-                  d => result_mental_health_status(d) == filter_text
-                );
-              } else if (sub_filter == 'e') {
-                // morbidity
-                temp_data = temp_data.filter(
-                  d => result_morbidity(d) == filter_text
-                );
-              } else if (sub_filter == 'f') {
-                // mortality
-                temp_data = temp_data.filter(
-                  d => result_mortality(d) == filter_text
-                );
-              } else if (sub_filter == 'g') {
-                // quality-adjusted life years
-                temp_data = temp_data.filter(
-                  d => result_QALY(d) == filter_text
-                );
-              } else if (sub_filter == 'h') {
-                // quality of life
-                temp_data = temp_data.filter(
-                  d => result_quality_of_life(d) == filter_text
-                );
-              } else if (sub_filter == 'i') {
-                // changes in functional outcomes
-                temp_data = temp_data.filter(
-                  d => result_functional(d) == filter_text
-                );
-              } else if (sub_filter == 'j') {
-                // changes in functional outcomes
-                temp_data = temp_data.filter(
-                  d => result_other_health(d) == filter_text
-                );
-              }
-            } else {
-              // there are no lines with this outcome, so return blank array
-              temp_data = [];
-            }
-          } else if (filter == 'm') {
-            temp_data = temp_data.filter(
-              d => addresses_behavioral_outcomes(d) == 'Yes'
-            );
-            if (temp_data.length > 0) {
-              // there are lines with this outcome, so let's figure out the type so we can count
-              if (sub_filter == 'a') {
-                // changes in dietary intake
-                temp_data = temp_data.filter(
-                  d => result_diet(d) == filter_text
-                );
-              } else if (sub_filter == 'b') {
-                // changes in substance use
-                temp_data = temp_data.filter(
-                  d => result_substance_use(d) == filter_text
-                );
-              } else if (sub_filter == 'c') {
-                // other
-                temp_data = temp_data.filter(
-                  d => result_other_behavior(d) == filter_text
-                );
-              }
-            } else {
-              // there are no lines with this outcome, so return blank array
-              temp_data = [];
-            }
-          } else if (filter == 'n') {
-            temp_data = temp_data.filter(
-              d => addresses_healthcareuse_outcomes(d) == 'Yes'
-            );
-            console.log(filter, val, filter_text);
-            if (temp_data.length > 0) {
-              // there are lines with this outcome, so let's figure out the type so we can count
-              if (sub_filter == 'a') {
-                // adherence to treatment
-                if (val < 4) {
-                  // deal with results
-                  temp_data = temp_data.filter(
-                    d => result_adherence(d) == filter_text
-                  );
-                } else {
-                  // deal with direction
-                  temp_data = temp_data.filter(
-                    d => direction_adherence(d) == filter_text
-                  );
-                }
-              } else if (sub_filter == 'b') {
-                // clinic attendance rate
-                if (val < 4) {
-                  // deal with results
-                  temp_data = temp_data.filter(
-                    d => result_clinic_attendance(d) == filter_text
-                  );
-                } else {
-                  // deal with direction
-                  temp_data = temp_data.filter(
-                    d => direction_clinic_attendance(d) == filter_text
-                  );
-                }
-              } else if (sub_filter == 'c') {
-                // emergency department visits
-                if (val < 4) {
-                  // deal with results
-                  temp_data = temp_data.filter(
-                    d => result_emergency_visits(d) == filter_text
-                  );
-                } else {
-                  // deal with direction
-                  temp_data = temp_data.filter(
-                    d => direction_emergency_visits(d) == filter_text
-                  );
-                }
-              } else if (sub_filter == 'd') {
-                // frequency of healthcare use
-                if (val < 4) {
-                  // deal with results
-                  temp_data = temp_data.filter(
-                    d => result_frequency_healthcare_use(d) == filter_text
-                  );
-                } else {
-                  // deal with direction
-                  temp_data = temp_data.filter(
-                    d => direction_frequency_healthcare_use(d) == filter_text
-                  );
-                }
-              } else if (sub_filter == 'e') {
-                // hospital readmissions
-                if (val < 4) {
-                  // deal with results
-                  temp_data = temp_data.filter(
-                    d => result_hospital_readmission(d) == filter_text
-                  );
-                } else {
-                  // deal with direction
-                  temp_data = temp_data.filter(
-                    d => direction_hospital_readmission(d) == filter_text
-                  );
-                }
-              } else if (sub_filter == 'f') {
-                // hospital days
-                if (val < 4) {
-                  // deal with results
-                  temp_data = temp_data.filter(
-                    d => result_hospital_days(d) == filter_text
-                  );
-                } else {
-                  // deal with direction
-                  temp_data = temp_data.filter(
-                    d => direction_hospital_days(d) == filter_text
-                  );
-                }
-              } else if (sub_filter == 'g') {
-                // immunizations
-                if (val < 4) {
-                  // deal with results
-                  temp_data = temp_data.filter(
-                    d => result_immunizations(d) == filter_text
-                  );
-                } else {
-                  // deal with direction
-                  temp_data = temp_data.filter(
-                    d => direction_immunizations(d) == filter_text
-                  );
-                }
-              } else if (sub_filter == 'h') {
-                // inpatient admissions
-                if (val < 4) {
-                  // deal with results
-                  temp_data = temp_data.filter(
-                    d => result_inpatient_admission(d) == filter_text
-                  );
-                } else {
-                  // deal with direction
-                  temp_data = temp_data.filter(
-                    d => direction_inpatient_admission(d) == filter_text
-                  );
-                }
-              } else if (sub_filter == 'i') {
-                // medical home
-                if (val < 4) {
-                  // deal with results
-                  temp_data = temp_data.filter(
-                    d => result_medical_home(d) == filter_text
-                  );
-                } else {
-                  // deal with direction
-                  temp_data = temp_data.filter(
-                    d => direction_medical_home(d) == filter_text
-                  );
-                }
-              } else if (sub_filter == 'j') {
-                // missed appointments
-                if (val < 4) {
-                  // deal with results
-                  temp_data = temp_data.filter(
-                    d => result_missed_appointments(d) == filter_text
-                  );
-                } else {
-                  // deal with direction
-                  temp_data = temp_data.filter(
-                    d => direction_missed_appointments(d) == filter_text
-                  );
-                }
-              } else if (sub_filter == 'k') {
-                // outpatient visits
-                if (val < 4) {
-                  // deal with results
-                  temp_data = temp_data.filter(
-                    d => result_outpatient_visits(d) == filter_text
-                  );
-                } else {
-                  // deal with direction
-                  temp_data = temp_data.filter(
-                    d => direction_outpatient_visits(d) == filter_text
-                  );
-                }
-              } else if (sub_filter == 'l') {
-                // post hospital primary care visit
-                if (val < 4) {
-                  // deal with results
-                  temp_data = temp_data.filter(
-                    d => result_post_primarycare_visits(d) == filter_text
-                  );
-                } else {
-                  // deal with direction
-                  temp_data = temp_data.filter(
-                    d => direction_post_primarycare_visits(d) == filter_text
-                  );
-                }
-              } else if (sub_filter == 'm') {
-                // prenatal care
-                if (val < 4) {
-                  // deal with results
-                  temp_data = temp_data.filter(
-                    d => result_prenatal(d) == filter_text
-                  );
-                } else {
-                  // deal with direction
-                  temp_data = temp_data.filter(
-                    d => direction_prenatal(d) == filter_text
-                  );
-                }
-              } else if (sub_filter == 'n') {
-                // preventive care utilization
-                if (val < 4) {
-                  // deal with results
-                  temp_data = temp_data.filter(
-                    d => result_preventive(d) == filter_text
-                  );
-                } else {
-                  // deal with direction
-                  temp_data = temp_data.filter(
-                    d => direction_preventive(d) == filter_text
-                  );
-                }
-              } else if (sub_filter == 'o') {
-                // sobering center
-                if (val < 4) {
-                  // deal with results
-                  temp_data = temp_data.filter(
-                    d => result_sober_center(d) == filter_text
-                  );
-                } else {
-                  // deal with direction
-                  temp_data = temp_data.filter(
-                    d => direction_sober_center(d) == filter_text
-                  );
-                }
-              } else if (sub_filter == 'p') {
-                // Use of emergency transportation
-                if (val < 4) {
-                  // deal with results
-                  temp_data = temp_data.filter(
-                    d => result_emergency_transport(d) == filter_text
-                  );
-                } else {
-                  // deal with direction
-                  temp_data = temp_data.filter(
-                    d => direction_emergency_transport(d) == filter_text
-                  );
-                }
-              } else if (sub_filter == 'q') {
-                // other
-                if (val < 4) {
-                  // deal with results
-                  temp_data = temp_data.filter(
-                    d => result_other_healthcareuse(d) == filter_text
-                  );
-                } else {
-                  // deal with direction
-                  temp_data = temp_data.filter(
-                    d => direction_other_healthcareuse(d) == filter_text
-                  );
-                }
-              }
-            } else {
-              // there are no lines with this outcome, so return blank array
-              temp_data = [];
-            }
-          }
+          temp = temp.filter(d => filter_accessor(d).includes(filter_value));
         }
       } else {
-        // break because there is nothing to filter
-        temp_data = [];
+        let valence = [
+          ['Increase', 'Decrease'],
+          ['Positive', 'Negative', 'Mixed results', 'No effect'],
+        ];
+        let filter_accessor = _accessors[input[1]][input[3]][input[2]];
+        const v = valence[input[3]][input[4]];
+        temp = temp.filter(d => filter_accessor(d) == v);
       }
     });
-    return temp_data;
-  }
-  function allCombinations(items) {
-    // allCombinations () : return a list of all possible combinations
-    // PARAM items : array of items
 
-    let results = [];
-    for (let slots = items.length; slots > 0; slots--) {
-      for (let loop = 0; loop < items.length - slots + 1; loop++) {
-        let key = results.length;
-        results[key] = [];
-        for (let i = loop; i < loop + slots; i++) {
-          results[key].push(items[i]);
+    // return filtered data
+    return temp;
+  }
+
+  function generateCombinationText(_combo, search_categories, data_dictionary) {
+    // go through each input and grab the associated text. If working with outcomes, add some more text to make it make sense.
+    let criteria = [];
+    _combo.forEach((_input, index) => {
+      const input = _input.split('_');
+      if (input.length < 4) {
+        // dealing with a non-outcome input
+        let value = data_dictionary[search_categories[input[1]]][input[2]];
+        criteria[index] = value;
+      } else {
+        let valence = [
+          ['Increase', 'Decrease'],
+          ['Positive', 'Negative', 'Mixed results', 'No effect'],
+        ];
+        let outcomes = [
+          'behavioral_outcomes',
+          'health_outcomes',
+          'healthcareuse_outcomes',
+        ];
+        const index = input[1] - search_categories.length;
+        const outcome_name = data_dictionary[outcomes[index]][input[2]];
+        console.log(input);
+        let value = '';
+        if (input[3] == 0) {
+          value = `Expected ${valence[0][
+            input[4]
+          ].toLowerCase()} for ${outcome_name} outcome`;
+        } else {
+          if (input[4] < 3) {
+            value = `${
+              valence[1][input[4]]
+            } results for ${outcome_name} outcome`;
+          } else {
+            value = `${valence[1][input[4]]} for ${outcome_name} outcome`;
+          }
         }
+        criteria[index] = value;
+        // debugger;
+        // TODO deal with outcome
+      }
+    });
+    return criteria;
+  }
+
+  function show_study_page() {
+    // console.log(this.dataset.ref_id);
+    d3.selectAll('.modal').style('display', 'block');
+    d3.selectAll('.modal_header_text').text(
+      'Study that addresses the intervention you selected:'
+    );
+    d3.select('.modal_list').classed('hidden', true);
+    d3.select('.modal_single').classed('hidden', false);
+
+    const ref = this.dataset.ref_id;
+    const study = dataset.filter(d => ref_id(d) == ref);
+    const s = study[0];
+    const study_info = d3.select('.single_study_info');
+    study_info.html('');
+    study_info.append('div').text(author(s));
+    study_info.append('div').text(`(${year(s)})`);
+    study_info.append('div').html(`<strong>${title(s)}</strong>`);
+    if (journal(s).length > 1) {
+      study_info.append('span').text(`${journal(s)} `);
+      if (volume(s).length >= 1) {
+        study_info.append('span').text(`Volume ${volume(s)}`);
       }
     }
-    return results;
-  }
-  function disabledItem() {
-    alert('This is not available right now');
-  }
-  function studyInfo() {
-    alert('you have clicked on a study');
-  }
-
-  function countStudies(_dataset) {
-    // const ref_id = d => d.ref_id;
-    // const studies = d3.map(_dataset, ref_id).keys();
-    // const unique_studies = new Set(studies);
-    // return unique_studies.size;
-    return _dataset.length;
   }
 }
-databaseManager();
+database_manager();

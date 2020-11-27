@@ -112,7 +112,7 @@ async function visualization_manager(_data) {
   d3.selectAll('.export_button_area').on('click', show_study_list);
   d3.selectAll('.export_button_area_small').on('click', show_study_list);
 
-  // TODO when clicking on an intervention, show study page
+  // when clicking on an intervention, show study page
   d3.selectAll('.dot_intervention').on('click', show_study_page);
 
   function modify_visualization() {
@@ -776,6 +776,9 @@ async function visualization_manager(_data) {
           .attr('class', d => `dot_intervention ${color_accessor(d)}`);
       }
       // INTERACTIONS -- PART 2
+      // when clicking export buttons show correct study list
+      d3.selectAll('.export_button_area').on('click', show_study_list);
+      d3.selectAll('.export_button_area_small').on('click', show_study_list);
       d3.selectAll('.chart .dot_intervention').on(
         'mouseenter',
         show_companions
@@ -784,11 +787,6 @@ async function visualization_manager(_data) {
         'mouseleave',
         hide_companions
       );
-      // when clicking export buttons show correct study list
-      d3.selectAll('.export_button_area').on('click', show_study_list);
-      d3.selectAll('.export_button_area_small').on('click', show_study_list);
-
-      // TODO when clicking on an intervention, show study page
       d3.selectAll('.dot_intervention').on('click', show_study_page);
     } else {
       // there is not data to visualize
@@ -891,7 +889,7 @@ async function visualization_manager(_data) {
     d3.select('.modal_list').classed('hidden', false);
     d3.select('.modal_single').classed('hidden', true);
 
-    // TODO filter studies
+    // filter studies
     let filtered_data = filter_data(vis_inputs, dataset);
 
     let sub_filter = id_split;
@@ -987,8 +985,7 @@ async function visualization_manager(_data) {
     });
 
     // add subfilters to demographics and outcome options
-    let col_picked = false;
-    let row_picked = false;
+
     sf_options.forEach((element, i) => {
       const sub_option = sf_sub_options[i];
 
@@ -1022,9 +1019,9 @@ async function visualization_manager(_data) {
     });
 
     // get unique ref_id from filtered_data
-    const a_study_list = d3.map(group_data, ref_id).keys();
-    const unique_studies = new Set(a_study_list);
-    let studies = Array.from(unique_studies);
+    let studies = d3.map(group_data, ref_id).keys();
+    // const unique_studies = new Set(a_study_list);
+    //  = Array.from(unique_studies);
 
     // append a group div for each unique ref_id
     const study_list = d3.select('.modal_studies');
@@ -1034,7 +1031,7 @@ async function visualization_manager(_data) {
       const s = data[0];
       const study_group = study_list.append('div').attr('class', `modal_study`);
 
-      const study_dot = study_group
+      study_group
         .append('div')
         .attr('class', d => `dot_intervention_small study_${study}`);
 
@@ -1067,11 +1064,11 @@ async function visualization_manager(_data) {
           .text(`, Volume ${volume(s)}`);
       }
     });
-
-    // TODO update dot colors if it makes sense
   }
 
   // INTERACTIONS -- PART 3
+  d3.selectAll('.chart .dot_intervention').on('mouseenter', show_companions);
+  d3.selectAll('.chart .dot_intervention').on('mouseleave', hide_companions);
   d3.selectAll('.modal_header_img').on('click', close_modal);
   // d3.selectAll('.modal').on('click', close_modal);
   function close_modal() {

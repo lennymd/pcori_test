@@ -213,33 +213,21 @@ section.db_wrapper .active { background-color: #7a7ca5; }
 
 .subfilter_container .subfilter_accordion .subfilter_panel .division { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
-.results_container { display: flex; flex-direction: column; height: 100%; }
+.results_container { display: flex; flex-direction: column; height: 100%; font-size: 22px; }
 
-#results_box p { margin-bottom: 14px; }
+.results_intro_text { height: 400px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
 
-.results_intro_text { font-size: 22px; height: 400px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.result_summary { font-size: 25px; }
 
-.results_count { font-size: 25px; }
+#result_count { color: #ed2224; }
 
-.results_count .relevant_studies { color: #ed2224; }
+.combination_study_list .combination_info { font-size: 18px; font-weight: 400; margin: 0 0 10px 0; }
 
-.relevant_studies { padding-top: 20px; }
+.combination_study_list ul.study_list { list-style: none; margin: 0; padding-left: 10px; }
 
-.relevant_studies .relevant_study_title { font-weight: 400; font-size: 18px; margin: 0 0 10px 0; }
+.combination_study_list .relevant_study { margin: 10px 0; font-size: 14px; border-bottom: 1px dashed #b1b3b6; padding-bottom: 4px; }
 
-.relevant_studies .relevant_study_count { font-weight: 700; color: #ed2224; }
-
-.relevant_studies .relevant_criteria { font-weight: 700; }
-
-.relevant_studies .relevant_study_list { font-size: 14px; list-style-type: none; margin: 0; padding: 0; }
-
-.relevant_studies .relevant_study { margin-bottom: 15px; font-weight: 300; padding-right: 20px; }
-
-.relevant_studies .relevant_study .study_title { color: #4c7dc2; font-weight: 600; }
-
-#download_studies_button { margin: 0; background-color: #9f9fbe; color: white; width: 300px; font-weight: 400; text-align: center; padding: 10px; }
-
-.search_box { position: sticky; bottom: 0; background-color: white; height: 50px; padding-top: 25px; text-align: center; }
+.combination_study_list .relevant_study .study_title { color: #3b6aac; }
 
 div#results_box, div.filter_container { overflow-y: scroll; scrollbar-width: thin; scrollbar-color: #8bbe56 #efeaef; }
 
