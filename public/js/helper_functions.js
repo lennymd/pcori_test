@@ -32,15 +32,15 @@ async function get_values(_url) {
 function show_companions() {
   const point = d3.select(this).data()[0];
   d3.selectAll(`.dot_intervention.study_${point.ref_id}`).style(
-    'border-color',
-    'black'
+    'filter',
+    'brightness(0)'
   );
 }
 function hide_companions() {
   const point = d3.select(this).data()[0];
   d3.selectAll(`.dot_intervention.study_${point.ref_id}`).style(
-    'border-color',
-    'transparent'
+    'filter',
+    'brightness(1)'
   );
 }
 
