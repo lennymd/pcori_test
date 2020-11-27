@@ -39,9 +39,9 @@ let search_accessors = [
 let slider_accessors = [proportion_immigrant, proportion_male, sample_size];
 
 // TODO put database manager and visualization manager in a huge async main function
-async function database_manager() {
+async function databaseManager() {
   let dataset = await d3.csv('./public/data/pcori_1124.csv');
-  let data_dictionary = await get_values(
+  let data_dictionary = await getValues(
     './public/data/data_dictionary_1124.csv'
   );
   // populate_filters() in helper_functions.js
@@ -243,4 +243,4 @@ async function database_manager() {
     }
   }
 }
-database_manager();
+databaseManager();

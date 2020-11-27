@@ -1,9 +1,9 @@
 let vis_inputs = [];
-async function visualization_manager(_data) {
+async function visualizationManager(_data) {
   let dataset = await d3.csv('./public/data/pcori_1124.csv');
 
   // COLUMN VALUES & GROUPINGS for filtering and update later
-  let data_dictionary = await get_values(
+  let data_dictionary = await getValues(
     './public/data/data_dictionary_1124.csv'
   );
 
@@ -73,7 +73,7 @@ async function visualization_manager(_data) {
     color_filters,
   ];
   color_ranges = [
-    ['#00a9ea', '#b3a589', '#c86f61', '#888888'],
+    ['#223e7a', '#7587cb', '#cddcff', '#aeaeae'],
     ['#d7191c', '#e46430', '#e49d32', '#a5b580', '#6e98ab', '#2c7bb6'],
     // ['#d7191c', '#fdae61', '#ffffbf', '#abd9e9', '#2c7bb6'],
   ];
@@ -91,7 +91,7 @@ async function visualization_manager(_data) {
     });
   }
   // INITIAL setup -- make visual
-  initialize_visualization(dataset);
+  initializeVisualization(dataset);
 
   // PARTS OF PAGE for interaction
   const menu_options = d3.selectAll('.a_menu_option');
@@ -100,33 +100,24 @@ async function visualization_manager(_data) {
   const clear_filter_buttons = d3.selectAll('.dropdown_selection');
 
   // INTERACTIONS -- PART 1
-  menu_options.on('click', modify_visualization);
+  menu_options.on('click', modifyVisualization);
   // when you click on the selections you remove it from the data and re-run the visualization (maybe use data-something)
-  clear_filter_buttons.on('click', clear_filter);
+  clear_filter_buttons.on('click', clearFilter);
 
-  // when you hover over a dot, highlight (maybe a border) around other dots with same ref_id
-  d3.selectAll('.chart .dot_intervention').on('mouseenter', show_companions);
-  d3.selectAll('.chart .dot_intervention').on('mouseleave', hide_companions);
+  enableInteractions();
 
-  // when clicking export buttons show correct study list
-  d3.selectAll('.export_button_area').on('click', show_study_list);
-  d3.selectAll('.export_button_area_small').on('click', show_study_list);
-
-  // when clicking on an intervention, show study page
-  d3.selectAll('.dot_intervention').on('click', show_study_page);
-
-  function modify_visualization() {
+  function modifyVisualization() {
     vis_intro.classed('hidden', true);
     vis_active.classed('hidden', false);
 
     // Process new input by comparing to what's already in the chain. If there is something from the same category, remove the older instance
-    refresh_input_chain(this.id);
+    refreshInputChain(this.id);
     // Filter data based on vis_inputs
-    let filtered_data = filter_data(vis_inputs, dataset);
+    let filtered_data = filterData_vis(vis_inputs, dataset);
     update(vis_inputs, filtered_data);
   }
 
-  function clear_filter() {
+  function clearFilter() {
     d3.select('#color_legend').classed('hidden', true);
     const _input = this.id;
     const input = _input.split('_');
@@ -146,7 +137,7 @@ async function visualization_manager(_data) {
       .style('visibility', 'hidden')
       .style('height', '0px');
 
-    let refiltered_data = filter_data(vis_inputs, dataset);
+    let refiltered_data = filterData_vis(vis_inputs, dataset);
     update(vis_inputs, refiltered_data);
   }
 
@@ -155,14 +146,14 @@ async function visualization_manager(_data) {
     if (vis_inputs.length > 0) {
       // Update graphic layout and dots based on based on vis_inputs
       d3.selectAll('.export_button_main').classed('hidden', true);
-      update_visualization(_inputs, _data);
+      updateVisualization(_inputs, _data);
     } else {
-      initialize_visualization(dataset);
+      initializeVisualization(dataset);
     }
     update_text(_inputs, _data);
   }
 
-  function refresh_input_chain(_input) {
+  function refreshInputChain(_input) {
     // check if the new input matched category of one already in chain
     const input = _input.split('_');
     const input_category = `vis_${input[1]}`;
@@ -191,7 +182,7 @@ async function visualization_manager(_data) {
     d3.select(`#vis_${input[1]}_option`).text(input_label);
   }
 
-  function filter_data(_inputs, _data) {
+  function filterData_vis(_inputs, _data) {
     _inputs.sort();
     let temp = _data;
     if (_inputs.length == 0) {
@@ -213,10 +204,11 @@ async function visualization_manager(_data) {
     }
   }
 
-  function update_visualization(_inputs, _data) {
+  function updateVisualization(_inputs, _data) {
     if (_data.length > 0) {
       d3.selectAll('.visualization_area').classed('hidden', false);
       d3.select('#color_legend').classed('hidden', true);
+      enableInteractions();
 
       let categories = [];
       _inputs.forEach(input => {
@@ -234,6 +226,7 @@ async function visualization_manager(_data) {
         const chart = d3.select('#chart_matrix');
         d3.selectAll('.chart').classed('hidden', true);
         chart.classed('hidden', false);
+        d3.select('#array_study_list').remove();
 
         // figure out what all the columns and rows are going to be
         const col_definer = _inputs[i];
@@ -253,7 +246,7 @@ async function visualization_manager(_data) {
           .attr('class', 'matrix_container')
           .style('display', 'grid')
           .style('grid-template-columns', `repeat(${cols.length + 1}, 1fr)`)
-          .style('grid-template-rows', `repeat(${rows.length + 1}, 1fr)`);
+          .style('grid-template-rows', `auto repeat(${rows.length}, 1fr)`);
 
         // create color scale
         const result_accessors = result_types[row_category];
@@ -312,7 +305,7 @@ async function visualization_manager(_data) {
                 box.classed('border_right', false);
               }
               box
-                .append('h3')
+                .append('h4')
                 .attr('class', 'matrix_section_head')
                 .html(cols[m - 1]);
             } else if (m == 0 && n > 0) {
@@ -337,12 +330,12 @@ async function visualization_manager(_data) {
               const study_list = sub_grid
                 .append('div')
                 .attr('id', `study_list_box_${m}_${n}`)
-                .attr('class', 'row_grid_box border_right study_list_button');
+                .attr('class', 'row_grid_box border_right export_button_area');
 
               // add export button
               const export_button = study_list
                 .append('div')
-                .attr('class', 'export_button_area_small')
+                .attr('class', 'export_button_small')
                 .attr(
                   'id',
                   `filter_matrix_${col_category}_${m - 1}_${row_category}_${
@@ -406,8 +399,10 @@ async function visualization_manager(_data) {
               }
 
               if (group_data.length == 0) {
-                intervention_box
-                  .append('div')
+                const el = document.getElementById(`study_list_box_${m}_${n}`);
+                el.parentElement.remove();
+                const gap = box.append('div').attr('class', 'evidence_gap_box');
+                gap
                   .append('p')
                   .attr('class', 'evidence_gap')
                   .html('No interventions.')
@@ -427,10 +422,13 @@ async function visualization_manager(_data) {
                 .style('background-color', d =>
                   outcome_colors(result_accessors[n - 1](d))
                 );
+              enableInteractions();
             }
           }
         }
       } else if (categories.includes(2) || categories.includes(3)) {
+        d3.select('#array_export_area').remove();
+
         if (categories.includes(2)) {
           // switch to col chart
           // TODO recreate with grid and groups and not col_names
@@ -457,7 +455,7 @@ async function visualization_manager(_data) {
               .attr('class', 'col_section border_right');
 
             const col_head = col_section
-              .append('h3')
+              .append('h4')
               .attr('class', 'col_section_head')
               .html(col_title);
 
@@ -501,7 +499,7 @@ async function visualization_manager(_data) {
 
             const export_button = col_section
               .append('div')
-              .attr('class', 'export_button_area')
+              .attr('class', 'export_button')
               .attr('id', `filter_col_${col_category}_${index}`)
               .style('margin-top', '45px');
 
@@ -539,6 +537,7 @@ async function visualization_manager(_data) {
           let box_heights = [];
           box_array.forEach(box => box_heights.push(box.clientHeight));
           boxes.style('height', `${Math.max(...box_heights)}px`);
+          enableInteractions();
         } else if (categories.includes(3)) {
           // switch to row chart
           const chart = d3.select('#chart_row');
@@ -558,7 +557,10 @@ async function visualization_manager(_data) {
             .attr('class', 'row_container')
             .style('display', 'grid')
             .style('grid-template-columns', `2fr 8fr`)
-            .style('grid-template-rows', `repeat(${outcomes.length + 1}, 1fr)`);
+            .style(
+              'grid-template-rows',
+              `auto repeat(${outcomes.length}, 1fr)`
+            );
 
           for (let n = 0; n < outcomes.length + 1; n++) {
             for (let m = 0; m < 2; m++) {
@@ -634,13 +636,13 @@ async function visualization_manager(_data) {
                     .attr('id', `study_list_box_${m}_${n}`)
                     .attr(
                       'class',
-                      'row_grid_box border_right study_list_button'
+                      'row_grid_box border_right export_button_area'
                     );
 
                   // add export button
                   const export_button = study_list
                     .append('div')
-                    .attr('class', 'export_button_area_small')
+                    .attr('class', 'export_button_small')
                     .attr('id', `filter_row_${row_category}_${n - 1}`);
                   export_button
                     .append('img')
@@ -652,13 +654,10 @@ async function visualization_manager(_data) {
                     .attr('id', `intervention_box_${m}_${n}`)
                     .attr('class', 'row_grid_box');
 
-                  const intervention_box = intervention_list
+                  let intervention_box = intervention_list
                     .append('div')
                     .attr('class', `interventions_${row_category}`)
-                    .attr('id', `interventions_${row_category}_${n - 1}`)
-                    .style('display', 'flex')
-                    .style('flex-flow', 'row wrap')
-                    .style('justify-content', 'start');
+                    .attr('id', `interventions_${row_category}_${n - 1}`);
 
                   let group_data = _data.filter(d =>
                     outcome_accessors[row_category](d).includes(outcomes[n - 1])
@@ -668,14 +667,24 @@ async function visualization_manager(_data) {
                   }
 
                   if (group_data.length == 0) {
-                    // display no studies text
-                    intervention_box
+                    const el = document.getElementById(
+                      `study_list_box_${m}_${n}`
+                    );
+                    el.parentElement.remove();
+                    const gap = box
                       .append('div')
+                      .attr('class', 'evidence_gap_box');
+                    gap
                       .append('p')
                       .attr('class', 'evidence_gap')
                       .html('No interventions.')
                       .style('margin-top', 0);
                   } else {
+                    intervention_box
+                      .style('display', 'flex')
+                      .style('flex-flow', 'row wrap')
+                      .style('justify-content', 'start');
+
                     intervention_box
                       .selectAll('div.dot_intervention')
                       .data(group_data)
@@ -690,6 +699,7 @@ async function visualization_manager(_data) {
                         outcome_colors(result_accessors[n - 1](d))
                       );
                   }
+                  enableInteractions();
                 }
               }
             }
@@ -711,7 +721,7 @@ async function visualization_manager(_data) {
 
         const export_button = export_area
           .append('div')
-          .attr('class', 'export_button_area')
+          .attr('class', 'export_button')
           .attr('id', 'filter_array');
         export_button.append('img').attr('src', './public/img/export.svg');
         let group_data = _data;
@@ -730,6 +740,7 @@ async function visualization_manager(_data) {
           .attr('class', d => `dot_intervention study_${ref_id(d)}`)
           .attr('data-ref_id', d => ref_id(d))
           .style('background-color', '#8bbe56');
+        enableInteractions();
       }
 
       if (categories.includes(4)) {
@@ -771,23 +782,11 @@ async function visualization_manager(_data) {
           }
         });
 
-        d3.selectAll('div.dot_intervention')
-          .style('background-color', d => color_scale(color_accessor(d)))
-          .attr('class', d => `dot_intervention ${color_accessor(d)}`);
+        d3.selectAll('div.dot_intervention').style('background-color', d =>
+          color_scale(color_accessor(d))
+        );
       }
-      // INTERACTIONS -- PART 2
-      // when clicking export buttons show correct study list
-      d3.selectAll('.export_button_area').on('click', show_study_list);
-      d3.selectAll('.export_button_area_small').on('click', show_study_list);
-      d3.selectAll('.chart .dot_intervention').on(
-        'mouseenter',
-        show_companions
-      );
-      d3.selectAll('.chart .dot_intervention').on(
-        'mouseleave',
-        hide_companions
-      );
-      d3.selectAll('.dot_intervention').on('click', show_study_page);
+      enableInteractions();
     } else {
       // there is not data to visualize
       d3.selectAll('.visualization_area').classed('hidden', true);
@@ -852,7 +851,7 @@ async function visualization_manager(_data) {
     ];
     text_labels.forEach((id, index) => d3.select(id).text(labels[index]));
   }
-  function show_study_page() {
+  function showStudyCard() {
     // console.log(this.dataset.ref_id);
     d3.selectAll('.modal').style('display', 'block');
     d3.selectAll('.modal_header_text').text(
@@ -876,7 +875,7 @@ async function visualization_manager(_data) {
       }
     }
   }
-  function show_study_list() {
+  function showStudyList() {
     const id = this.id;
     const id_split = id.split('_');
     const chart_type = id_split[1];
@@ -890,7 +889,7 @@ async function visualization_manager(_data) {
     d3.select('.modal_single').classed('hidden', true);
 
     // filter studies
-    let filtered_data = filter_data(vis_inputs, dataset);
+    let filtered_data = filterData_vis(vis_inputs, dataset);
 
     let sub_filter = id_split;
     sub_filter.splice(0, 2);
@@ -1067,12 +1066,24 @@ async function visualization_manager(_data) {
   }
 
   // INTERACTIONS -- PART 3
-  d3.selectAll('.chart .dot_intervention').on('mouseenter', show_companions);
-  d3.selectAll('.chart .dot_intervention').on('mouseleave', hide_companions);
-  d3.selectAll('.modal_header_img').on('click', close_modal);
-  // d3.selectAll('.modal').on('click', close_modal);
-  function close_modal() {
-    d3.select('.modal').style('display', 'none');
+  enableInteractions();
+  function enableInteractions() {
+    // when you hover over a dot, highlight (maybe a border) around other dots with same ref_id
+    d3.selectAll('.chart .dot_intervention').on('mouseenter', showCompanions);
+    d3.selectAll('.chart .dot_intervention').on('mouseleave', hideCompanions);
+
+    // when clicking export buttons show correct study list
+    d3.selectAll('.export_button').on('click', showStudyList);
+    d3.selectAll('.export_button_small').on('click', showStudyList);
+
+    // when clicking on an intervention, show study page
+    d3.selectAll('.dot_intervention').on('click', showStudyCard);
+
+    d3.selectAll('.modal_header_img').on('click', close_modal);
+    // d3.selectAll('.modal').on('click', close_modal);
+    function close_modal() {
+      d3.select('.modal').style('display', 'none');
+    }
   }
 }
-visualization_manager();
+visualizationManager();

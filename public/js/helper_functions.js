@@ -1,4 +1,4 @@
-function initialize_visualization(_data) {
+function initializeVisualization(_data) {
   console.log('initializing');
   d3.selectAll('.chart').classed('hidden', true);
   d3.select('#chart_array').classed('hidden', false);
@@ -15,7 +15,7 @@ function initialize_visualization(_data) {
     .style('background-color', '#8bbe56');
 }
 
-async function get_values(_url) {
+async function getValues(_url) {
   let url = _url.toString();
   let data = await d3.csv(url);
   const cols = data.columns;
@@ -29,14 +29,14 @@ async function get_values(_url) {
   );
   return values;
 }
-function show_companions() {
+function showCompanions() {
   const point = d3.select(this).data()[0];
   d3.selectAll(`.dot_intervention.study_${point.ref_id}`).style(
     'filter',
     'brightness(0)'
   );
 }
-function hide_companions() {
+function hideCompanions() {
   const point = d3.select(this).data()[0];
   d3.selectAll(`.dot_intervention.study_${point.ref_id}`).style(
     'filter',
