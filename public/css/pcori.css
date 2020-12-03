@@ -119,7 +119,7 @@ strong { font-weight: 700; }
 
 .dot_intervention_small { background-color: #8bbe56; width: 18px; height: 18px; background-color: #8bbe56; border: 3px solid transparent; border-radius: 50%; margin: 4px 3px; }
 
-.visualization_area { min-height: 50px; }
+.visualization_area { min-height: 50px; margin-top: 20px; }
 
 .visualization_area #array_export_area { margin-top: 15px; display: flex; flex-direction: row; justify-content: center; align-items: center; }
 
@@ -131,7 +131,9 @@ strong { font-weight: 700; }
 
 .visualization_area .study_list_button { padding-top: 5px; }
 
-.visualization_area #chart_array { width: 648px; margin: 0 auto; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; }
+.visualization_area #chart_array { width: 648px; margin: 30px auto 0 auto; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; }
+
+.visualization_area #chart_col { margin-top: 30px; }
 
 .visualization_area .col_container { grid-template-rows: 1fr; }
 

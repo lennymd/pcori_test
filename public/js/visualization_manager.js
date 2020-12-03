@@ -14,7 +14,7 @@ async function visualizationManager(_data) {
       'Age group',
       'Majority ethnic/racial group',
       'Percentage of immigrants',
-      'Sex (percentage male',
+      'Sex (percentage male)',
     ],
     ['Behavioral', 'Health', 'Healthcare utilization'],
     ['Risk of bias', 'Study design'],
@@ -83,11 +83,18 @@ async function visualizationManager(_data) {
     const options = all_menu_options[i];
     const option_list = d3.select(`#vis_${i}_options`);
     options.forEach((element, index) => {
+      let text_label = element;
+      if (
+        element ==
+        `Access to healthcare and primary care (include improved coverage, services, and timeliness)`
+      ) {
+        text_label = 'Healthcare access';
+      }
       option_list
         .append('li')
         .attr('class', 'a_menu_option')
         .attr('id', `vis_${i}_${index}`)
-        .text(element.split('(')[0]);
+        .text(text_label);
     });
   }
   // INITIAL setup -- make visual
