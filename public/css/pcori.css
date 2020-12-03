@@ -11,7 +11,7 @@ strong { font-weight: 700; }
 
 .placeholder { background-color: cornflowerblue; height: 250px; border: 1px solid black; }
 
-.download_study_list { background-color: #7a7ca5; color: white; text-align: center; padding: 10px; width: 50%; font-weight: 600; font-size: 18px; display: block; margin: 0 auto; }
+.download_study_list { background-color: #7a7ca5; color: white; text-align: center; padding: 10px; width: 50%; font-weight: 600; font-size: 18px; display: block; margin: 10px auto; }
 
 .project_header { display: grid; grid-template-columns: 1fr 4fr; align-items: center; gap: 15px; color: #223e7a; }
 
@@ -93,17 +93,21 @@ strong { font-weight: 700; }
 
 .export_button_main .export_button_explainer { width: 400px; }
 
-.export_button { background-color: #7a7ca5; height: 48px; width: 48px; border-radius: 20%; display: flex; align-items: center; }
+.export_button, .export_button_small { background-color: #7a7ca5; border-radius: 20%; }
+
+.export_button:hover, .export_button_small:hover { background-color: black; }
+
+.export_button { height: 48px; width: 48px; display: flex; align-items: center; }
 
 .export_button img { width: 85%; margin: 0 auto; }
 
-.export_button_small { background-color: #7a7ca5; height: 26.4px; width: 26.4px; border-radius: 20%; display: flex; align-items: center; margin: 2px; }
+.export_button_small { height: 26.4px; width: 26.4px; display: flex; align-items: center; margin: 2px; }
 
 .export_button_small img { width: 85%; margin: 0 auto; }
 
 .color_legend_box { display: flex; flex-direction: row; justify-content: flex-end; margin-bottom: 10px; }
 
-.color_legend_box .color_legend { max-width: 86vw; border-top: 1px solid black; border-bottom: 1px solid black; margin-bottom: 20px; padding: 10px 5px; font-size: 14px; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; }
+.color_legend_box .color_legend { max-width: 86vw; border-top: 1px solid black; border-bottom: 1px solid black; padding: 10px 5px; font-size: 14px; margin-top: 20px; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; }
 
 .color_legend_box .color_legend #legend_category { margin-right: 25px; }
 
