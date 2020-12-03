@@ -53,8 +53,20 @@ async function databaseManager() {
   d3.selectAll('.subfilter_category').on('click', toggleAccordion);
 
   // INTERACTION -- when you click an input, check the database
-  d3.selectAll('.filter_item').on('click', search_database);
-  function search_database() {
+  d3.selectAll('.filter_item').on('click', searchDatabase);
+
+  // INTERACTION -- when you click reset button, wipe db_inputs clear all inputs,
+  d3.select('#search_reset').on('click', resetDatabase);
+
+  function resetDatabase() {
+    console.log('test');
+    db_inputs = [];
+    d3.select('#results_intro').classed('hidden', false);
+    d3.select('.search_results').classed('hidden', true);
+    d3.selectAll('.filter_item').property('checked', false);
+  }
+
+  function searchDatabase() {
     if (d3.select(this).classed('slider')) {
       // process slider
       alert('This is not available at the moment');
@@ -67,6 +79,8 @@ async function databaseManager() {
       }
 
       if (db_inputs.length > 0) {
+        // TODO turn on the reset button
+        d3.select('#search_reset').style('visibility', 'visible');
         // generateCombinations() in helper_functions.js
         const combos = generateCombinations(db_inputs);
 
@@ -130,6 +144,7 @@ async function databaseManager() {
         );
         d3.selectAll('.relevant_study').on('click', show_study_page);
       } else {
+        d3.select('#search_reset').style('visibility', 'hidden');
         d3.select('#results_intro').classed('hidden', false);
         d3.select('.search_results').classed('hidden', true);
       }
@@ -205,14 +220,14 @@ async function databaseManager() {
           if (input[4] < 3) {
             value = `${
               valence[1][input[4]]
-            } results for ${outcome_name} outcome`;
+            } results for <em>${outcome_name}</em> outcome`;
           } else {
-            value = `${valence[1][input[4]]} for ${outcome_name} outcome`;
+            value = `${
+              valence[1][input[4]]
+            } for <em>${outcome_name}</em> outcome`;
           }
         }
         criteria[index] = value;
-        // debugger;
-        // TODO deal with outcome
       }
     });
     return criteria;

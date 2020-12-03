@@ -304,6 +304,7 @@ async function visualizationManager(_data) {
               if (m == cols.length) {
                 box.classed('border_right', false);
               }
+              box.classed('center_section', true);
               box
                 .append('h4')
                 .attr('class', 'matrix_section_head')
@@ -449,7 +450,9 @@ async function visualizationManager(_data) {
             .style('grid-template-columns', `repeat(${col_names.length},1fr)`);
 
           col_names.forEach((col_name, index) => {
-            const col_title = col_name == 'Adult' ? 'Adults' : col_name;
+            let col_title = col_name == 'Adult' ? 'Adults' : col_name;
+            col_title = col_title == 'NR' ? 'Not Reported' : col_title;
+
             const col_section = col_container
               .append('div')
               .attr('class', 'col_section border_right');

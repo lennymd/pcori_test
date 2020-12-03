@@ -137,7 +137,9 @@ strong { font-weight: 700; }
 
 .visualization_area .row_arrow { font-size: 20px; margin-left: 30%; }
 
-.visualization_area .row_grid_box, .visualization_area .matrix_grid_box { height: 100%; text-align: center; display: flex; align-items: center; }
+.visualization_area .row_grid_box, .visualization_area .matrix_grid_box { height: 100%; text-align: center; display: flex; align-items: flex-start; }
+
+.visualization_area .center_section { justify-content: center; align-items: center; }
 
 .row_grid_1x2 { display: grid; grid-template-columns: auto 1fr; grid-template-rows: 1fr; height: 100%; }
 
