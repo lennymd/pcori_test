@@ -249,7 +249,7 @@ async function visualizationManager(_data) {
         const row_type = d3.select(`#${row_definer}`).text();
 
         // generate grid with proper rows and cols
-        d3.selectAll('.matrix_container').remove();
+        d3.select('.matrix_container').remove();
         const matrix_container = chart
           .append('div')
           .attr('class', 'matrix_container')
@@ -314,65 +314,22 @@ async function visualizationManager(_data) {
                 box.classed('border_right', false);
               }
               box.classed('center_section', true);
-              box
-                .append('h4')
-                .attr('class', 'matrix_section_head')
-                .html(cols[m - 1]);
+              let label = cols[m - 1] == 'NR' ? 'Not Reported' : cols[m - 1];
+
+              box.append('h4').attr('class', 'matrix_section_head').html(label);
             } else if (m == 0 && n > 0) {
               //  if m == 0, and n > 0 set all the row names
               box.classed('border_top', true);
               box
                 .append('div')
                 .attr('id', `outcome_name_${n - 1}`)
-                .html(rows[n - 1]);
+                .html(rows[n - 1])
+                .style('text-align', 'left');
             } else if (m > 0 && n > 0) {
-              box
-                .classed('border_top', true)
-                .classed('matrix_grid_box', false)
-                .style('height', '100%');
-
-              if (m == cols.length) {
-                box.classed('border_right', false);
-              }
-
-              const sub_grid = box.append('div').attr('class', 'row_grid_1x2');
-
-              const study_list = sub_grid
-                .append('div')
-                .attr('id', `study_list_box_${m}_${n}`)
-                .attr('class', 'row_grid_box border_right export_button_area');
-
-              // add export button
-              const export_button = study_list
-                .append('div')
-                .attr('class', 'export_button_small')
-                .attr(
-                  'id',
-                  `filter_matrix_${col_category}_${m - 1}_${row_category}_${
-                    n - 1
-                  }`
-                );
-              export_button
-                .append('img')
-                .attr('src', './public/img/export.svg');
-
-              // Add interventions
-              const intervention_list = sub_grid
-                .append('div')
-                .attr('id', `intervention_box_${m}_${n}`)
-                .attr('class', 'row_grid_box');
-
-              const intervention_box = intervention_list
-                .append('div')
-                .attr('class', `interventions_${row_category}`)
-                .attr('id', `interventions_${row_category}_${n - 1}`)
-                .style('display', 'flex')
-                .style('flex-flow', 'row wrap')
-                .style('justify-content', 'start');
-
+              // Get group data first
               let group_data;
 
-              // filter col
+              // filter by col
               if (col_category == 0) {
                 group_data = _data.filter(d =>
                   vis_demographics[col_category](d)
@@ -398,40 +355,82 @@ async function visualizationManager(_data) {
                 ];
                 group_data = filters[m - 1];
               }
-              // filter row
+
+              // filter by row
               group_data = group_data.filter(d =>
                 outcome_accessors[row_category](d).includes(rows[n - 1])
               );
 
-              if (group_data.length < 2) {
-                // hide export button if 1 or 0 studies
-                export_button.style('visibility', 'hidden');
+              box
+                .classed('border_top', true)
+                .classed('matrix_grid_box', false)
+                .style('height', '100%');
+              if (m == cols.length) {
+                box.classed('border_right', false);
               }
 
               if (group_data.length == 0) {
-                const el = document.getElementById(`study_list_box_${m}_${n}`);
-                el.parentElement.remove();
                 const gap = box.append('div').attr('class', 'evidence_gap_box');
                 gap
                   .append('p')
                   .attr('class', 'evidence_gap')
                   .html('No interventions.')
                   .style('margin-top', 0);
+              } else {
+                const sub_grid = box
+                  .append('div')
+                  .attr('class', 'row_grid_1x2');
+                const study_list = sub_grid
+                  .append('div')
+                  .attr('id', `study_list_box_${m}_${n}`)
+                  .attr(
+                    'class',
+                    'row_grid_box border_right export_button_area'
+                  );
+                const export_button = study_list
+                  .append('div')
+                  .attr('class', 'export_button_small')
+                  .attr(
+                    'id',
+                    `filter_matrix_${col_category}_${m - 1}_${row_category}_${
+                      n - 1
+                    }`
+                  );
+                export_button
+                  .append('img')
+                  .attr('src', './public/img/export.svg');
+                if (group_data.length < 2) {
+                  export_button.style('visibility', 'hidden');
+                }
+                // add intervention
+                const intervention_list = sub_grid
+                  .append('div')
+                  .attr('id', `intervention_box_${m}_${n}`)
+                  .attr('class', 'row_grid_box');
+
+                const intervention_box = intervention_list
+                  .append('div')
+                  .attr('class', `interventions_${row_category}`)
+                  .attr('id', `interventions_${row_category}_${n - 1}`)
+                  .style('display', 'flex')
+                  .style('flex-flow', 'row wrap')
+                  .style('justify-content', 'start');
+
+                intervention_box
+                  .selectAll('div.dot_intervention')
+                  .data(group_data)
+                  .join(
+                    enter => enter.append('div'),
+                    update => update,
+                    exit => exit.remove()
+                  )
+                  .attr('class', d => `dot_intervention study_${ref_id(d)}`)
+                  .attr('data-ref_id', d => ref_id(d))
+                  .style('background-color', d =>
+                    outcome_colors(result_accessors[n - 1](d))
+                  );
               }
 
-              intervention_box
-                .selectAll('div.dot_intervention')
-                .data(group_data)
-                .join(
-                  enter => enter.append('div'),
-                  update => update,
-                  exit => exit.remove()
-                )
-                .attr('class', d => `dot_intervention study_${ref_id(d)}`)
-                .attr('data-ref_id', d => ref_id(d))
-                .style('background-color', d =>
-                  outcome_colors(result_accessors[n - 1](d))
-                );
               enableInteractions();
             }
           }
