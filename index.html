@@ -500,6 +500,12 @@
       (out of <strong class="total_study_count">XX</strong>) that fulfill the
       criteria you selected.
     </p>
+    <span
+      id="download_search"
+      class="download_study_list"
+      style="visibility: hidden"
+      ><span> Download this list of studies</span></span
+    >
     <div class="combination_results"></div>
   </section>
 </div>
@@ -520,8 +526,15 @@
         List of studies fulfilling the filters you have selected:
       </div>
     </div>
+
     <div class="modal_list hidden">
       <div class="modal_filters"></div>
+      <span
+        id="download_vis"
+        class="download_study_list"
+        style="visibility: hidden"
+        ><span> Download this list of studies</span></span
+      >
       <div class="modal_studies"></div>
     </div>
     <div class="modal_single hidden">
@@ -560,8 +573,12 @@
 <script src="./public/js/visualization_manager.js"></script>
 <script src="./public/js/database_manager.js"></script>
 <script src="./public/js/reset_tool.js"></script>
-
-
+<script>
+  d3.selectAll('.download_study_list').on('click', function () {
+    alert('This is not available right now.');
+  });
+  function unavailable() {}
+</script>
 
   </body>
 </html>

@@ -142,6 +142,8 @@ async function visualizationManager(_data) {
   }
 
   function update(_inputs, _data) {
+    d3.select('#download_vis').style('visibility', 'hidden');
+
     _inputs = _inputs.sort();
     if (vis_inputs.length > 0) {
       // Update graphic layout and dots based on based on vis_inputs
@@ -890,7 +892,7 @@ async function visualizationManager(_data) {
     );
     d3.select('.modal_list').classed('hidden', false);
     d3.select('.modal_single').classed('hidden', true);
-
+    d3.select('#download_vis').style('visibility', 'visible');
     // filter studies
     let filtered_data = filterData_vis(vis_inputs, dataset);
 

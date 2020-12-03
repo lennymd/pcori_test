@@ -86,7 +86,11 @@ async function databaseManager() {
 
         d3.selectAll('.combination_study_list').remove();
         var relevant_studies = [];
-
+        // display studies
+        d3.select('#results_intro').classed('hidden', true);
+        d3.select('.search_results').classed('hidden', false);
+        d3.select('#download_search').style('visibility', 'visible');
+        // TODO display download button
         combos.forEach(_combo => {
           let filtered_data = filterData_db(
             _combo,
@@ -98,10 +102,6 @@ async function databaseManager() {
           // Identify unique studies from interventions
           let unique_studies = d3.map(filtered_data, ref_id).keys();
           relevant_studies.push(...unique_studies);
-
-          // display studies
-          d3.select('#results_intro').classed('hidden', true);
-          d3.select('.search_results').classed('hidden', false);
 
           const combination_container = d3.select('.combination_results');
           if (filtered_data.length > 0) {
