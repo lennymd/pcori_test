@@ -201,7 +201,7 @@ async function visualizationManager(_data) {
         const split_input = _input.split('_');
         const i = split_input[1];
         const j = split_input[2];
-        option_text = document.getElementById(`${_input}`).textContent.trim();
+        const option_text = all_menu_options[i][j];
         if (i < 2) {
           // 0 is target social need; 1 is target population
           temp = temp.filter(d => vis_filters[i](d).includes(option_text));
