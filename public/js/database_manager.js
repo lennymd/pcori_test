@@ -59,7 +59,6 @@ async function databaseManager() {
   d3.select('#search_reset').on('click', resetDatabase);
 
   function resetDatabase() {
-    console.log('test');
     db_inputs = [];
     d3.select('#results_intro').classed('hidden', false);
     d3.select('.search_results').classed('hidden', true);
@@ -83,15 +82,14 @@ async function databaseManager() {
         d3.select('#search_reset').style('visibility', 'visible');
         // generateCombinations() in helper_functions.js
         const combos = generateCombinations(db_inputs);
-
         d3.selectAll('.combination_study_list').remove();
         var relevant_studies = [];
         // display studies
         d3.select('#results_intro').classed('hidden', true);
         d3.select('.search_results').classed('hidden', false);
         d3.select('#download_search').style('visibility', 'visible');
-        // TODO display download button
         combos.forEach(_combo => {
+          console.log(`combo`, _combo);
           let filtered_data = filterData_db(
             _combo,
             dataset,
@@ -110,7 +108,7 @@ async function databaseManager() {
               search_categories,
               data_dictionary
             );
-
+            console.log(combination_text);
             const combo_section = combination_container
               .append('div')
               .attr('class', 'combination_study_list');
@@ -188,17 +186,26 @@ async function databaseManager() {
     // return filtered data
     return temp;
   }
-
+  function test() {
+    a = ['db_15_7_1_0'];
+    b = search_categories;
+    c = data_dictionary;
+    let out = generateCombinationText(a, b, c);
+    console.log(out);
+  }
+  test();
   function generateCombinationText(_combo, search_categories, data_dictionary) {
     // go through each input and grab the associated text. If working with outcomes, add some more text to make it make sense.
     let criteria = [];
     _combo.forEach((_input, index) => {
+      console.log(_input, index);
       const input = _input.split('_');
       if (input.length < 4) {
         // dealing with a non-outcome input
         let value = data_dictionary[search_categories[input[1]]][input[2]];
         criteria[index] = value;
       } else {
+        // TODO work with outcome
         let valence = [
           ['Increase', 'Decrease'],
           ['Positive', 'Negative', 'Mixed results', 'No effect'],
@@ -208,14 +215,14 @@ async function databaseManager() {
           'health_outcomes',
           'healthcareuse_outcomes',
         ];
-        const index = input[1] - search_categories.length;
-        const outcome_name = data_dictionary[outcomes[index]][input[2]];
-        console.log(input);
+        const i = input[1] - search_categories.length;
+        const outcome_name = data_dictionary[outcomes[i]][input[2]];
+        console.log(outcome_name);
         let value = '';
         if (input[3] == 0) {
           value = `Expected ${valence[0][
             input[4]
-          ].toLowerCase()} for ${outcome_name} outcome`;
+          ].toLowerCase()} for <em>${outcome_name}</em> outcome`;
         } else {
           if (input[4] < 3) {
             value = `${

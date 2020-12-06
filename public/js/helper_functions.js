@@ -59,7 +59,10 @@ function populateFilters(_dictionary, categories) {
       if (option == 'NR') {
         option = 'Not Reported';
       }
-      const template = `<input class="filter_item" type="checkbox" name="db_${index}_${i}" /><label for="db_${index}_${i}">${option}</label>`;
+      if (option.includes('(')) {
+        option = option.split('(')[0];
+      }
+      const template = `<input class="filter_item" type="checkbox" name="db_${index}_${i}" /><label style="margin-left: 5px;" for="db_${index}_${i}">${option.trim()}</label>`;
       option_list.append('li').attr('class', 'filter_option').html(template);
     });
   });
