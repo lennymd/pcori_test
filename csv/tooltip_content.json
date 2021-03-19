@@ -1,0 +1,22 @@
+{
+  "tooltip_vis_0": "What social needs do interventions seek to address?",
+  "tooltip_vis_1": "Who is included in the study?",
+  "tooltip_vis_2": "What approach did investigators use to answer the research question?",
+  "tooltip_vis_3": "What is the age, race/ethnicity, immigration status, and sex of included participants?",
+  "tooltip_vis_4": "What effect does the intervention have on outcomes?",
+  "tooltip_vis_5": "What is the quality rating of the study?",
+  "tooltip_sdb_0": "What social needs do interventions seek to address?",
+  "tooltip_sdb_1": "Who is included in the study?",
+  "tooltip_sdb_2": "What is the age, race/ethnicity, immigration status, and sex of included participants?",
+  "tooltip_sdb_3": "Who is the target of the intervention?",
+  "tooltip_sdb_4": "Where was the intervention provided?",
+  "tooltip_sdb_5": "What do interventions include?",
+  "tooltip_sdb_6": "Where were study participants recruited?",
+  "tooltip_sdb_7": "What is the study design and quality rating?",
+  "tooltip_sdb_8": "What type of need is the study addressing?",
+  "tooltip_sdb_9": "Who is providing the intervention in the study?",
+  "tooltip_sdb_10": "What is the intervention being compared against?",
+  "tooltip_sdb_11": "What effect does the intervention have on behavioral outcomes?",
+  "tooltip_sdb_12": "What effect does the intervention have on health outcomes?",
+  "tooltip_sdb_13": "What effect does the intervention have on use of healthcare services?"
+}

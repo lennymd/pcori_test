@@ -1,0 +1,196 @@
+/* TODO move to it's own css file \|/ */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: var(--text);
+  background-color: rgb(32, 29, 29, 0.4);
+}
+
+.modal_box {
+  background-color: white;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid var(--text);
+  width: 75%;
+}
+
+.modal_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.modal_close {
+  cursor: pointer;
+  background-color: var(--text);
+  width: 20px;
+  height: 20px;
+  padding: 3px;
+  margin-right: 5px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  color: white;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  border: 1.5px solid transparent;
+}
+
+.modal_close:hover {
+  border-color: var(--text);
+  color: var(--text);
+  background-color: white;
+}
+
+.modal_close_txt {
+  margin-top: -3px;
+}
+
+.modal_header .modal_header_text {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.modal_header_right {
+  width: 40%;
+}
+
+.modal_header_right .sdb_download_general {
+  visibility: hidden;
+}
+
+#modal_content {
+  margin-top: 15px;
+  font-size: 16px;
+}
+.modal_info_grid {
+  display: grid;
+  grid-template-columns: 25% auto 50% 20%;
+}
+.modal_info_section {
+  border-right: 2px solid var(--accent-main);
+  padding: 0 10px;
+}
+
+.modal_info_section:first-child {
+  padding-left: 0;
+}
+
+.modal_info_section:last-child {
+  border-right-color: transparent;
+}
+
+.study_info_hed,
+.modal_section_hed {
+  margin: 0 0 10px;
+  padding: 0;
+  font-size: 21px;
+}
+
+.study_info_txt {
+  margin: 0;
+}
+
+.modal_study_title {
+  font-weight: 600;
+  color: var(--dot-color);
+}
+
+.modal_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 25px;
+  margin-top: 30px;
+}
+.modal_intervention {
+  /* padding-bottom: 7px; */
+  border-bottom: 2px solid var(--accent-main);
+}
+.modal_intervention:last-child {
+  padding-bottom: 0;
+  border-bottom: 0px solid transparent;
+}
+.modal_intervention:nth-child(even) {
+  margin-top: 7px;
+}
+.modal_intervention_arm {
+  font-size: 18px;
+  font-weight: 600;
+  display: inline;
+}
+
+.modal_intervention_category_hed {
+  font-style: italic;
+  margin-bottom: 0;
+}
+.modal_intervention_category p {
+  margin-top: 0;
+}
+
+.study_link_box {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto;
+  margin-bottom: 20px;
+}
+
+a.sdb_link_text {
+  color: white;
+  background-color: var(--dot-color);
+  width: 200px;
+  font-size: 18px;
+  margin: 0;
+  padding: 8px 10px;
+}
+
+a.sdb_link_text:hover,
+a.sdb_link_text:active {
+  color: var(--dot-color);
+  background-color: white;
+}
+
+.modal_list_grid {
+  display: grid;
+  grid-template: 1fr 1fr;
+  column-gap: 25px;
+}
+
+.modal_list_category_info {
+  text-align: left;
+}
+
+.modal_list_th {
+  padding-right: 10px;
+  font-size: 18px;
+}
+.modal_list_td {
+  font-size: 16px;
+}
+
+.modal_study_list_container {
+  margin-top: 40px;
+}
+
+.modal_study_list_container .study_author {
+  width: 20%;
+}
+.modal_study_list_container .study_year {
+  width: 4%;
+}
+.modal_study_list_container .study_title {
+  width: 40%;
+}
+
+.modal_study_list_container .study_publication {
+  width: 10%;
+}

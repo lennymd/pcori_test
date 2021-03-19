@@ -1,0 +1,87 @@
+/* @import url("https://rsms.me/inter/inter.css");
+html {
+  font-family: "Inter", sans-serif; }
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif; } }
+
+.contenedor-visualizacion {
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+  .contenedor-visualizacion *,
+  .contenedor-visualizacion *::before,
+  .contenedor-visualizacion *::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0; }
+  .contenedor-visualizacion.espera::after {
+    content: "";
+    background: url(../img/loader.svg);
+    background-color: #f2f2f2;
+    background-repeat: no-repeat no-repeat;
+    background-position: center center;
+    opacity: 0.7;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute; } */
+
+.contenedor-visualizacion {
+  /*
+  outline: 1px solid black;
+  */
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.study_dots:hover {
+  fill: var(--accent-secondary);
+  stroke-width: 2px;
+  stroke: var(--accent-main);
+  transition: all 0.4s ease-in;
+}
+
+svg {
+  display: block;
+  font-size: 21px;
+}
+svg text {
+  /*
+    filter: blur(10px);
+    */
+  dominant-baseline: hanging;
+}
+svg text.titulo {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+svg text.encabezado {
+  font-size: 0.6em;
+}
+svg text.encabezado.columna {
+  font-weight: bold;
+}
+svg text.vacia {
+  font-size: 0.5em;
+}
+svg rect.boton {
+  fill: var(--text);
+  border-radius: 5px;
+}
+svg image.boton {
+  pointer-events: none;
+}
+svg image.quality {
+  pointer-events: none;
+}
+svg rect.vacia {
+  fill: #eeeeee;
+}
+
+/*# sourceMappingURL=estilo.css.map */
