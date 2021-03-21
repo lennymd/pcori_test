@@ -141,7 +141,7 @@ img.project_logo {
 }
 
 .tooltip_icon_container {
-  background: url('./../img/tooltip.svg');
+  background: url('./../img/tooltip-2.svg');
   background-color: var(--tooltip);
   background-repeat: no-repeat;
   background-size: cover;
