@@ -1,7 +1,7 @@
 "use strict";
 
 var diccionario = {
-  filters: {
+  filter1: {
     target_social_need: {
       options: [
         {
@@ -49,6 +49,8 @@ var diccionario = {
         },
       ],
     },
+  },
+  filter2: {
     target_population: {
       options: [
         {
@@ -77,6 +79,8 @@ var diccionario = {
         },
       ],
     },
+  },
+  filter3: {
     study_design: {
       options: [
         {
@@ -437,7 +441,14 @@ var Puntos = function (el, i) {
   var memoriaPuntos = {};
   var opcionesMenu = [];
 
-  var controles = { filters: null, rows: null, columns: null, switch: null };
+  var controles = {
+    filter1: null,
+    filter2: null,
+    filter3: null,
+    rows: null,
+    columns: null,
+    switch: null,
+  };
 
   var maxPuntosPorFila = 20;
   var filas = 0;
@@ -638,7 +649,9 @@ var Puntos = function (el, i) {
       var articulosURL = "csv/" + el.data("articulos") + ".csv";
 
       //volver
-      completaDiccionario(diccionario.filters);
+      completaDiccionario(diccionario.filter1);
+      completaDiccionario(diccionario.filter2);
+      completaDiccionario(diccionario.filter3);
       completaDiccionario(diccionario.columns);
       completaDiccionario(diccionario.rows);
       completaOpciones(diccionario.outcomes);
@@ -827,7 +840,6 @@ var Puntos = function (el, i) {
         });
         puntos = _.values(obj);
         puntos = _.orderBy(puntos, ["id"], ["asc"]);
-        reset();
         main();
       });
     }
@@ -940,6 +952,7 @@ var Puntos = function (el, i) {
 
   function main() {
     el.removeClass("espera");
+    reset();
   }
 
   function reset() {
@@ -957,14 +970,20 @@ var Puntos = function (el, i) {
 
   function filtraPuntos() {
     var puntosFiltrados = [];
-    var opcionesFiltros =
-      controles.filters === null ? [] : [controles.filters.value];
+    var opcionesFiltro1 =
+      controles.filter1 === null ? [] : [controles.filter1.value];
+    var opcionesFiltro2 =
+      controles.filter2 === null ? [] : [controles.filter2.value];
+    var opcionesFiltro3 =
+      controles.filter3 === null ? [] : [controles.filter3.value];
     var opcionesFilas = _.map(getOpciones(controles.rows), "value");
     var opcionesColumnas = _.map(getOpciones(controles.columns), "value");
     var celdas = {};
 
     puntosFiltrados = _.filter(desagregaPuntos(puntos), function (p) {
-      var flagFiltros = false;
+      var flagFiltro1 = false;
+      var flagFiltro2 = false;
+      var flagFiltro3 = false;
       var flagColumnas = false;
       var flagFilas = false;
       p.matriz = {
@@ -973,13 +992,31 @@ var Puntos = function (el, i) {
         num: null,
       };
 
-      if (opcionesFiltros.length > 0) {
-        flagFiltros = indiceEnOpciones(
-          p[controles.filters.clave],
-          opcionesFiltros
+      if (opcionesFiltro1.length > 0) {
+        flagFiltro1 = indiceEnOpciones(
+          p[controles.filter1.clave],
+          opcionesFiltro1
         );
       } else {
-        flagFiltros = true;
+        flagFiltro1 = true;
+      }
+
+      if (opcionesFiltro2.length > 0) {
+        flagFiltro2 = indiceEnOpciones(
+          p[controles.filter2.clave],
+          opcionesFiltro2
+        );
+      } else {
+        flagFiltro2 = true;
+      }
+
+      if (opcionesFiltro3.length > 0) {
+        flagFiltro3 = indiceEnOpciones(
+          p[controles.filter3.clave],
+          opcionesFiltro3
+        );
+      } else {
+        flagFiltro3 = true;
       }
 
       if (opcionesColumnas.length > 0) {
@@ -999,7 +1036,13 @@ var Puntos = function (el, i) {
         flagFilas = true;
       }
 
-      if (flagFiltros && flagColumnas && flagFilas) {
+      if (
+        flagFiltro1 &&
+        flagFiltro2 &&
+        flagFiltro3 &&
+        flagColumnas &&
+        flagFilas
+      ) {
         var clave = `${p.matriz.m}-${p.matriz.n}`;
         if (!celdas.hasOwnProperty(clave)) {
           celdas[clave] = 0;
@@ -1007,7 +1050,9 @@ var Puntos = function (el, i) {
         p.matriz.num = celdas[clave];
         celdas[clave] = celdas[clave] + 1;
       }
-      return flagFiltros && flagColumnas && flagFilas;
+      return (
+        flagFiltro1 && flagFiltro2 && flagFiltro3 && flagColumnas && flagFilas
+      );
     });
     //TODO: El nest para agrupar circulitos
     /*
