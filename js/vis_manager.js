@@ -64,6 +64,7 @@ function vis_manager(_dataset, _data_dictionary, _display_dictionary) {
     // unhide selected box and update it's text
     d3.select(`#vis_selected_${cat}`).style('visibility', 'visible');
     d3.select(`#vis_selected_${cat}_text`).text(display_text);
+
     let studies_count = v.setMenu(data_value);
 
     // prep unset icon for cleaning

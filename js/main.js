@@ -444,14 +444,15 @@ async function project_main() {
     alert('This feature is currently unavailable.');
   }
 
-  let current_study_dots = d3.selectAll('.study_dots')._groups[0];
-  current_study_dots.forEach(elt => {
-    const title = elt.children[0].innerHTML;
-    const classList = elt.classList;
-    if (!elt.classList.contains('tooltipstered')) {
-      console.log('this runs');
-      $(elt).tooltipster({}).tooltipster('content', title);
-    }
-  });
+  // let current_study_dots = d3.selectAll('.study_dots')._groups[0];
+  // current_study_dots.forEach(elt => {
+  //   console.log(elt);
+  //   const title = elt.children[0].innerText;
+  //   const classList = elt.classList;
+  //   if (!elt.classList.contains('tooltipstered')) {
+  //     console.log('this runs');
+  //     $(elt).tooltipster({}).tooltipster('content', title);
+  //   }
+  // });
 }
 project_main();

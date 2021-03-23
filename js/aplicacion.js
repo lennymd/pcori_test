@@ -1,186 +1,186 @@
-'use strict';
+"use strict";
 
 var diccionario = {
   filters: {
     target_social_need: {
       options: [
         {
-          value: 'Childcare',
+          value: "Childcare",
         },
         {
-          label0: 'Early childhood development',
-          value: 'Early childhood education and development',
+          label0: "Early childhood development",
+          value: "Early childhood education and development",
         },
         {
-          value: 'Education',
+          value: "Education",
         },
         {
-          value: 'Employment',
+          value: "Employment",
         },
         {
-          value: 'Financial strain',
+          value: "Financial strain",
         },
         {
-          value: 'Food insecurity',
+          value: "Food insecurity",
         },
         {
-          value: 'Healthcare services',
+          value: "Healthcare services",
         },
         {
-          value: 'Housing instability/quality',
+          value: "Housing instability/quality",
         },
         {
-          value: 'Interpersonal violence',
+          value: "Interpersonal violence",
         },
         {
-          value: 'Legal services',
+          value: "Legal services",
         },
         {
-          value: 'Social isolation',
+          value: "Social isolation",
         },
         {
-          value: 'Transportation help',
+          value: "Transportation help",
         },
         {
-          value: 'Utilities help',
+          value: "Utilities help",
         },
         {
-          value: 'Multiple domains addressed',
+          value: "Multiple domains addressed",
         },
       ],
     },
     target_population: {
       options: [
         {
-          value: 'Frequent users of healthcare services',
+          value: "Frequent users of healthcare services",
         },
         {
-          value: 'Homeless persons',
+          value: "Homeless persons",
         },
         {
-          value: 'Medicare/Medicaid enrollees (or eligible)',
+          value: "Medicare/Medicaid enrollees (or eligible)",
         },
         {
-          value: 'Persons living in low-income neighborhood',
+          value: "Persons living in low-income neighborhood",
         },
         {
-          value: 'Persons meeting specific medical criteria',
+          value: "Persons meeting specific medical criteria",
         },
         {
-          value: 'Persons with low income',
+          value: "Persons with low income",
         },
         {
-          value: 'Pregnant persons',
+          value: "Pregnant persons",
         },
         {
-          value: 'Veterans',
+          value: "Veterans",
         },
       ],
     },
     study_design: {
       options: [
         {
-          value: 'Case-control',
+          value: "Case-control",
         },
         {
-          value: 'Cohort study',
+          value: "Cohort study",
         },
         {
-          value: 'Comparative effectiveness within arm pre-post outcome trend',
+          value: "Comparative effectiveness within arm pre-post outcome trend",
         },
         {
-          value: 'Pre-post',
+          value: "Pre-post",
         },
         {
-          label0: 'Randomized controlled trial',
-          value: 'RCT',
+          label0: "Randomized controlled trial",
+          value: "RCT",
         },
         {
-          value: 'Other observational',
+          value: "Other observational",
         },
       ],
     },
   },
   columns: {
     age_group: {
-      menu: 'Age group',
+      menu: "Age group",
       options: [
         {
-          value: 'Children (&lt;18 years) or children and their families',
+          value: "Children (&lt;18 years) or children and their families",
         },
         {
-          value: 'Adolescents/young adults (e.g., 13-20 years)',
+          value: "Adolescents/young adults (e.g., 13-20 years)",
         },
         {
-          value: 'Adults (&ge;18 years)',
+          value: "Adults (&ge;18 years)",
         },
         {
-          value: 'Older adults (e.g., &ge;50 years)',
+          value: "Older adults (e.g., &ge;50 years)",
         },
       ],
     },
     race_ethnicity_majority: {
-      menu: 'Majority ethnic/racial group',
-      label: 'Majority ethnic group',
+      menu: "Majority ethnic/racial group",
+      label: "Majority ethnic group",
       options: [
         {
-          value: 'Majority Asian/Pacific Islander',
-          label: 'Asian/Pacific Islander',
+          value: "Majority Asian/Pacific Islander",
+          label: "Asian/Pacific Islander",
         },
         {
-          value: 'Majority Black/Non-Hispanic Black',
-          label: 'Non-Hispanic Black',
+          value: "Majority Black/Non-Hispanic Black",
+          label: "Non-Hispanic Black",
         },
         {
-          value: 'Majority Hispanic/Latino',
-          label: 'Hispanic',
+          value: "Majority Hispanic/Latino",
+          label: "Hispanic",
         },
         {
-          value: 'Majority Native American/American Indian/Indigenous',
-          label: 'Native American/American Indian/Indigenous',
+          value: "Majority Native American/American Indian/Indigenous",
+          label: "Native American/American Indian/Indigenous",
         },
         {
-          value: 'Majority White/Non-Hispanic White',
-          label: 'Non-Hispanic White',
+          value: "Majority White/Non-Hispanic White",
+          label: "Non-Hispanic White",
         },
         {
-          value: 'No single group is a majority',
+          value: "No single group is a majority",
         },
         {
-          value: 'Not Reported',
+          value: "Not Reported",
         },
         {
-          value: 'Other',
+          value: "Other",
         },
       ],
     },
     proportion_immigrant: {
-      menu: 'Percentage of immigrants',
+      menu: "Percentage of immigrants",
       options: [
         {
           range: [0, 100],
-          value: 'Immigrant participation',
+          value: "Immigrant participation",
         },
       ],
     },
     proportion_male: {
-      menu: 'Sex (percentage male)',
+      menu: "Sex (percentage male)",
       options: [
         {
           range: [0, 24],
-          value: '0 – 24%',
+          value: "0 – 24%",
         },
         {
           range: [25, 49],
-          value: '25 – 49%',
+          value: "25 – 49%",
         },
         {
           range: [50, 74],
-          value: '50 – 74%',
+          value: "50 – 74%",
         },
         {
           range: [75, 100],
-          value: '75 – 100%',
+          value: "75 – 100%",
         },
       ],
     },
@@ -189,173 +189,173 @@ var diccionario = {
     addresses_behavioral_outcomes: {
       options: [
         {
-          value: 'Yes',
+          value: "Yes",
         },
         {
-          value: 'No',
+          value: "No",
         },
       ],
     },
     behavioral_outcomes: {
-      menu: 'Behavioral',
-      label: 'Behavioral outcomes',
+      menu: "Behavioral",
+      label: "Behavioral outcomes",
       options: [
         {
-          value: 'Changes in substance use',
-          key: 'result_substance_use',
+          value: "Changes in substance use",
+          key: "result_substance_use",
         },
         {
-          value: 'Changes in dietary intake',
-          key: 'result_diet',
+          value: "Changes in dietary intake",
+          key: "result_diet",
         },
         {
-          value: 'Changes in physical activity',
-          key: 'result_physical_activity',
+          value: "Changes in physical activity",
+          key: "result_physical_activity",
         },
         {
-          value: 'Other',
-          key: 'result_other_behavior ',
+          value: "Other",
+          key: "result_other_behavior ",
         },
       ],
     },
     addresses_health_outcomes: {
       options: [
         {
-          value: 'Yes',
+          value: "Yes",
         },
         {
-          value: 'No',
+          value: "No",
         },
       ],
     },
     health_outcomes: {
-      menu: 'Health',
-      label: 'Health outcomes',
+      menu: "Health",
+      label: "Health outcomes",
       options: [
         {
-          value: 'Changes in functional outcomes (e.g., blood pressure)',
-          label: 'Changes in functional outcomes',
-          key: 'result_functional',
+          value: "Changes in functional outcomes (e.g., blood pressure)",
+          label: "Changes in functional outcomes",
+          key: "result_functional",
         },
         {
-          value: 'Changes in self-reported health',
-          key: 'result_self_health',
+          value: "Changes in self-reported health",
+          key: "result_self_health",
         },
         {
-          value: 'Child development outcomes',
-          label: 'Child emotional, mental, or physical growth outcomes',
-          key: 'result_child_development',
+          value: "Child development outcomes",
+          label: "Child emotional, mental, or physical growth outcomes",
+          key: "result_child_development",
         },
         {
-          value: 'Low birth weight',
-          key: 'result_low_birth_weight',
+          value: "Low birth weight",
+          key: "result_low_birth_weight",
         },
         {
-          value: 'Mental health status',
-          key: 'result_mental_health_status',
+          value: "Mental health status",
+          key: "result_mental_health_status",
         },
         {
-          value: 'Mortality',
-          key: 'result_mortality',
+          value: "Mortality",
+          key: "result_mortality",
         },
         {
-          value: 'Quality of life',
-          key: 'result_quality_of_life',
+          value: "Quality of life",
+          key: "result_quality_of_life",
         },
         {
-          value: 'Quality-adjusted life-years',
-          key: 'result_QALY',
+          value: "Quality-adjusted life-years",
+          key: "result_QALY",
         },
         {
-          value: 'Reduction in morbidity',
-          key: 'result_morbidity',
+          value: "Reduction in morbidity",
+          key: "result_morbidity",
         },
         {
-          value: 'Other',
-          key: 'result_other_health',
+          value: "Other",
+          key: "result_other_health",
         },
       ],
     },
     addresses_healthcareuse_outcomes: {
       options: [
         {
-          value: 'Yes',
+          value: "Yes",
         },
         {
-          value: 'No',
+          value: "No",
         },
       ],
     },
     healthcareuse_outcomes: {
-      menu: 'Use of healthcare services',
+      menu: "Use of healthcare services",
       options: [
         {
-          value: 'Adherence to treatment (medications/follow-up visit)',
-          key: 'result_adherence',
+          value: "Adherence to treatment (medications/follow-up visit)",
+          key: "result_adherence",
         },
         {
-          value: 'Clinic attendance rate',
-          key: 'result_clinic_attendance',
+          value: "Clinic attendance rate",
+          key: "result_clinic_attendance",
         },
         {
-          value: 'Emergency department visits/urgent care',
-          key: 'result_emergency_visits',
+          value: "Emergency department visits/urgent care",
+          key: "result_emergency_visits",
         },
         {
-          value: 'Frequency of healthcare use',
-          key: 'result_frequency_healthcare_use',
+          value: "Frequency of healthcare use",
+          key: "result_frequency_healthcare_use",
         },
         {
-          value: 'Hospital days',
-          key: 'result_hospital_days',
+          value: "Hospital days",
+          key: "result_hospital_days",
         },
         {
-          value: 'Hospital readmissions',
-          key: 'result_hospital_readmission',
+          value: "Hospital readmissions",
+          key: "result_hospital_readmission",
         },
         {
-          value: 'Immunizations',
-          key: 'result_immunizations',
+          value: "Immunizations",
+          key: "result_immunizations",
         },
         {
-          value: 'Inpatient admissions',
-          key: 'result_inpatient_admission',
+          value: "Inpatient admissions",
+          key: "result_inpatient_admission",
         },
         {
-          value: 'Medical home',
-          key: 'result_medical_home',
+          value: "Medical home",
+          key: "result_medical_home",
         },
         {
-          value: 'Missed appointments',
-          key: 'result_missed_appt',
+          value: "Missed appointments",
+          key: "result_missed_appt",
         },
         {
-          value: 'Outpatient visits',
-          key: 'result_outpatient_visits',
+          value: "Outpatient visits",
+          key: "result_outpatient_visits",
         },
         {
-          value: 'Post hospital primary care visit',
-          key: 'result_post_primarycare_visits',
+          value: "Post hospital primary care visit",
+          key: "result_post_primarycare_visits",
         },
         {
-          value: 'Prenatal care',
-          key: 'result_prenatal',
+          value: "Prenatal care",
+          key: "result_prenatal",
         },
         {
-          value: 'Preventive care utilization (well child visits)',
-          key: 'result_preventive',
+          value: "Preventive care utilization (well child visits)",
+          key: "result_preventive",
         },
         {
-          value: 'Sobering center use',
-          key: 'result_sober_center',
+          value: "Sobering center use",
+          key: "result_sober_center",
         },
         {
-          value: 'Use of emergency transportation',
-          key: 'result_emergency_transport',
+          value: "Use of emergency transportation",
+          key: "result_emergency_transport",
         },
         {
-          value: 'Other',
-          key: 'result_other_healthcareuse',
+          value: "Other",
+          key: "result_other_healthcareuse",
         },
       ],
     },
@@ -363,26 +363,26 @@ var diccionario = {
   outcomes: {
     options: [
       {
-        value: 'Positive',
+        value: "Positive",
       },
       {
-        value: 'Negative',
+        value: "Negative",
       },
       {
-        value: 'Mixed results',
-        label: 'Mixed',
+        value: "Mixed results",
+        label: "Mixed",
       },
       {
-        value: 'Multiple arms',
+        value: "Multiple arms",
       },
       {
-        value: 'No significant difference',
+        value: "No significant difference",
       },
     ],
   },
   switch: {
     quality: {
-      menu: 'Study quality',
+      menu: "Study quality",
       //options: [{ value: "Study quality" }],
     },
   },
@@ -391,7 +391,7 @@ var diccionario = {
 var Puntos = function (el, i) {
   var debug = false;
   var caja = new Box({
-    content: {width: 1000, height: 600},
+    content: { width: 1000, height: 600 },
     padding: 10,
   });
 
@@ -425,7 +425,7 @@ var Puntos = function (el, i) {
   var cajaPrincipal = new Box();
   var cajaEncabezadoFilas = new Box();
   var cajaPuntos = new Box();
-  var cajaBotones = new Box({content: {width: 25, height: 25}, margin: 5});
+  var cajaBotones = new Box({ content: { width: 25, height: 25 }, margin: 5 });
   var cajaSeparadores = new Box();
 
   var paddingEncabezadoH = 10;
@@ -437,7 +437,7 @@ var Puntos = function (el, i) {
   var memoriaPuntos = {};
   var opcionesMenu = [];
 
-  var controles = {filters: null, rows: null, columns: null, switch: null};
+  var controles = { filters: null, rows: null, columns: null, switch: null };
 
   var maxPuntosPorFila = 20;
   var filas = 0;
@@ -445,197 +445,197 @@ var Puntos = function (el, i) {
 
   function setup() {
     contenedor = d3.select(el[0]);
-    var flag = el.data('visualizacion') || false;
+    var flag = el.data("visualizacion") || false;
     if (flag === false) {
-      el.data('visualizacion', true);
-      contenedor.selectAll('svg').remove();
+      el.data("visualizacion", true);
+      contenedor.selectAll("svg").remove();
       svg = contenedor
-        .append('svg')
-        .attr('preserveAspectRatio', 'xMidYMid')
-        .attr('viewBox', [0, 0, caja.outer.width, caja.outer.height]);
+        .append("svg")
+        .attr("preserveAspectRatio", "xMidYMid")
+        .attr("viewBox", [0, 0, caja.outer.width, caja.outer.height]);
 
-      el.attr('data-setup', true);
+      el.attr("data-setup", true);
 
       if (debug === true) {
         svg
-          .attr('id', el.data('tipo-visualizacion') + '-' + i)
-          .append('rect')
-          .attr('fill', 'yellow')
-          .attr('opacity', 0.5)
-          .attr('x', 0)
-          .attr('y', 0)
-          .attr('width', caja.outer.width)
-          .attr('height', caja.outer.height);
+          .attr("id", el.data("tipo-visualizacion") + "-" + i)
+          .append("rect")
+          .attr("fill", "yellow")
+          .attr("opacity", 0.5)
+          .attr("x", 0)
+          .attr("y", 0)
+          .attr("width", caja.outer.width)
+          .attr("height", caja.outer.height);
       }
 
-      var defs = svg.append('defs');
+      var defs = svg.append("defs");
       var degradado = defs
-        .append('linearGradient')
-        .attr('id', 'degradado')
-        .attr('x1', '0')
-        .attr('y1', '0')
-        .attr('x2', '0')
-        .attr('y2', '1')
-        .attr('gradientUnits', 'objectBoundingBox');
+        .append("linearGradient")
+        .attr("id", "degradado")
+        .attr("x1", "0")
+        .attr("y1", "0")
+        .attr("x2", "0")
+        .attr("y2", "1")
+        .attr("gradientUnits", "objectBoundingBox");
       degradado
-        .append('stop')
-        .attr('offset', '0')
-        .attr('stop-color', '#1c3a8d');
+        .append("stop")
+        .attr("offset", "0")
+        .attr("stop-color", "#1c3a8d");
       degradado
-        .append('stop')
-        .attr('offset', '0.7')
-        .attr('stop-color', '#f16b75');
+        .append("stop")
+        .attr("offset", "0.7")
+        .attr("stop-color", "#f16b75");
 
       var mitades = defs
-        .append('linearGradient')
-        .attr('id', 'mitades')
-        .attr('x1', '0')
-        .attr('y1', '0')
-        .attr('x2', '1')
-        .attr('y2', '0')
-        .attr('gradientUnits', 'objectBoundingBox');
+        .append("linearGradient")
+        .attr("id", "mitades")
+        .attr("x1", "0")
+        .attr("y1", "0")
+        .attr("x2", "1")
+        .attr("y2", "0")
+        .attr("gradientUnits", "objectBoundingBox");
       mitades
-        .append('stop')
-        .attr('offset', '0.5')
-        .attr('stop-color', '#1c3a8d');
+        .append("stop")
+        .attr("offset", "0.5")
+        .attr("stop-color", "#1c3a8d");
       mitades
-        .append('stop')
-        .attr('offset', '0.5')
-        .attr('stop-color', '#f16b75');
+        .append("stop")
+        .attr("offset", "0.5")
+        .attr("stop-color", "#f16b75");
 
       raiz = svg;
       svg = svg
-        .append('g')
+        .append("g")
         .attr(
-          'transform',
-          'translate(' + caja.padding.left + ',' + caja.padding.top + ')'
+          "transform",
+          "translate(" + caja.padding.left + "," + caja.padding.top + ")"
         );
 
       if (debug === true) {
         svg
-          .attr('class', 'svg')
-          .append('rect')
-          .attr('width', caja.content.width)
-          .attr('height', caja.content.height)
-          .attr('fill', 'blue')
-          .attr('opacity', 0.5);
+          .attr("class", "svg")
+          .append("rect")
+          .attr("width", caja.content.width)
+          .attr("height", caja.content.height)
+          .attr("fill", "blue")
+          .attr("opacity", 0.5);
       }
 
-      gWrapperSuperior = svg.append('g');
+      gWrapperSuperior = svg.append("g");
       if (debug === true) {
         gWrapperSuperior
-          .append('rect')
-          .attr('x', 0)
-          .attr('y', 0)
-          .attr('width', 0)
-          .attr('width', 0)
-          .attr('fill', 'yellow')
-          .attr('opacity', 0.5);
+          .append("rect")
+          .attr("x", 0)
+          .attr("y", 0)
+          .attr("width", 0)
+          .attr("width", 0)
+          .attr("fill", "yellow")
+          .attr("opacity", 0.5);
       }
 
-      gStudy = gWrapperSuperior.append('g');
-      gOutcome = gWrapperSuperior.append('g');
-      gExplicacion = gWrapperSuperior.append('g');
-      gTituloFilas = gWrapperSuperior.append('g');
-      gEncabezadoColumnas = gWrapperSuperior.append('g');
-      gPrincipal = svg.append('g');
+      gStudy = gWrapperSuperior.append("g");
+      gOutcome = gWrapperSuperior.append("g");
+      gExplicacion = gWrapperSuperior.append("g");
+      gTituloFilas = gWrapperSuperior.append("g");
+      gEncabezadoColumnas = gWrapperSuperior.append("g");
+      gPrincipal = svg.append("g");
       if (debug === true) {
         gPrincipal
-          .append('rect')
-          .attr('x', 0)
-          .attr('y', 0)
-          .attr('width', 0)
-          .attr('width', 0)
-          .attr('fill', 'blue')
-          .attr('opacity', 0.3);
+          .append("rect")
+          .attr("x", 0)
+          .attr("y", 0)
+          .attr("width", 0)
+          .attr("width", 0)
+          .attr("fill", "blue")
+          .attr("opacity", 0.3);
       }
 
-      gEncabezadoFilas = gPrincipal.append('g');
-      gCeldas = gPrincipal.append('g');
-      gPuntos = gPrincipal.append('g');
-      gBotones = gPrincipal.append('g');
-      gSeparadores = gPrincipal.append('g');
+      gEncabezadoFilas = gPrincipal.append("g");
+      gCeldas = gPrincipal.append("g");
+      gPuntos = gPrincipal.append("g");
+      gBotones = gPrincipal.append("g");
+      gSeparadores = gPrincipal.append("g");
 
       if (debug === true) {
-        gWrapperSuperior.attr('id', 'gWrapperSuperior-' + i);
+        gWrapperSuperior.attr("id", "gWrapperSuperior-" + i);
         gStudy
-          .attr('id', 'gStudy-' + i)
-          .append('rect')
-          .attr('x', 0)
-          .attr('y', 0)
-          .attr('width', 0)
-          .attr('width', 0)
-          .attr('fill', 'red')
-          .attr('opacity', 0.3);
+          .attr("id", "gStudy-" + i)
+          .append("rect")
+          .attr("x", 0)
+          .attr("y", 0)
+          .attr("width", 0)
+          .attr("width", 0)
+          .attr("fill", "red")
+          .attr("opacity", 0.3);
         gOutcome
-          .attr('id', 'gOutcome-' + i)
-          .append('rect')
-          .attr('x', 0)
-          .attr('y', 0)
-          .attr('width', 0)
-          .attr('width', 0)
-          .attr('fill', 'green')
-          .attr('opacity', 0.3);
+          .attr("id", "gOutcome-" + i)
+          .append("rect")
+          .attr("x", 0)
+          .attr("y", 0)
+          .attr("width", 0)
+          .attr("width", 0)
+          .attr("fill", "green")
+          .attr("opacity", 0.3);
         gExplicacion
-          .attr('id', 'gExplicacion-' + i)
-          .append('rect')
-          .attr('x', 0)
-          .attr('y', 0)
-          .attr('width', 0)
-          .attr('width', 0)
-          .attr('fill', 'blue')
-          .attr('opacity', 0.3);
+          .attr("id", "gExplicacion-" + i)
+          .append("rect")
+          .attr("x", 0)
+          .attr("y", 0)
+          .attr("width", 0)
+          .attr("width", 0)
+          .attr("fill", "blue")
+          .attr("opacity", 0.3);
         gTituloFilas
-          .attr('id', 'gTituloFilas-' + i)
-          .append('rect')
-          .attr('x', 0)
-          .attr('y', 0)
-          .attr('width', 0)
-          .attr('width', 0)
-          .attr('fill', 'red')
-          .attr('opacity', 0.3);
+          .attr("id", "gTituloFilas-" + i)
+          .append("rect")
+          .attr("x", 0)
+          .attr("y", 0)
+          .attr("width", 0)
+          .attr("width", 0)
+          .attr("fill", "red")
+          .attr("opacity", 0.3);
         gEncabezadoColumnas
-          .attr('id', 'gEncabezadoColumnas-' + i)
-          .append('rect')
-          .attr('x', 0)
-          .attr('y', 0)
-          .attr('width', 0)
-          .attr('width', 0)
-          .attr('fill', 'green')
-          .attr('opacity', 0.3);
-        gPrincipal.attr('id', 'gPrincipal-' + i);
+          .attr("id", "gEncabezadoColumnas-" + i)
+          .append("rect")
+          .attr("x", 0)
+          .attr("y", 0)
+          .attr("width", 0)
+          .attr("width", 0)
+          .attr("fill", "green")
+          .attr("opacity", 0.3);
+        gPrincipal.attr("id", "gPrincipal-" + i);
         gEncabezadoFilas
-          .attr('id', 'gEncabezadoFilas-' + i)
-          .append('rect')
-          .attr('x', 0)
-          .attr('y', 0)
-          .attr('width', 0)
-          .attr('width', 0)
-          .attr('fill', 'red')
-          .attr('opacity', 0.3);
-        gCeldas.attr('id', 'gCeldas-' + i);
+          .attr("id", "gEncabezadoFilas-" + i)
+          .append("rect")
+          .attr("x", 0)
+          .attr("y", 0)
+          .attr("width", 0)
+          .attr("width", 0)
+          .attr("fill", "red")
+          .attr("opacity", 0.3);
+        gCeldas.attr("id", "gCeldas-" + i);
         gPuntos
-          .attr('id', 'gPuntos-' + i)
-          .append('rect')
-          .attr('x', 0)
-          .attr('y', 0)
-          .attr('width', 0)
-          .attr('width', 0)
-          .attr('fill', 'green')
-          .attr('opacity', 0.3);
-        gBotones.attr('id', 'gBotones-' + i);
+          .attr("id", "gPuntos-" + i)
+          .append("rect")
+          .attr("x", 0)
+          .attr("y", 0)
+          .attr("width", 0)
+          .attr("width", 0)
+          .attr("fill", "green")
+          .attr("opacity", 0.3);
+        gBotones.attr("id", "gBotones-" + i);
         gSeparadores
-          .attr('id', 'gSeparadores-' + i)
-          .append('rect')
-          .attr('x', 0)
-          .attr('y', 0)
-          .attr('width', 0)
-          .attr('width', 0)
-          .attr('fill', 'blue')
-          .attr('opacity', 0.3);
+          .attr("id", "gSeparadores-" + i)
+          .append("rect")
+          .attr("x", 0)
+          .attr("y", 0)
+          .attr("width", 0)
+          .attr("width", 0)
+          .attr("fill", "blue")
+          .attr("opacity", 0.3);
       }
 
-      var articulosURL = 'csv/' + el.data('articulos') + '.csv';
+      var articulosURL = "csv/" + el.data("articulos") + ".csv";
 
       //volver
       completaDiccionario(diccionario.filters);
@@ -648,7 +648,7 @@ var Puntos = function (el, i) {
       promesas.push(
         d3.csv(articulosURL, function (d, i) {
           return {
-            id: d.Refid + ':' + i,
+            id: d.Refid + ":" + i,
             indice: i,
             subindice: 0,
             multiples: false,
@@ -819,7 +819,14 @@ var Puntos = function (el, i) {
       Promise.all(promesas).then(function (values) {
         puntos = values[0];
         opcionesMenu = setOpcionesMenu(diccionario);
-        puntos = _.orderBy(puntos, ['id'], ['asc']);
+        var obj = {};
+        _.each(puntos, function (p) {
+          if (!obj.hasOwnProperty(p.ref_id)) {
+            obj[p.ref_id] = p;
+          }
+        });
+        puntos = _.values(obj);
+        puntos = _.orderBy(puntos, ["id"], ["asc"]);
         reset();
         main();
       });
@@ -833,21 +840,19 @@ var Puntos = function (el, i) {
   }
 
   function completaOpciones(obj) {
-    if (obj.hasOwnProperty('menu')) {
+    if (obj.hasOwnProperty("menu")) {
       obj.menu = he.decode(obj.menu);
-      if (obj.hasOwnProperty('label')) {
+      if (obj.hasOwnProperty("label")) {
         obj.label = he.decode(obj.label);
       }
       obj.label = obj.label || obj.menu;
-      obj.label = obj.label.replace(/\/+/g, ', ');
     }
     _.each(obj.options, function (opcion) {
       opcion.value = he.decode(opcion.value);
-      if (opcion.hasOwnProperty('label')) {
+      if (opcion.hasOwnProperty("label")) {
         opcion.label = he.decode(opcion.label);
       }
       opcion.label = opcion.label || opcion.value;
-      opcion.label = opcion.label.replace(/\/+/g, ', ');
     });
   }
 
@@ -934,7 +939,7 @@ var Puntos = function (el, i) {
   }
 
   function main() {
-    el.removeClass('espera');
+    el.removeClass("espera");
   }
 
   function reset() {
@@ -944,7 +949,7 @@ var Puntos = function (el, i) {
     filas = _.max([1, opcionesFilas.length || 0]);
     columnas = _.max([1, opcionesColumnas.length || 0]);
     var puntosFiltrados = filtraPuntos();
-    var puntosUnicos = _.uniq(_.map(puntosFiltrados, 'ref_id'));
+    var puntosUnicos = _.uniq(_.map(puntosFiltrados, "ref_id"));
     var num = puntosUnicos.length;
     setCajas(puntosFiltrados);
     return num;
@@ -954,8 +959,8 @@ var Puntos = function (el, i) {
     var puntosFiltrados = [];
     var opcionesFiltros =
       controles.filters === null ? [] : [controles.filters.value];
-    var opcionesFilas = _.map(getOpciones(controles.rows), 'value');
-    var opcionesColumnas = _.map(getOpciones(controles.columns), 'value');
+    var opcionesFilas = _.map(getOpciones(controles.rows), "value");
+    var opcionesColumnas = _.map(getOpciones(controles.columns), "value");
     var celdas = {};
 
     puntosFiltrados = _.filter(desagregaPuntos(puntos), function (p) {
@@ -1061,7 +1066,7 @@ var Puntos = function (el, i) {
     var celdasVacias = _.filter(celdas, function (c) {
       return c.puntos.length <= 0;
     });
-    setPuntos({x: ajusteX, y: ajusteY}, puntosFiltrados, celdasLlenas);
+    setPuntos({ x: ajusteX, y: ajusteY }, puntosFiltrados, celdasLlenas);
     setCeldasVacias(celdasVacias);
     setBotonCeldasLlenas(celdasLlenas);
   }
@@ -1073,7 +1078,7 @@ var Puntos = function (el, i) {
     var margenCirculo =
       controles.rows !== null || controles.columns !== null ? 5 : 7;
     cajaPunto = new Box({
-      content: {width: radioCirculo * 2, height: radioCirculo * 2},
+      content: { width: radioCirculo * 2, height: radioCirculo * 2 },
       margin: margenCirculo,
     });
   }
@@ -1096,10 +1101,10 @@ var Puntos = function (el, i) {
     anchoColumna = 0;
     anchoColumnaTexto = 0;
     var tituloColumnas = gEncabezadoColumnas
-      .selectAll('text.titulo.columna')
+      .selectAll("text.titulo.columna")
       .data(arregloTitulo);
     var etiquetasColumnas = gEncabezadoColumnas
-      .selectAll('text.encabezado')
+      .selectAll("text.encabezado")
       .data(arregloColumnas);
     tituloColumnas.exit().remove();
     etiquetasColumnas.exit().remove();
@@ -1118,47 +1123,47 @@ var Puntos = function (el, i) {
       if (controles.rows !== null) {
         offsetX = anchoColumna;
       }
-      gEncabezadoColumnas.attr('transform', `translate(${offsetX},0)`);
+      gEncabezadoColumnas.attr("transform", `translate(${offsetX},0)`);
       arregloTitulo = [controles.columns];
       arregloColumnas = controles.columns.options;
 
       tituloColumnas = gEncabezadoColumnas
-        .selectAll('text.titulo.columna')
+        .selectAll("text.titulo.columna")
         .data(arregloTitulo);
       tituloColumnas
         .enter()
-        .append('text')
-        .attr('x', 0)
-        .attr('y', 0)
-        .attr('dy', 0.8)
-        .attr('class', 'titulo columna')
+        .append("text")
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr("dy", 0.8)
+        .attr("class", "titulo columna")
         .attr(
-          'transform',
+          "transform",
           `translate(${paddingEncabezadoH},${paddingEncabezadoV})`
         )
         .text(function (d) {
-          return d.label;
+          return d.label.replace(/\/+/g, ", ");
         })
         .call(wrap, caja.content.width)
         .call(guardaBBox);
 
       etiquetasColumnas = gEncabezadoColumnas
-        .selectAll('text.encabezado')
+        .selectAll("text.encabezado")
         .data(arregloColumnas);
       etiquetasColumnas
         .enter()
-        .append('text')
-        .attr('class', 'encabezado columna')
-        .attr('transform', function (o, i) {
+        .append("text")
+        .attr("class", "encabezado columna")
+        .attr("transform", function (o, i) {
           return `translate(${
             i * anchoColumna + paddingEncabezadoH
           },${controles.columns.caja.height + 3 * paddingEncabezadoV})`;
         })
-        .attr('x', 0)
-        .attr('y', 0)
-        .attr('dy', 0.8)
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr("dy", 0.8)
         .text(function (o) {
-          return o.label;
+          return o.label.replace(/\/+/g, ", ");
         })
         .call(wrap, anchoColumnaTexto)
         .call(guardaBBox);
@@ -1186,16 +1191,16 @@ var Puntos = function (el, i) {
     });
     if (debug === true) {
       gEncabezadoColumnas
-        .select('rect')
-        .attr('height', cajaEncabezadoColumnas.content.height)
-        .attr('width', cajaEncabezadoColumnas.content.width);
+        .select("rect")
+        .attr("height", cajaEncabezadoColumnas.content.height)
+        .attr("width", cajaEncabezadoColumnas.content.width);
     }
   }
 
   function setCajaTituloFilas() {
     var arregloTitulo = [];
     var tituloFilas = gTituloFilas
-      .selectAll('text.titulo.fila')
+      .selectAll("text.titulo.fila")
       .data(arregloTitulo);
     tituloFilas.exit().remove();
     if (controles.rows !== null) {
@@ -1207,19 +1212,19 @@ var Puntos = function (el, i) {
         offsetY = controles.columns.caja.height + paddingEncabezadoV;
       }
       tituloFilas = gTituloFilas
-        .selectAll('text.titulo.fila')
+        .selectAll("text.titulo.fila")
         .data(arregloTitulo);
       tituloFilas
         .enter()
-        .append('text')
-        .attr('class', 'titulo fila')
-        .attr('transform', `translate(${paddingEncabezadoH},${offsetY})`)
+        .append("text")
+        .attr("class", "titulo fila")
+        .attr("transform", `translate(${paddingEncabezadoH},${offsetY})`)
         .text(function (d) {
-          return d.label;
+          return d.label.replace(/\/+/g, ", ");
         })
-        .attr('x', 0)
-        .attr('y', 0)
-        .attr('dy', 0.8)
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr("dy", 0.8)
         .call(wrap, anchoColumnaTexto)
         .call(guardaBBox);
     }
@@ -1246,9 +1251,9 @@ var Puntos = function (el, i) {
     });
     if (debug === true) {
       gTituloFilas
-        .select('rect')
-        .attr('height', cajaTituloFilas.content.height)
-        .attr('width', cajaTituloFilas.content.width);
+        .select("rect")
+        .attr("height", cajaTituloFilas.content.height)
+        .attr("width", cajaTituloFilas.content.width);
     }
   }
 
@@ -1278,13 +1283,13 @@ var Puntos = function (el, i) {
       }
       if (debug === true) {
         gEncabezadoColumnas
-          .select('rect')
-          .attr('height', cajaEncabezadoColumnas.content.height)
-          .attr('width', cajaEncabezadoColumnas.content.width);
+          .select("rect")
+          .attr("height", cajaEncabezadoColumnas.content.height)
+          .attr("width", cajaEncabezadoColumnas.content.width);
         gTituloFilas
-          .select('rect')
-          .attr('height', cajaTituloFilas.content.height)
-          .attr('width', cajaTituloFilas.content.width);
+          .select("rect")
+          .attr("height", cajaTituloFilas.content.height)
+          .attr("width", cajaTituloFilas.content.width);
       }
     }
   }
@@ -1307,42 +1312,42 @@ var Puntos = function (el, i) {
       ]);
     }
     var ancho = alto === 0 ? 0 : caja.content.width;
-    cajaWrapperSuperior = new Box({content: {width: ancho, height: alto}});
+    cajaWrapperSuperior = new Box({ content: { width: ancho, height: alto } });
     if (debug === true) {
       gWrapperSuperior
-        .select('rect')
-        .attr('height', cajaWrapperSuperior.content.height)
-        .attr('width', cajaWrapperSuperior.content.width);
+        .select("rect")
+        .attr("height", cajaWrapperSuperior.content.height)
+        .attr("width", cajaWrapperSuperior.content.width);
     }
   }
 
   function setCajaEncabezadoFilas() {
     var arregloFilas = [];
     gEncabezadoFilas.attr(
-      'transform',
+      "transform",
       `translate(0,${cajaWrapperSuperior.outer.height})`
     );
     var etiquetasFilas = gEncabezadoFilas
-      .selectAll('text.encabezado')
+      .selectAll("text.encabezado")
       .data(arregloFilas);
     etiquetasFilas.exit().remove();
     if (controles.rows !== null) {
       arregloFilas = controles.rows.options;
       etiquetasFilas = gEncabezadoFilas
-        .selectAll('text.encabezado')
+        .selectAll("text.encabezado")
         .data(arregloFilas);
 
       etiquetasFilas
         .enter()
-        .append('text')
-        .attr('class', 'encabezado fila')
-        .attr('transform', `translate(${paddingEncabezadoH},0)`)
+        .append("text")
+        .attr("class", "encabezado fila")
+        .attr("transform", `translate(${paddingEncabezadoH},0)`)
         .text(function (d) {
-          return d.label;
+          return d.label.replace(/\/+/g, ", ");
         })
-        .attr('x', 0)
-        .attr('y', 0)
-        .attr('dy', 0.8)
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr("dy", 0.8)
         .call(wrap, anchoColumnaTexto)
         .call(guardaBBox)
         .call(ajustaAlturaEncabezadoFilas);
@@ -1364,13 +1369,13 @@ var Puntos = function (el, i) {
       });
       alto = _.sum(arreglo);
     }
-    cajaEncabezadoFilas = new Box({content: {width: ancho, height: alto}});
+    cajaEncabezadoFilas = new Box({ content: { width: ancho, height: alto } });
 
     if (debug === true) {
       gEncabezadoFilas
-        .select('rect')
-        .attr('height', cajaEncabezadoFilas.content.height)
-        .attr('width', cajaEncabezadoFilas.content.width);
+        .select("rect")
+        .attr("height", cajaEncabezadoFilas.content.height)
+        .attr("width", cajaEncabezadoFilas.content.width);
     }
   }
 
@@ -1382,23 +1387,23 @@ var Puntos = function (el, i) {
       },
     });
     gPuntos.attr(
-      'transform',
+      "transform",
       `translate(${cajaEncabezadoFilas.outer.width},${cajaWrapperSuperior.outer.height})`
     );
     gCeldas.attr(
-      'transform',
+      "transform",
       `translate(${cajaEncabezadoFilas.outer.width},${cajaWrapperSuperior.outer.height})`
     );
     gBotones.attr(
-      'transform',
+      "transform",
       `translate(${cajaEncabezadoFilas.outer.width},${cajaWrapperSuperior.outer.height})`
     );
 
     if (debug === true) {
       gPuntos
-        .select('rect')
-        .attr('height', cajaPuntos.inner.height)
-        .attr('width', cajaPuntos.inner.width);
+        .select("rect")
+        .attr("height", cajaPuntos.inner.height)
+        .attr("width", cajaPuntos.inner.width);
     }
   }
 
@@ -1483,12 +1488,12 @@ var Puntos = function (el, i) {
       });
       var acumulable = 0;
       _.each(controles.rows.options, function (opcion) {
-        opcion.posicion = {y: acumulable};
+        opcion.posicion = { y: acumulable };
         acumulable += opcion.box.outer.height;
       });
       gEncabezadoFilas
-        .selectAll('text.encabezado')
-        .attr('transform', function (d) {
+        .selectAll("text.encabezado")
+        .attr("transform", function (d) {
           return `translate(${paddingEncabezadoH},${paddingEncabezadoV + d.posicion.y})`;
         });
       cajaEncabezadoFilas = new Box({
@@ -1499,8 +1504,8 @@ var Puntos = function (el, i) {
       });
       if (debug === true) {
         gEncabezadoFilas
-          .select('rect')
-          .attr('height', cajaEncabezadoFilas.inner.height);
+          .select("rect")
+          .attr("height", cajaEncabezadoFilas.inner.height);
       }
     }
   }
@@ -1515,7 +1520,7 @@ var Puntos = function (el, i) {
       },
     });
     if (debug === true) {
-      gPuntos.select('rect').attr('height', cajaPuntos.outer.height);
+      gPuntos.select("rect").attr("height", cajaPuntos.outer.height);
     }
   }
 
@@ -1527,14 +1532,14 @@ var Puntos = function (el, i) {
       },
     });
     gSeparadores.attr(
-      'transform',
+      "transform",
       `translate(${cajaEncabezadoFilas.outer.width},${cajaWrapperSuperior.outer.height})`
     );
     if (debug === true) {
       gSeparadores
-        .select('rect')
-        .attr('height', cajaSeparadores.inner.height)
-        .attr('width', cajaSeparadores.inner.width);
+        .select("rect")
+        .attr("height", cajaSeparadores.inner.height)
+        .attr("width", cajaSeparadores.inner.width);
     }
   }
 
@@ -1550,10 +1555,10 @@ var Puntos = function (el, i) {
       .transition()
       .ease(d3.easeQuadOut)
       .duration(ms)
-      .attr('viewBox', [0, 0, caja.outer.width, caja.outer.height]);
+      .attr("viewBox", [0, 0, caja.outer.width, caja.outer.height]);
     if (debug === true) {
-      raiz.select('rect').attr('height', caja.outer.height);
-      svg.select('rect').attr('height', caja.content.height);
+      raiz.select("rect").attr("height", caja.outer.height);
+      svg.select("rect").attr("height", caja.content.height);
     }
   }
 
@@ -1568,30 +1573,30 @@ var Puntos = function (el, i) {
       arreglo.push(cajaPuntos.outer.height);
     }
 
-    var lineasF = gSeparadores.selectAll('line.fila').data(arreglo);
+    var lineasF = gSeparadores.selectAll("line.fila").data(arreglo);
 
     lineasF
       .enter()
-      .append('line')
-      .attr('class', 'fila')
-      .attr('x1', -cajaEncabezadoFilas.outer.width + paddingEncabezadoH)
-      .attr('x2', cajaPuntos.outer.width)
-      .attr('y1', function (d) {
+      .append("line")
+      .attr("class", "fila")
+      .attr("x1", -cajaEncabezadoFilas.outer.width + paddingEncabezadoH)
+      .attr("x2", cajaPuntos.outer.width)
+      .attr("y1", function (d) {
         return d;
       })
-      .attr('y2', function (d) {
+      .attr("y2", function (d) {
         return d;
       })
-      .attr('stroke', 'black')
-      .attr('stroke-width', '1px');
+      .attr("stroke", "black")
+      .attr("stroke-width", "1px");
 
     lineasF
-      .attr('x1', -cajaEncabezadoFilas.outer.width + paddingEncabezadoH)
-      .attr('x2', cajaPuntos.outer.width)
-      .attr('y1', function (d) {
+      .attr("x1", -cajaEncabezadoFilas.outer.width + paddingEncabezadoH)
+      .attr("x2", cajaPuntos.outer.width)
+      .attr("y1", function (d) {
         return d;
       })
-      .attr('y2', function (d) {
+      .attr("y2", function (d) {
         return d;
       });
 
@@ -1608,38 +1613,38 @@ var Puntos = function (el, i) {
       }
     }
 
-    var lineasC = gSeparadores.selectAll('line.columna').data(arregloColumnas);
+    var lineasC = gSeparadores.selectAll("line.columna").data(arregloColumnas);
 
     lineasC
       .enter()
-      .append('line')
-      .attr('class', 'columna')
-      .attr('x1', function (d) {
+      .append("line")
+      .attr("class", "columna")
+      .attr("x1", function (d) {
         return d * anchoColumna;
       })
-      .attr('x2', function (d) {
+      .attr("x2", function (d) {
         return d * anchoColumna;
       })
-      .attr('y1', function (d, i) {
+      .attr("y1", function (d, i) {
         var offset = controles.rows !== null && i === 0 ? 0 : 27;
         return -cajaWrapperSuperior.outer.height + paddingEncabezadoV + offset;
       })
-      .attr('y2', cajaPuntos.outer.height)
-      .attr('stroke', 'black')
-      .attr('stroke-width', '1px');
+      .attr("y2", cajaPuntos.outer.height)
+      .attr("stroke", "black")
+      .attr("stroke-width", "1px");
 
     lineasC
-      .attr('x1', function (d) {
+      .attr("x1", function (d) {
         return d * anchoColumna;
       })
-      .attr('x2', function (d) {
+      .attr("x2", function (d) {
         return d * anchoColumna;
       })
-      .attr('y1', function (d, i) {
+      .attr("y1", function (d, i) {
         var offset = controles.rows !== null && i === 0 ? 0 : 27;
         return -cajaWrapperSuperior.outer.height + paddingEncabezadoV + offset;
       })
-      .attr('y2', cajaPuntos.outer.height);
+      .attr("y2", cajaPuntos.outer.height);
 
     lineasC.exit().remove();
   }
@@ -1686,15 +1691,15 @@ var Puntos = function (el, i) {
         width = anchoColumna;
         height = arregloAlturas[m + 1] || 0;
         puntos = puntosAgrupados[clave] || [];
-        info = _.find(filasMatriz, {fila: m}) || {};
+        info = _.find(filasMatriz, { fila: m }) || {};
         var puntosPorFila = info.puntosPorFila || 0;
         var puntosPorColumna = _.ceil(puntos.length / puntosPorFila);
         celdas.push({
           m: m,
           n: n,
           puntos: puntos,
-          coordenadas: {x: x, y: y},
-          medidas: {ancho: width, alto: height - y},
+          coordenadas: { x: x, y: y },
+          medidas: { ancho: width, alto: height - y },
           puntosPorFila: puntosPorFila,
           puntosPorColumna: puntosPorColumna,
           paddingCeldaH: info.paddingCeldaH || 0,
@@ -1706,53 +1711,53 @@ var Puntos = function (el, i) {
   }
 
   function setCeldasVacias(celdas) {
-    var rects = gCeldas.selectAll('rect').data(celdas);
+    var rects = gCeldas.selectAll("rect").data(celdas);
     rects
       .enter()
-      .append('rect')
-      .attr('class', 'vacia')
-      .attr('transform', function (d) {
+      .append("rect")
+      .attr("class", "vacia")
+      .attr("transform", function (d) {
         return `translate(${d.coordenadas.x},${d.coordenadas.y})`;
       })
-      .attr('x', 0)
-      .attr('y', 0)
-      .attr('width', function (d) {
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("width", function (d) {
         return d.medidas.ancho;
       })
-      .attr('height', function (d) {
+      .attr("height", function (d) {
         return d.medidas.alto;
       });
 
     rects
-      .attr('transform', function (d) {
+      .attr("transform", function (d) {
         return `translate(${d.coordenadas.x},${d.coordenadas.y})`;
       })
-      .attr('x', 0)
-      .attr('y', 0)
-      .attr('width', function (d) {
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("width", function (d) {
         return d.medidas.ancho;
       })
-      .attr('height', function (d) {
+      .attr("height", function (d) {
         return d.medidas.alto;
       });
 
     rects.exit().remove();
 
-    gCeldas.selectAll('text.vacia').data([]).exit().remove();
+    gCeldas.selectAll("text.vacia").data([]).exit().remove();
 
-    var textos = gCeldas.selectAll('text.vacia').data(celdas);
+    var textos = gCeldas.selectAll("text.vacia").data(celdas);
 
     textos
       .enter()
-      .append('text')
-      .attr('class', 'vacia')
-      .attr('transform', function (d) {
+      .append("text")
+      .attr("class", "vacia")
+      .attr("transform", function (d) {
         return `translate(${d.coordenadas.x},${d.coordenadas.y})`;
       })
-      .attr('x', 0)
-      .attr('y', 0)
-      .attr('dy', 0.8)
-      .text('No studies in this category')
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("dy", 0.8)
+      .text("No studies in this category")
       .call(wrap, anchoColumnaTexto)
       .call(guardaBBox)
       .call(ajustaTextoCeldaVacia);
@@ -1764,16 +1769,16 @@ var Puntos = function (el, i) {
   //TODO: Rechecar esto porque tampoco quedó chido cuando no hay nada seleccionado
   function setBotonCeldasLlenas(celdas) {
     if (controles.rows !== null || controles.columns !== null) {
-      var botones = gBotones.selectAll('rect.boton').data(celdas);
+      var botones = gBotones.selectAll("rect.boton").data(celdas);
       botones
         .enter()
-        .append('rect')
-        .attr('class', 'boton')
-        .attr('transform', function (d) {
+        .append("rect")
+        .attr("class", "boton")
+        .attr("transform", function (d) {
           return `translate(${d.coordenadas.x},${d.coordenadas.y})`;
         })
-        .attr('width', cajaBotones.content.width)
-        .attr('height', cajaBotones.content.height)
+        .attr("width", cajaBotones.content.width)
+        .attr("height", cajaBotones.content.height)
         /*
         .attr("x", function (d) {
           var x = 0;
@@ -1801,14 +1806,14 @@ var Puntos = function (el, i) {
           return y;
         })
         */
-        .attr('x', function (d) {
+        .attr("x", function (d) {
           return (
             d.paddingCeldaH +
             cajaPunto.outer.width * (d.puntosPorFila - 1) +
             cajaBotones.margin.left
           );
         })
-        .attr('y', function (d) {
+        .attr("y", function (d) {
           return (
             d.paddingCeldaV +
             cajaPunto.outer.height *
@@ -1816,9 +1821,9 @@ var Puntos = function (el, i) {
             cajaBotones.margin.top
           );
         })
-        .attr('rx', 5)
-        .attr('ry', 5)
-        .on('click', function (d) {
+        .attr("rx", 5)
+        .attr("ry", 5)
+        .on("click", function (d) {
           var columna = null;
           var fila = null;
           if (controles.rows !== null) {
@@ -1827,12 +1832,12 @@ var Puntos = function (el, i) {
           if (controles.columns !== null) {
             columna = controles.columns.options[d.n].label;
           }
-          var ids = _.uniq(_.map(d.puntos, 'ref_id'));
-          $('body').trigger('lista:mostrar', [ids, fila, columna]);
+          var ids = _.uniq(_.map(d.puntos, "ref_id"));
+          $("body").trigger("lista:mostrar", [ids, fila, columna]);
         });
 
       botones
-        .attr('transform', function (d) {
+        .attr("transform", function (d) {
           return `translate(${d.coordenadas.x},${d.coordenadas.y})`;
         })
         /*
@@ -1862,14 +1867,14 @@ var Puntos = function (el, i) {
           return y;
         });
 */
-        .attr('x', function (d) {
+        .attr("x", function (d) {
           return (
             d.paddingCeldaH +
             cajaPunto.outer.width * (d.puntosPorFila - 1) +
             cajaBotones.margin.left
           );
         })
-        .attr('y', function (d) {
+        .attr("y", function (d) {
           return (
             d.paddingCeldaV +
             cajaPunto.outer.height *
@@ -1881,15 +1886,15 @@ var Puntos = function (el, i) {
       botones.exit().remove();
 
       var tamanioLista = 21;
-      var listas = gBotones.selectAll('image.boton').data(celdas);
+      var listas = gBotones.selectAll("image.boton").data(celdas);
       listas
         .enter()
-        .append('svg:image')
-        .attr('class', 'boton')
-        .attr('transform', function (d) {
+        .append("svg:image")
+        .attr("class", "boton")
+        .attr("transform", function (d) {
           return `translate(${d.coordenadas.x},${d.coordenadas.y})`;
         })
-        .attr('x', function (d) {
+        .attr("x", function (d) {
           return (
             d.paddingCeldaH +
             cajaPunto.outer.width * (d.puntosPorFila - 1) +
@@ -1897,7 +1902,7 @@ var Puntos = function (el, i) {
             (cajaBotones.content.width - tamanioLista) / 2
           );
         })
-        .attr('y', function (d) {
+        .attr("y", function (d) {
           return (
             d.paddingCeldaV +
             cajaPunto.outer.height *
@@ -1906,15 +1911,15 @@ var Puntos = function (el, i) {
             (cajaBotones.content.height - tamanioLista) / 2
           );
         })
-        .attr('width', tamanioLista)
-        .attr('height', tamanioLista)
-        .attr('xlink:href', 'img/export.svg');
+        .attr("width", tamanioLista)
+        .attr("height", tamanioLista)
+        .attr("xlink:href", "img/export.svg");
 
       listas
-        .attr('transform', function (d) {
+        .attr("transform", function (d) {
           return `translate(${d.coordenadas.x},${d.coordenadas.y})`;
         })
-        .attr('x', function (d) {
+        .attr("x", function (d) {
           return (
             d.paddingCeldaH +
             cajaPunto.outer.width * (d.puntosPorFila - 1) +
@@ -1922,7 +1927,7 @@ var Puntos = function (el, i) {
             (cajaBotones.content.width - tamanioLista) / 2
           );
         })
-        .attr('y', function (d) {
+        .attr("y", function (d) {
           return (
             d.paddingCeldaV +
             cajaPunto.outer.height *
@@ -1934,8 +1939,8 @@ var Puntos = function (el, i) {
 
       listas.exit().remove();
     } else {
-      gBotones.selectAll('rect.boton').data([]).exit().remove();
-      gBotones.selectAll('image.boton').data([]).exit().remove();
+      gBotones.selectAll("rect.boton").data([]).exit().remove();
+      gBotones.selectAll("image.boton").data([]).exit().remove();
     }
   }
 
@@ -1958,30 +1963,30 @@ var Puntos = function (el, i) {
         padding: cajaBotones.padding,
       });
 
-      var botones = gBotones.selectAll('rect.boton').data(celdas);
+      var botones = gBotones.selectAll("rect.boton").data(celdas);
       botones
         .enter()
-        .append('rect')
-        .attr('class', 'boton')
-        .attr('transform', function (d) {
+        .append("rect")
+        .attr("class", "boton")
+        .attr("transform", function (d) {
           return `translate(${d.coordenadas.x},${d.coordenadas.y})`;
         })
-        .attr('width', cajaBotones.content.width)
-        .attr('height', cajaBotones.content.height)
+        .attr("width", cajaBotones.content.width)
+        .attr("height", cajaBotones.content.height)
         .attr(
-          'x',
+          "x",
           anchoColumna -
             (cajaBotones.content.height +
               paddingCeldaH +
               cajaPunto.padding.right +
               cajaPunto.margin.right)
         )
-        .attr('y', function (d) {
+        .attr("y", function (d) {
           return d.medidas.alto - cajaBotones.outer.height / 2;
         })
-        .attr('rx', 5)
-        .attr('ry', 5)
-        .on('click', function (d) {
+        .attr("rx", 5)
+        .attr("ry", 5)
+        .on("click", function (d) {
           var columna = null;
           var fila = null;
           if (controles.rows !== null) {
@@ -1990,27 +1995,27 @@ var Puntos = function (el, i) {
           if (controles.columns !== null) {
             columna = controles.columns.options[d.n].label;
           }
-          var ids = _.uniq(_.map(d.puntos, 'ref_id'));
-          $('body').trigger('lista:mostrar', [ids, fila, columna]);
+          var ids = _.uniq(_.map(d.puntos, "ref_id"));
+          $("body").trigger("lista:mostrar", [ids, fila, columna]);
         });
 
       botones
-        .attr('transform', function (d) {
+        .attr("transform", function (d) {
           return `translate(${d.coordenadas.x},${d.coordenadas.y})`;
         })
         .attr(
-          'x',
+          "x",
           anchoColumna -
             (cajaBotones.content.height +
               paddingCeldaH +
               cajaPunto.padding.right +
               cajaPunto.margin.right)
         )
-        .attr('y', function (d) {
+        .attr("y", function (d) {
           return d.medidas.alto - cajaBotones.outer.height / 2;
         })
-        .attr('rx', 5)
-        .attr('ry', 5);
+        .attr("rx", 5)
+        .attr("ry", 5);
 
       botones.exit().remove();
 
@@ -2071,17 +2076,17 @@ var Puntos = function (el, i) {
       */
 
       var tamanioLista = 24;
-      var listas = gBotones.selectAll('image.boton').data(celdas);
+      var listas = gBotones.selectAll("image.boton").data(celdas);
       listas
         .enter()
-        .append('svg:image')
-        .attr('class', 'boton')
-        .attr('transform', function (d) {
+        .append("svg:image")
+        .attr("class", "boton")
+        .attr("transform", function (d) {
           return `translate(${d.coordenadas.x},${d.coordenadas.y})`;
         })
-        .attr('x', (anchoColumna - tamanioLista) / 2)
+        .attr("x", (anchoColumna - tamanioLista) / 2)
         .attr(
-          'x',
+          "x",
           anchoColumna -
             (cajaBotones.content.width +
               paddingCeldaH +
@@ -2089,29 +2094,29 @@ var Puntos = function (el, i) {
               cajaPunto.margin.right) +
             (cajaBotones.content.width - cajaPunto.content.width) / 2
         )
-        .attr('y', function (d) {
+        .attr("y", function (d) {
           return (
             d.medidas.alto - cajaBotones.outer.height / 2 - tamanioLista / 2
           );
         })
-        .attr('y', function (d) {
+        .attr("y", function (d) {
           return (
             d.medidas.alto -
             cajaBotones.outer.height / 2 +
             (cajaBotones.content.height - tamanioLista) / 2
           );
         })
-        .attr('width', tamanioLista)
-        .attr('height', tamanioLista)
-        .attr('xlink:href', 'img/export.svg');
+        .attr("width", tamanioLista)
+        .attr("height", tamanioLista)
+        .attr("xlink:href", "img/export.svg");
 
       listas
-        .attr('transform', function (d) {
+        .attr("transform", function (d) {
           return `translate(${d.coordenadas.x},${d.coordenadas.y})`;
         })
-        .attr('x', (anchoColumna - tamanioLista) / 2)
+        .attr("x", (anchoColumna - tamanioLista) / 2)
         .attr(
-          'x',
+          "x",
           anchoColumna -
             (cajaBotones.content.width +
               paddingCeldaH +
@@ -2119,12 +2124,12 @@ var Puntos = function (el, i) {
               cajaPunto.margin.right) +
             (cajaBotones.content.width - cajaPunto.content.width) / 2
         )
-        .attr('y', function (d) {
+        .attr("y", function (d) {
           return (
             d.medidas.alto - cajaBotones.outer.height / 2 - tamanioLista / 2
           );
         })
-        .attr('y', function (d) {
+        .attr("y", function (d) {
           return (
             d.medidas.alto -
             cajaBotones.outer.height / 2 +
@@ -2135,8 +2140,8 @@ var Puntos = function (el, i) {
       listas.exit().remove();
     } else {
       //gBotones.selectAll("circle.boton").data([]).exit().remove();
-      gBotones.selectAll('rect.boton').data([]).exit().remove();
-      gBotones.selectAll('image.boton').data([]).exit().remove();
+      gBotones.selectAll("rect.boton").data([]).exit().remove();
+      gBotones.selectAll("image.boton").data([]).exit().remove();
     }
   }
 
@@ -2150,40 +2155,40 @@ var Puntos = function (el, i) {
   //Aquí está el asunto para re-ordenar con respecto a calidad y demás cosas...
   //TODO:Hacer que se ordene por columnas cuando se quiera ver study quality
   function setPuntos(anteriores, puntosFiltrados, celdasLlenas) {
-    var color = '#9595b4';
+    var color = "#9595b4";
     var orden = 0;
 
     if (controles.rows !== null) {
       _.each(puntosFiltrados, function (p) {
         if (p.multiples === true) {
-          color = 'url(#mitades)';
+          color = "url(#mitades)";
           orden = 4;
         } else {
           var opcion = controles.rows.options[p.matriz.m];
           var clave = opcion.key;
           var valor = p[clave] || null;
-          valor = valor === null ? '' : limpiaCadena(p[clave]).toLowerCase();
+          valor = valor === null ? "" : limpiaCadena(p[clave]).toLowerCase();
           switch (valor) {
-            case 'positive':
-              color = '#003a8f';
+            case "positive":
+              color = "#003a8f";
               orden = 1;
               break;
-            case 'negative':
-              color = '#f16d75';
+            case "negative":
+              color = "#f16d75";
               orden = 2;
               break;
-            case 'mixed results':
-              color = 'url(#degradado)';
+            case "mixed results":
+              color = "url(#degradado)";
               orden = 3;
               break;
-            case 'no effect':
-            case 'no significant difference':
-              color = '#c7cccf';
+            case "no effect":
+            case "no significant difference":
+              color = "#c7cccf";
               orden = 5;
               break;
             default:
-              color = 'black';
-              color = '#c7cccf';
+              color = "black";
+              color = "#c7cccf";
               orden = 6;
               break;
           }
@@ -2197,14 +2202,14 @@ var Puntos = function (el, i) {
           return a.orden - b.orden;
         });
       } else {
-        var calidades = {low: 2, medium: 1, high: 0};
+        var calidades = { low: 2, medium: 1, high: 0 };
         puntosFiltrados.sort(function (a, b) {
           var dif = a.orden - b.orden;
           if (dif !== 0) {
             return dif;
           } else {
-            var calidadA = a.quality.toLowerCase() || 'low';
-            var calidadB = b.quality.toLowerCase() || 'low';
+            var calidadA = a.quality.toLowerCase() || "low";
+            var calidadB = b.quality.toLowerCase() || "low";
             return calidades[calidadA] - calidades[calidadB];
           }
         });
@@ -2244,10 +2249,10 @@ var Puntos = function (el, i) {
         };
       });
     } else if (controles.switch !== null) {
-      var calidades = {low: 2, medium: 1, high: 0};
+      var calidades = { low: 2, medium: 1, high: 0 };
       puntosFiltrados.sort(function (a, b) {
-        var calidadA = a.quality.toLowerCase() || 'low';
-        var calidadB = b.quality.toLowerCase() || 'low';
+        var calidadA = a.quality.toLowerCase() || "low";
+        var calidadB = b.quality.toLowerCase() || "low";
         return calidades[calidadA] - calidades[calidadB];
       });
       var celdas = {};
@@ -2296,7 +2301,7 @@ var Puntos = function (el, i) {
       }
     });
 
-    var presentes = _.map(puntosFiltrados, 'id');
+    var presentes = _.map(puntosFiltrados, "id");
     var pasados = _.keys(memoriaPuntos);
 
     var enter = presentes.filter(function (d) {
@@ -2310,7 +2315,7 @@ var Puntos = function (el, i) {
     });
 
     var circulos = gPuntos
-      .selectAll('circle.study_dots')
+      .selectAll("circle.study_dots")
       .data(puntosFiltrados, function (d) {
         return d.id;
       });
@@ -2343,11 +2348,11 @@ var Puntos = function (el, i) {
     var objetoCoordenadas = {};
 
     _.each(puntosEnterRaiz, function (p) {
-      var coordenadas = {x: calculaPosicionX(p), y: calculaPosicionY(p)};
-      var anteriores = {x: coordenadas.x, y: coordenadas.y};
+      var coordenadas = { x: calculaPosicionX(p), y: calculaPosicionY(p) };
+      var anteriores = { x: coordenadas.x, y: coordenadas.y };
       p.coordenadas = coordenadas;
       p.anteriores = anteriores;
-      p.radio = {ini: 0, fin: cajaPunto.content.width / 2};
+      p.radio = { ini: 0, fin: cajaPunto.content.width / 2 };
       objetoCoordenadas[p.id] = {
         coordenadas: coordenadas,
         anteriores: anteriores,
@@ -2355,7 +2360,7 @@ var Puntos = function (el, i) {
     });
 
     _.each(puntosUpdateRaiz, function (p) {
-      var coordenadas = {x: calculaPosicionX(p), y: calculaPosicionY(p)};
+      var coordenadas = { x: calculaPosicionX(p), y: calculaPosicionY(p) };
       var anteriores = {
         x: p.coordenadas.x - offsetX,
         y: p.coordenadas.y - offsetY,
@@ -2379,7 +2384,7 @@ var Puntos = function (el, i) {
       };
       p.coordenadas = coordenadas;
       p.anteriores = anteriores;
-      p.radio = {ini: cajaPunto.content.width / 2, fin: 0};
+      p.radio = { ini: cajaPunto.content.width / 2, fin: 0 };
       objetoCoordenadas[p.id] = {
         coordenadas: coordenadas,
         anteriores: anteriores,
@@ -2388,7 +2393,7 @@ var Puntos = function (el, i) {
 
     _.each(puntosEnterDesc, function (p) {
       var clavePadre = `${p.ref_id}:${p.indice}`;
-      var coordenadas = {x: calculaPosicionX(p), y: calculaPosicionY(p)};
+      var coordenadas = { x: calculaPosicionX(p), y: calculaPosicionY(p) };
       var anteriores = objetoCoordenadas[clavePadre].anteriores; //volver
       p.coordenadas = coordenadas;
       p.anteriores = anteriores;
@@ -2403,7 +2408,7 @@ var Puntos = function (el, i) {
     });
 
     _.each(puntosUpdateDesc, function (p) {
-      var coordenadas = {x: calculaPosicionX(p), y: calculaPosicionY(p)};
+      var coordenadas = { x: calculaPosicionX(p), y: calculaPosicionY(p) };
       var anteriores = {
         x: p.coordenadas.x - offsetX,
         y: p.coordenadas.y - offsetY,
@@ -2437,84 +2442,84 @@ var Puntos = function (el, i) {
 
     circulos
       .enter()
-      .append('circle')
-      .attr('id', function (d, i) {
+      .append("circle")
+      .attr("id", function (d, i) {
         return `study_${d.ref_id}_${i}`;
       })
-      .attr('class', 'study_dots')
-      .attr('fill', function (d) {
+      .attr("class", "study_dots")
+      .attr("fill", function (d) {
         return d.color;
       })
-      .attr('r', function (d) {
+      .attr("r", function (d) {
         return d.radio.ini;
       })
-      .attr('cx', function (d) {
+      .attr("cx", function (d) {
         return d.anteriores.x;
       })
-      .attr('cy', function (d) {
+      .attr("cy", function (d) {
         return d.anteriores.y;
       })
       .each(function (d) {
-        $(d3.select(this).node()).tooltipster().tooltipster('content', d.title);
+        $(d3.select(this).node()).tooltipster().tooltipster("content", d.title);
       })
-      .on('click', function (d) {
-        $('body').trigger('articulo:mostrar', [d.ref_id]);
+      .on("click", function (d) {
+        $("body").trigger("articulo:mostrar", [d.ref_id]);
       })
       .transition()
       .ease(d3.easeQuadOut)
       .duration(ms)
-      .attr('cx', function (d) {
+      .attr("cx", function (d) {
         return d.coordenadas.x;
       })
-      .attr('cy', function (d) {
+      .attr("cy", function (d) {
         return d.coordenadas.y;
       })
-      .attr('r', function (d) {
+      .attr("r", function (d) {
         return d.radio.fin;
       });
 
     circulos
-      .attr('cx', function (d) {
+      .attr("cx", function (d) {
         return d.anteriores.x;
       })
-      .attr('cy', function (d) {
+      .attr("cy", function (d) {
         return d.anteriores.y;
       })
       .transition()
       .ease(d3.easeQuadOut)
       .duration(ms)
-      .attr('r', cajaPunto.content.width / 2)
-      .attr('fill', function (d) {
+      .attr("r", cajaPunto.content.width / 2)
+      .attr("fill", function (d) {
         return d.color;
       })
-      .attr('cx', function (d) {
+      .attr("cx", function (d) {
         return d.coordenadas.x;
       })
-      .attr('cy', function (d) {
+      .attr("cy", function (d) {
         return d.coordenadas.y;
       });
 
     circulos
       .exit()
-      .attr('cx', function (d) {
+      .attr("cx", function (d) {
         return d.anteriores.x;
       })
-      .attr('cy', function (d) {
+      .attr("cy", function (d) {
         return d.anteriores.y;
       })
       .transition()
       .ease(d3.easeQuadOut)
       .duration(ms)
-      .attr('fill', function (d) {
+      .attr("fill", function (d) {
         return d.color;
       })
-      .attr('r', function (d) {
+      .attr("r", function (d) {
         return 0;
       })
-      .attr('cx', function (d) {
+      .attr("cx", function (d) {
         return d.coordenadas.x;
       })
-      .attr('cy', function (d) {
+      .attr("cy", function (d) {
         return d.coordenadas.y;
       })
       .remove();
@@ -2534,49 +2539,49 @@ var Puntos = function (el, i) {
 
     if (controles.switch === null) {
       gPuntos
-        .selectAll('image.quality')
+        .selectAll("image.quality")
         .data([], function (d) {
           return d.id;
         })
         .exit()
-        .attr('x', function (d) {
+        .attr("x", function (d) {
           return d.anteriores.x - tamanioBarras / 2;
         })
-        .attr('y', function (d) {
+        .attr("y", function (d) {
           return d.anteriores.y - tamanioBarras / 2;
         })
         .transition()
         .ease(d3.easeQuadOut)
         .duration(ms)
-        .attr('x', function (d) {
+        .attr("x", function (d) {
           return d.coordenadas.x;
         })
-        .attr('y', function (d) {
+        .attr("y", function (d) {
           return d.coordenadas.y;
         })
-        .attr('width', 0)
-        .attr('height', 0)
+        .attr("width", 0)
+        .attr("height", 0)
         .remove();
     } else {
       var barras = gPuntos
-        .selectAll('image.quality')
+        .selectAll("image.quality")
         .data(puntosFiltrados, function (d) {
           return d.id;
         });
 
       barras
         .enter()
-        .append('svg:image')
-        .attr('class', 'quality')
-        .attr('x', function (d) {
+        .append("svg:image")
+        .attr("class", "quality")
+        .attr("x", function (d) {
           return d.anteriores.x;
         })
-        .attr('y', function (d) {
+        .attr("y", function (d) {
           return d.anteriores.y;
         })
-        .attr('width', 0)
-        .attr('height', 0)
-        .attr('xlink:href', function (d) {
+        .attr("width", 0)
+        .attr("height", 0)
+        .attr("xlink:href", function (d) {
           var clave = controles.switch.clave;
           var nombre = d[clave].toLowerCase();
           return `img/${nombre}.svg`;
@@ -2584,53 +2589,53 @@ var Puntos = function (el, i) {
         .transition()
         .ease(d3.easeQuadOut)
         .duration(ms)
-        .attr('x', function (d) {
+        .attr("x", function (d) {
           return d.coordenadas.x - tamanioBarras / 2;
         })
-        .attr('y', function (d) {
+        .attr("y", function (d) {
           return d.coordenadas.y - tamanioBarras / 2;
         })
-        .attr('width', tamanioBarras)
-        .attr('height', tamanioBarras);
+        .attr("width", tamanioBarras)
+        .attr("height", tamanioBarras);
 
       barras
-        .attr('x', function (d) {
+        .attr("x", function (d) {
           return d.anteriores.x - tamanioBarras / 2;
         })
-        .attr('y', function (d) {
+        .attr("y", function (d) {
           return d.anteriores.y - tamanioBarras / 2;
         })
         .transition()
         .ease(d3.easeQuadOut)
         .duration(ms)
-        .attr('x', function (d) {
+        .attr("x", function (d) {
           return d.coordenadas.x - tamanioBarras / 2;
         })
-        .attr('y', function (d) {
+        .attr("y", function (d) {
           return d.coordenadas.y - tamanioBarras / 2;
         })
-        .attr('width', tamanioBarras)
-        .attr('height', tamanioBarras);
+        .attr("width", tamanioBarras)
+        .attr("height", tamanioBarras);
 
       barras
         .exit()
-        .attr('x', function (d) {
+        .attr("x", function (d) {
           return d.anteriores.x - tamanioBarras / 2;
         })
-        .attr('y', function (d) {
+        .attr("y", function (d) {
           return d.anteriores.y - tamanioBarras / 2;
         })
         .transition()
         .ease(d3.easeQuadOut)
         .duration(ms)
-        .attr('x', function (d) {
+        .attr("x", function (d) {
           return d.coordenadas.x;
         })
-        .attr('y', function (d) {
+        .attr("y", function (d) {
           return d.coordenadas.y;
         })
-        .attr('width', 0)
-        .attr('height', 0)
+        .attr("width", 0)
+        .attr("height", 0)
         .remove();
     }
   }
@@ -2670,7 +2675,7 @@ var Puntos = function (el, i) {
     opciones.each(function (o, i) {
       var text = d3.select(this);
       o.box = new Box({
-        content: {width: o.caja.width, height: o.caja.height},
+        content: { width: o.caja.width, height: o.caja.height },
         padding: {
           top: paddingEncabezadoV,
           right: paddingEncabezadoH,
@@ -2679,7 +2684,7 @@ var Puntos = function (el, i) {
         },
       });
       text.attr(
-        'transform',
+        "transform",
         `translate(${paddingEncabezadoH},${offsetY + paddingEncabezadoV})`
       );
       offsetY += o.box.outer.height;
@@ -2696,7 +2701,7 @@ var Puntos = function (el, i) {
       var offsetX = (anchoCaja - anchoTexto) / 2;
       var offsetY = (altoCaja - altoTexto) / 2;
       text.attr(
-        'transform',
+        "transform",
         `translate(${t.coordenadas.x + offsetX},${t.coordenadas.y + offsetY})`
       );
     });
@@ -2714,7 +2719,7 @@ var Puntos = function (el, i) {
   //TODO: Checar que tranza entre label vs value con Early childhood education and development
   function setMenu(menu) {
     menu = he.decode(menu);
-    var opcion = _.find(opcionesMenu, {menu: menu}) || null;
+    var opcion = _.find(opcionesMenu, { menu: menu }) || null;
     if (opcion !== null) {
       var obj = null;
       var tipo = opcion.tipo;
@@ -2722,7 +2727,7 @@ var Puntos = function (el, i) {
       var opc = opcion.opcion;
       if (opc === true) {
         var arreglo = diccionario[tipo][clave].options;
-        obj = _.find(arreglo, {value: menu}) || null;
+        obj = _.find(arreglo, { value: menu }) || null;
       } else {
         obj = diccionario[tipo][clave];
       }
@@ -2737,7 +2742,7 @@ var Puntos = function (el, i) {
 
   function unsetMenu(menu) {
     menu = he.decode(menu);
-    var opcion = _.find(opcionesMenu, {menu: menu}) || null;
+    var opcion = _.find(opcionesMenu, { menu: menu }) || null;
     if (opcion !== null) {
       var tipo = opcion.tipo;
       if (opcion.opcion === true) {
@@ -2760,9 +2765,8 @@ var Puntos = function (el, i) {
 
   function limpiaCadena(cadena) {
     cadena = _.trim(cadena);
-    //cadena = cadena.replace(/\/+/g, ", ");
     cadena = he.decode(cadena);
-    return cadena == '' ? null : cadena;
+    return cadena == "" ? null : cadena;
   }
 
   function convierteCadenaAArreglo(cadena, ajustarOtro) {
@@ -2770,22 +2774,21 @@ var Puntos = function (el, i) {
     var barra = /\|/g;
     var arreglo = [];
     cadena = _.trim(cadena);
-    //cadena = cadena.replace(/\/+/g, ", ");
     cadena = he.decode(cadena);
     ajustarOtro = ajustarOtro || false;
-    if (cadena != '') {
+    if (cadena != "") {
       arreglo = cadena
-        .replace(coma, '|')
-        .split(',')
+        .replace(coma, "|")
+        .split(",")
         .map(function (c) {
-          return c.replace(barra, ', ');
+          return c.replace(barra, ", ");
         });
     }
     if (ajustarOtro === true) {
       var er = /other/i;
       arreglo = arreglo.map(function (c) {
         if (er.test(c)) {
-          c = 'Other';
+          c = "Other";
         }
         return c;
       });
@@ -2795,14 +2798,12 @@ var Puntos = function (el, i) {
 
   function convierteCadenaABooleano(cadena) {
     cadena = _.trim(cadena);
-    //cadena = cadena.replace(/\/+/g, ", ");
     cadena = he.decode(cadena);
-    return _.lowerCase(cadena) == 'yes' ? true : false;
+    return _.lowerCase(cadena) == "yes" ? true : false;
   }
 
   function convierteCadenaAResultados(cadena, diccionario) {
     cadena = _.trim(cadena);
-    //cadena = cadena.replace(/\/+/g, ", ");
     cadena = he.decode(cadena);
     var opciones = diccionario.options;
     var valor = cadena;
@@ -2819,11 +2820,10 @@ var Puntos = function (el, i) {
 
   function convierteCadenaARangos(cadena, diccionario) {
     cadena = _.trim(cadena);
-    //cadena = cadena.replace(/\/+/g, ", ");
     cadena = he.decode(cadena);
     var opciones = diccionario.options;
     var valor = parseFloat(cadena);
-    cadena = 'NR';
+    cadena = "NR";
     if (!isNaN(valor)) {
       var opcion = _.find(opciones, function (o) {
         return o.range[0] <= valor && valor <= o.range[1] ? true : false;
@@ -2847,26 +2847,26 @@ var Puntos = function (el, i) {
         line = [],
         lineNumber = 0,
         lineHeight = 1.1, // ems
-        y = text.attr('y'),
-        dy = parseFloat(text.attr('dy')),
+        y = text.attr("y"),
+        dy = parseFloat(text.attr("dy")),
         tspan = text
           .text(null)
-          .append('tspan')
-          .attr('x', 0)
-          .attr('y', y)
-          .attr('dy', dy + 'em');
+          .append("tspan")
+          .attr("x", 0)
+          .attr("y", y)
+          .attr("dy", dy + "em");
       while ((word = words.pop())) {
         line.push(word);
-        tspan.text(line.join(' '));
+        tspan.text(line.join(" "));
         if (tspan.node().getComputedTextLength() > width) {
           line.pop();
-          tspan.text(line.join(' '));
+          tspan.text(line.join(" "));
           line = [word];
           tspan = text
-            .append('tspan')
-            .attr('x', 0)
-            .attr('y', y)
-            .attr('dy', ++lineNumber * lineHeight + dy + 'em')
+            .append("tspan")
+            .attr("x", 0)
+            .attr("y", y)
+            .attr("dy", ++lineNumber * lineHeight + dy + "em")
             .text(word);
         }
       }
@@ -2890,25 +2890,25 @@ $(function () {
   }
 
   function main() {
-    elementos = $('.contenedor-visualizacion');
-    elementos.addClass('espera');
+    elementos = $(".contenedor-visualizacion");
+    elementos.addClass("espera");
     _.each(elementos, function (el, i) {
       el = $(el);
-      var tipo = el.data('tipo-visualizacion');
+      var tipo = el.data("tipo-visualizacion");
       window.v = getVisualizacion(el, i, tipo);
-      $('#reset').click(function () {
+      $("#reset").click(function () {
         window.v.reset();
       });
-      $('#matriz1x3').click(function () {
+      $("#matriz1x3").click(function () {
         window.v.matriz1x3();
       });
-      $('#matriz2x2').click(function () {
+      $("#matriz2x2").click(function () {
         window.v.matriz2x2();
       });
-      $('#matriz2x3').click(function () {
+      $("#matriz2x3").click(function () {
         window.v.matriz2x3();
       });
-      $('#matriz1x5').click(function () {
+      $("#matriz1x5").click(function () {
         window.v.matriz1x5();
       });
     });
@@ -2917,7 +2917,7 @@ $(function () {
   function getVisualizacion(elemento, i, tipo) {
     var v = null;
     switch (tipo) {
-      case 'puntos':
+      case "puntos":
         v = new Puntos(elemento, i);
         break;
       default:

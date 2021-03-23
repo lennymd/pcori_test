@@ -133,12 +133,17 @@ function sdb_manager(_dataset, _data_dictionary, _display_dictionary) {
   }
 
   // populate accordion options for outcomes
-  const outcome_values = [
+  const outcome_labels = [
     display_dictionary.filter(behavioral_outcomes).map(behavioral_outcomes),
     display_dictionary.filter(health_outcomes).map(health_outcomes),
     display_dictionary
       .filter(healthcareuse_outcomes)
       .map(healthcareuse_outcomes),
+  ];
+  const outcome_values = [
+    data_dictionary.filter(behavioral_outcomes).map(behavioral_outcomes),
+    data_dictionary.filter(health_outcomes).map(health_outcomes),
+    data_dictionary.filter(healthcareuse_outcomes).map(healthcareuse_outcomes),
   ];
 
   const result_valence = [
@@ -151,7 +156,7 @@ function sdb_manager(_dataset, _data_dictionary, _display_dictionary) {
 
   for (let j = 0; j < 3; j++) {
     const outcome_list = d3.select(`#sdb_outcomes_${j}`);
-    outcome_values[j].forEach((outcome, i) => {
+    outcome_labels[j].forEach((outcome, i) => {
       outcome_list.append('li').attr('class', 'filter_option_item')
         .html(`<label class="accordion_option" id="sdb_${j + 16}_o_${i}">
                           <input type="checkbox"/>
@@ -351,8 +356,6 @@ function sdb_manager(_dataset, _data_dictionary, _display_dictionary) {
           if (main_opt == 'o') {
             // process outcome based on category and value
             const filter_value = outcome_values[cat - 16][opt_val];
-            console.log(filter_value);
-
             filtered_data = filtered_data.filter(d =>
               filter_function(d).includes(filter_value)
             );
@@ -361,10 +364,7 @@ function sdb_manager(_dataset, _data_dictionary, _display_dictionary) {
             if (main_opt == 'v') {
               let temp_result_filters = [];
               const relevant_results = result_accessors[cat - 16];
-              if (
-                outcome_related.length == 0 ||
-                outcome_related.length == relevant_results.length
-              ) {
+              if (outcome_related.length == 0) {
                 // Only a result value has been selected, or all outcomes have been selected. Filter by all the results
                 relevant_results.forEach(rel_filter => {
                   temp_result_filters.push(
@@ -373,10 +373,7 @@ function sdb_manager(_dataset, _data_dictionary, _display_dictionary) {
                     )
                   );
                 });
-              } else if (
-                outcome_related.length > 0 &&
-                outcome_related.length < relevant_results.length
-              ) {
+              } else if (outcome_related.length > 0) {
                 // At least one outcome is selected so filter only by those outcomes's results
                 let picked_result_index = [];
                 outcome_related.forEach(outcome => {
@@ -410,10 +407,7 @@ function sdb_manager(_dataset, _data_dictionary, _display_dictionary) {
             } else if (main_opt == 'd') {
               let temp_direction_filters = [];
               const relevant_results = result_accessors[cat - 16];
-              if (
-                outcome_related == 0 ||
-                outcome_related.length == relevant_results.length
-              ) {
+              if (outcome_related == 0) {
                 // CASE: we select only a direction, or all the outcomes AND a direction. this case seems dumb to me, but let's make it work
                 direction_accessors.forEach(factor => {
                   temp_direction_filters.push(
@@ -448,7 +442,6 @@ function sdb_manager(_dataset, _data_dictionary, _display_dictionary) {
                 });
               }
 
-              console.log(temp_direction_filters);
               // combine all interventions and pass it to filtered_data
               let _temp = [];
               temp_direction_filters.forEach(sub_filter => {
@@ -528,6 +521,8 @@ function sdb_manager(_dataset, _data_dictionary, _display_dictionary) {
   function updateRowsDB(_data) {
     // create a nested version of filtered_data
     let _nest = d3.nest().key(ref_id).entries(_data);
+    console.log(_nest.length);
+
     // use nest_data to update the rows.
     const tbody = d3.select('tbody#sdb_study_rows');
     const study_rows = tbody.selectAll('tr.study_row');
