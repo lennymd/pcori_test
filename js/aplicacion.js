@@ -2210,7 +2210,7 @@ var Puntos = function (el, i) {
         if (p.multiples === true) {
           //color = "url(#mitades)";
           color = "#ffc20e";
-          orden = 4;
+          orden = 6;
         } else {
           var opcion = controles.rows.options[p.matriz.m];
           var clave = opcion.key;
@@ -2232,12 +2232,12 @@ var Puntos = function (el, i) {
             case "no effect":
             case "no significant difference":
               color = "#7d8990";
-              orden = 5;
+              orden = 4;
               break;
             default:
               color = "black";
               color = "#7d8990";
-              orden = 6;
+              orden = 5;
               break;
           }
         }
