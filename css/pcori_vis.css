@@ -156,10 +156,11 @@ a {
   padding: 3px;
   font-weight: 500;
   cursor: pointer;
+  background-color: var(--menu-option);
 }
 
 .vis_quality_active {
-  background-color: var(--accent-main);
+  background-color: var(--accent-secondary);
   color: white;
 }
 
@@ -271,16 +272,19 @@ a {
   flex-direction: column;
   align-content: center;
   justify-self: center;
-  margin-right: 7px;
+  margin-right: 8px;
 }
 
+.legend_item_last {
+  border-left: 2px solid var(--accent-main);
+  padding-left: 5px;
+}
 .legend_item p {
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .legend_icon {
   display: inline-block;
-  border: 2px solid var(--text);
   width: 20px;
   height: 20px;
   border-radius: 50%;

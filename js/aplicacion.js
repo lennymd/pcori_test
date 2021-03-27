@@ -247,7 +247,7 @@ var diccionario = {
         },
         {
           value: "Child development outcomes",
-          label: "Child emotional, mental, or physical growth outcomes",
+          label: "Child emotional, cognitive, or physical growth outcomes",
           key: "result_child_development",
         },
         {
@@ -836,6 +836,8 @@ var Puntos = function (el, i) {
         _.each(puntos, function (p) {
           if (!obj.hasOwnProperty(p.ref_id)) {
             obj[p.ref_id] = p;
+          } else {
+            obj[p.ref_id].multiples = true;
           }
         });
         puntos = _.values(obj);
@@ -919,10 +921,10 @@ var Puntos = function (el, i) {
     }
     _.each(claves, function (clave) {
       _.each(puntos, function (punto) {
-        punto.multiples = false;
+        //punto.multiples = false;
         var valores = punto[clave];
         if (Array.isArray(valores) && valores.length > 1) {
-          punto.multiples = true;
+          //punto.multiples = true;
           _.each(valores, function (valor) {
             var aux = _.cloneDeep(punto);
             aux[clave] = [valor];
@@ -2206,7 +2208,8 @@ var Puntos = function (el, i) {
     if (controles.rows !== null) {
       _.each(puntosFiltrados, function (p) {
         if (p.multiples === true) {
-          color = "url(#mitades)";
+          //color = "url(#mitades)";
+          color = "#ffc20e";
           orden = 4;
         } else {
           var opcion = controles.rows.options[p.matriz.m];
@@ -2228,12 +2231,12 @@ var Puntos = function (el, i) {
               break;
             case "no effect":
             case "no significant difference":
-              color = "#c7cccf";
+              color = "#7d8990";
               orden = 5;
               break;
             default:
               color = "black";
-              color = "#c7cccf";
+              color = "#7d8990";
               orden = 6;
               break;
           }

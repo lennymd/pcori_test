@@ -49,19 +49,20 @@ async function project_main() {
     $('.tooltip_icon_container').tooltipster();
   });
 
-  // console.log(document.getElementsByClassName('study_dots'));
-
   // visualization manager
   vis_manager(dataset, data_dictionary, display_dictionary);
 
   // database manager
   sdb_manager(dataset, data_dictionary, display_dictionary);
   d3.selectAll('.study_row').on('click', showStudyInfo);
+
   function showStudyInfo() {
     const container = d3.select('#modal_content');
     container.html('');
     buildStudyCard(this.id.split('_')[1]);
   }
+
+  // TODO move this to it's own helper file
   function buildStudyCard(_id) {
     const modal = document.getElementById('modal_section');
     modal.style.display = 'block';
@@ -75,25 +76,30 @@ async function project_main() {
     const first_instance = _data[0];
 
     // Part 1 - grid table with authors, year, title, publication
-    const info_accessors = [authors, year, title, journal];
+    const info_accessors = [authors, year, title, journal, quality_rating];
     const general_info_grid = container
       .append('div')
       .attr('class', 'modal_info_grid');
-    ['Authors', 'Year', 'Title', 'Publication'].forEach((title, i) => {
-      const box = general_info_grid
-        .append('div')
-        .attr('class', 'modal_info_section');
+    ['Authors', 'Year', 'Title', 'Publication', 'Study quality'].forEach(
+      (title, i) => {
+        const box = general_info_grid
+          .append('div')
+          .attr('class', 'modal_info_section');
 
-      const hed = box.append('h3').attr('class', 'study_info_hed').text(title);
-      const txt = box
-        .append('p')
-        .attr('class', 'study_info_txt')
-        .text(info_accessors[i](first_instance));
+        const hed = box
+          .append('h3')
+          .attr('class', 'study_info_hed')
+          .text(title);
+        const txt = box
+          .append('p')
+          .attr('class', 'study_info_txt')
+          .text(info_accessors[i](first_instance));
 
-      if (title == 'Title') {
-        txt.classed('modal_study_title', true);
+        if (title == 'Title') {
+          txt.classed('modal_study_title', true);
+        }
       }
-    });
+    );
 
     const modal_grid = container.append('div').attr('class', 'modal_grid');
     const abstract_side = modal_grid
@@ -134,10 +140,9 @@ async function project_main() {
       .attr('class', 'sdb_reset sdb_reset_text sdb_link_text')
       .attr('target', '_blank')
       .text('Link to Study');
-    if (doi_list.length > 0 || url_list.length >= 0) {
+    if (doi_list.length > 0 && url_list.length >= 0) {
       // CASE: we have DOI or URL. Work with DOI
-      const first_link = doi_list[0];
-
+      const first_link = doi_list[0].split(' ')[0];
       if (first_link[0] == 'h') {
         // CASE: DOI is full link. use as is
         study_link.attr('href', first_link);
@@ -156,22 +161,17 @@ async function project_main() {
 
     // Part 3 -- study interventions
 
-    intervention_side
-      .append('h2')
-      .attr('class', 'modal_section_hed')
-      .text(() => {
-        if (_data.length == 1) {
-          return 'Intervention';
-        } else {
-          return 'Interventions';
-        }
-      });
-
     _data.forEach((intervention, ind) => {
       const intervention_box = intervention_side
         .append('div')
         .attr('class', 'modal_intervention');
-      // opening arm and description
+
+      intervention_box
+        .append('h2')
+        .attr('class', 'modal_section_hed')
+        .text(`Intervention ${ind + 1}`);
+
+      // Add opening arm and description
       intervention_box
         .append('p')
         .html(
@@ -180,7 +180,7 @@ async function project_main() {
           )}.</h4>&nbsp;${intervention_description(intervention)}`
         );
 
-      // big5 quicksheet
+      // Add information related to intervention
       let modal_accessors = [
         target_social_need,
         target_population,
@@ -193,7 +193,7 @@ async function project_main() {
         health_outcomes,
         healthcareuse_outcomes,
       ];
-      [
+      let modal_sections = [
         'Social need addressed',
         'Study population recruited',
         'Study design',
@@ -204,33 +204,101 @@ async function project_main() {
         'Behavioral outcomes',
         'Health outcomes',
         'Use of healthcare services outcomes',
-      ].forEach((category, i) => {
-        const value = modal_accessors[i](intervention);
-        let value_split = value.split(',');
-        let trimmed_values = [];
-        value_split.forEach(item => trimmed_values.push(item.trim()));
-        const value_clean = trimmed_values.join(', ');
-        if (i != 5) {
-          // CASE lay things out if value is not empty
+      ];
+
+      modal_sections.forEach((category, i) => {
+        let accessor = modal_accessors[i];
+        let value = accessor(intervention);
+        if (i == 0) {
           if (value.length > 0) {
+            let value_split = value.trim().split(',');
+            let trimmed_values = [];
+            value_split.forEach(item => {
+              // TODO fix this difference at the distiller level
+              if (item == 'Early childhood education and development') {
+                item = 'Early childhood development';
+              }
+              trimmed_values.push(item.trim());
+            });
+            const value_clean = trimmed_values.join(', ');
             let template = `<h4 class="modal_intervention_arm modal_intervention_category_hed">${category}</h4><br/><p>${value_clean}</p>`;
-            if (i == 6) {
-              template = `<h4 class="modal_intervention_arm modal_intervention_category_hed">${category}</h4><br/><p>${value_clean}%</p>`;
-            }
+
             intervention_box
               .append('div')
               .attr('class', 'modal_intervention_category')
               .html(template);
-          } else {
-            // Dealing with proportion of immigrant. if
-            if (+value > 0) {
-              intervention_box
-                .append('div')
-                .attr('class', 'modal_intervention_category')
-                .html(
-                  `<h4 class="modal_intervention_arm modal_intervention_category_hed">${category}</h4><br/><p>${value_clean}%</p>`
-                );
-            }
+          }
+        } else if (i < 5 && i > 0) {
+          if (value.length > 0) {
+            let value_split = value.trim().split(',');
+            let trimmed_values = [];
+            value_split.forEach(item => trimmed_values.push(item.trim()));
+            const value_clean = trimmed_values.join(', ');
+            let template = `<h4 class="modal_intervention_arm modal_intervention_category_hed">${category}</h4><br/><p>${value_clean}</p>`;
+
+            intervention_box
+              .append('div')
+              .attr('class', 'modal_intervention_category')
+              .html(template);
+          }
+        } else if (i == 5 || i == 6) {
+          if (+value > 0) {
+            intervention_box
+              .append('div')
+              .attr('class', 'modal_intervention_category')
+              .html(
+                `<h4 class="modal_intervention_arm modal_intervention_category_hed">${category}</h4><br/><p>${value}%</p>`
+              );
+          }
+        } else if (i > 6) {
+          if (value.length > 0) {
+            let value_split = value
+              .replace(/ *\([^)]*\) */g, ' ')
+              .trim()
+              .split(',');
+            let trimmed_values = [];
+            value_split.forEach(item => trimmed_values.push(item.trim()));
+            const value_clean = trimmed_values.join(', ');
+            const outcome_values = [
+              display_dictionary
+                .filter(behavioral_outcomes)
+                .map(behavioral_outcomes),
+              display_dictionary.filter(health_outcomes).map(health_outcomes),
+              display_dictionary
+                .filter(healthcareuse_outcomes)
+                .map(healthcareuse_outcomes),
+            ];
+            const outcomes = value_clean.split(',');
+            let outcome_text = [];
+            outcomes.forEach(outcome => {
+              const category = outcome_values[i - 7];
+              const result_accessor_list = result_accessors[i - 7];
+              let o = outcome.trim();
+              let index1 = category.indexOf(o);
+              if (o == 'Preventive care utilization') {
+                o = 'Preventive care utilization (well child visits)';
+                index1 = 13;
+              } else if (o == 'Child development outcomes') {
+                o = 'Child emotional, cognitive, or physical growth outcomes';
+                index1 = 2;
+              } else if (o == 'Changes in functional outcomes') {
+                index1 = 0;
+              } else if (o == 'Adherence to treatment') {
+                o = 'Adherence to treatment (medications/follow-up visit)';
+                index1 = 0;
+              }
+              const result_accessor = result_accessor_list[index1];
+              outcome_text.push(
+                `${o} (<em>${result_accessor(intervention)}</em>)`
+              );
+            });
+            let template = `<h4 class="modal_intervention_arm modal_intervention_category_hed">${category}</h4><br/><p>${outcome_text.join(
+              '<br/>'
+            )}</p>`;
+            intervention_box
+              .append('div')
+              .attr('class', 'modal_intervention_category')
+              .html(template);
           }
         }
       });
@@ -443,16 +511,5 @@ async function project_main() {
   function disabledButton() {
     alert('This feature is currently unavailable.');
   }
-
-  // let current_study_dots = d3.selectAll('.study_dots')._groups[0];
-  // current_study_dots.forEach(elt => {
-  //   console.log(elt);
-  //   const title = elt.children[0].innerText;
-  //   const classList = elt.classList;
-  //   if (!elt.classList.contains('tooltipstered')) {
-  //     console.log('this runs');
-  //     $(elt).tooltipster({}).tooltipster('content', title);
-  //   }
-  // });
 }
 project_main();

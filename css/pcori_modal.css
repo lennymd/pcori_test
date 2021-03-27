@@ -75,7 +75,7 @@
 }
 .modal_info_grid {
   display: grid;
-  grid-template-columns: 25% auto 50% 20%;
+  grid-template-columns: 2fr auto 4.5fr 2fr 1fr;
 }
 .modal_info_section {
   border-right: 2px solid var(--accent-main);

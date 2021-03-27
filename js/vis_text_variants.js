@@ -94,7 +94,7 @@ function getTextVariant(_combo, _keywords) {
         vis_1_phrase +
         '. They are ' +
         vis_3_phrase +
-        '. They are also' +
+        '. They are also ' +
         vis_4_phrase;
       break;
     case '01100':

@@ -135,12 +135,15 @@ function vis_manager(_dataset, _data_dictionary, _display_dictionary) {
     });
 
     chain.sort();
-
+    console.log(chain);
     if (chain.length == 0) {
       // CASE: chain is empty, so hide legends + text and show intro
       d3.selectAll('.vis_intro_description').classed('hidden', false);
       d3.selectAll('.vis_text_content').classed('hidden', true);
       d3.selectAll('.legends').classed('hidden', true);
+      d3.select('#quality_legend').style('display', 'none');
+      d3.select('#outcomes_legend').style('display', 'none');
+      d3.selectAll('.legend_spacer').style('display', 'none');
     } else {
       d3.selectAll('.vis_intro_description').classed('hidden', true);
       d3.selectAll('.vis_text_content').classed('hidden', false);
@@ -148,12 +151,13 @@ function vis_manager(_dataset, _data_dictionary, _display_dictionary) {
 
     let show_outcomes = categories.includes('4');
     let show_quality = categories.includes('quality');
+    console.log(show_outcomes, show_quality);
+    let display_quality = 'none';
+    let display_outcomes = 'none';
+    let display_spacer = 'none';
 
     if (show_outcomes || show_quality) {
       // We're seeing either outcomes or quality so let's figure out which case it is.
-      let display_quality = 'none';
-      let display_outcomes = 'none';
-      let display_spacer = 'none';
 
       if (show_quality && show_outcomes) {
         // if it's both, show both things and the spacer in between
@@ -171,12 +175,11 @@ function vis_manager(_dataset, _data_dictionary, _display_dictionary) {
           display_outcomes = 'grid';
         }
       }
-
-      d3.selectAll('.legends').classed('hidden', false);
-      d3.select('#quality_legend').style('display', display_quality);
-      d3.select('#outcomes_legend').style('display', display_outcomes);
-      d3.selectAll('.legend_spacer').style('display', display_spacer);
     }
+    d3.selectAll('.legends').classed('hidden', false);
+    d3.select('#quality_legend').style('display', display_quality);
+    d3.select('#outcomes_legend').style('display', display_outcomes);
+    d3.selectAll('.legend_spacer').style('display', display_spacer);
 
     // Calculate how many studies we have. start from all the study dots and then filter to make sure you count each Refid only once. Otherwise I would have used d3 to get all the study dots like I do in the initial loading.
 
