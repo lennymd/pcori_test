@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Lenny Martinez Dominguez" />
+    <!-- TODO fill out meta description tag -->
+    <!-- <meta name="description" content="TODO @@" /> -->
+
+    <!-- TODO figure out a better title -->
+    <title>Evidence Map</title>
+
+    <link rel="stylesheet" href="./css/pcori.css" />
+    <link rel="stylesheet" href="./css/pcori_vis.css" />
+    <link rel="stylesheet" href="./css/pcori_sdb.css" />
+    <link rel="stylesheet" href="./css/pcori_modal.css" />
+    <link rel="stylesheet" href="./css/dependencias.min.css" />
+    <link rel="stylesheet" href="./css/estilo.css" />
+    <link rel="stylesheet" href="./css/queries.css" />
+
+    <link rel="stylesheet" href="./css/tooltipster.bundle.min.css" />
+  </head>
+  <body>
+    <header class="project_header">
+      <div>
+        <img
+          class="project_logo"
+          src="./img/pcori_logo.svg"
+          alt="Patient-Centered Outcomes Research Institute"
+        />
+      </div>
+      <div class="project_title">
+        EVIDENCE MAP
+        <div class="project_subtitle">
+          SOCIAL NEEDS INTERVENTIONS AND HEALTH OUTCOMES
+        </div>
+      </div>
+    </header>
+
+    <nav class="tab_container">
+      <div class="tab_spacer_short">&nbsp;</div>
+      <a id="tab_vis" class="tab_item tab_active" href="#"
+        >Interactive Visualization</a
+      >
+      <a id="tab_sdb" class="tab_item" href="#">Searchable Database</a>
+      <div class="tab_spacer">&nbsp;</div>
+    </nav>
+    <main>
+      <section id="vis">
+        <div class="map_structure">
+          <div class="panel_left">
+            <section class="vis_menu_container">
+              <section class="vis_menu_options">
+                <h2 class="secondary_menu">Menus</h2>
+                <p class="vis_menu_description">
+                  When you make a selection from the first three menus below,
+                  only studies that fulfill your choice will remain on screen.
+                </p>
+                <p class="vis_menu_description">
+                  When you make a selection from the last two menus, studies
+                  will be sorted into columns or rows.
+                </p>
+
+                <div class="vis_menu_grid">
+                  <ul class="vis_menu">
+                    <li>
+                      <div class="vis_category">
+                        <div
+                          class="tooltip_icon_container"
+                          id="tooltip_vis_0"
+                        ></div>
+                        <span class="vis_category_text">
+                          Social need addressed
+                        </span>
+                      </div>
+                      <ul class="vis_options" id="vis_options_0"></ul>
+                    </li>
+                  </ul>
+                  <div class="vis_selected" id="vis_selected_0">
+                    <div class="vis_selected_text" id="vis_selected_0_text">
+                      @@
+                    </div>
+                    <div class="vis_unset_icon" id="vis_unset_0">&times;</div>
+                  </div>
+                </div>
+                <div class="vis_menu_grid">
+                  <ul class="vis_menu">
+                    <li>
+                      <div class="vis_category">
+                        <div
+                          class="tooltip_icon_container"
+                          id="tooltip_vis_1"
+                        ></div>
+                        <span class="vis_category_text">
+                          Study population recruited
+                        </span>
+                      </div>
+                      <ul class="vis_options" id="vis_options_1"></ul>
+                    </li>
+                  </ul>
+                  <div class="vis_selected" id="vis_selected_1">
+                    <div class="vis_selected_text" id="vis_selected_1_text">
+                      @@
+                    </div>
+                    <div class="vis_unset_icon" id="vis_unset_1">&times;</div>
+                  </div>
+                </div>
+                <div class="vis_menu_grid">
+                  <ul class="vis_menu">
+                    <li>
+                      <div class="vis_category">
+                        <div
+                          class="tooltip_icon_container"
+                          id="tooltip_vis_2"
+                        ></div>
+                        <span class="vis_category_text"> Study design </span>
+                      </div>
+                      <ul class="vis_options" id="vis_options_2"></ul>
+                    </li>
+                  </ul>
+                  <div class="vis_selected" id="vis_selected_2">
+                    <div class="vis_selected_text" id="vis_selected_2_text">
+                      @@
+                    </div>
+                    <div class="vis_unset_icon" id="vis_unset_2">&times;</div>
+                  </div>
+                </div>
+                <div class="small_spacer"></div>
+                <div class="vis_menu_grid">
+                  <ul class="vis_menu">
+                    <li>
+                      <div class="vis_category">
+                        <div
+                          class="tooltip_icon_container"
+                          id="tooltip_vis_3"
+                        ></div>
+                        <span class="vis_category_text">
+                          Participant characteristics
+                        </span>
+                      </div>
+                      <ul class="vis_options" id="vis_options_3"></ul>
+                    </li>
+                  </ul>
+                  <div class="vis_selected" id="vis_selected_3">
+                    <div class="vis_selected_text" id="vis_selected_3_text">
+                      @@
+                    </div>
+                    <div class="vis_unset_icon" id="vis_unset_3">&times;</div>
+                  </div>
+                </div>
+                <div class="vis_menu_grid">
+                  <ul class="vis_menu">
+                    <li>
+                      <div class="vis_category">
+                        <div
+                          class="tooltip_icon_container"
+                          id="tooltip_vis_4"
+                        ></div>
+                        <span class="vis_category_text"> Type of outcome </span>
+                      </div>
+                      <ul class="vis_options" id="vis_options_4"></ul>
+                    </li>
+                  </ul>
+                  <div class="vis_selected" id="vis_selected_4">
+                    <div class="vis_selected_text" id="vis_selected_4_text">
+                      @@
+                    </div>
+                    <div class="vis_unset_icon" id="vis_unset_4">&times;</div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="vis_quality_button">
+                <h3 class="quality_menu_title">
+                  <div class="tooltip_icon_container" id="tooltip_vis_5"></div>
+                  Study quality
+                </h3>
+                <div class="vis_menu">
+                  <div class="button_grid">
+                    <div
+                      id="vis_quality_off"
+                      class="vis_quality_state vis_quality_active"
+                    >
+                      Off
+                    </div>
+                    <div id="vis_quality_on" class="vis_quality_state">On</div>
+                  </div>
+                </div>
+              </section>
+            </section>
+            <section class="vis_study_list">
+              <div class="study_list_icon">
+                <img src="./img/export.svg" alt="" />
+              </div>
+
+              <div class="study_list_description">
+                You’ll see this icon often in this application. Clicking on it
+                will bring up the list of studies that fulfill the options
+                you’ve chosen on the menus above.
+              </div>
+            </section>
+          </div>
+          <div class="panel_right">
+            <section class="vis_info_box">
+              <div class="vis_info_box_layout">
+                <div class="vis_text_content hidden">
+                  <div class="vis_info_text">@@ Text goes here</div>
+                  <div class="legends hidden">
+                    <div class="legends_grid">
+                      <div class="legend_single_grid" id="quality_legend">
+                        <div class="legend_hed_group">
+                          <h4 class="legend_hed">Study quality</h4>
+                        </div>
+                        <div class="legend_item_group">
+                          <div class="legend_item">
+                            <img
+                              src="./img/quality/quality_3.svg"
+                              class="legend_icon"
+                            />
+                            <p class="legend_text">High</p>
+                          </div>
+                          <div class="legend_item">
+                            <img
+                              src="./img/quality/quality_2.svg"
+                              class="legend_icon"
+                            />
+                            <p class="legend_text">Medium</p>
+                          </div>
+                          <div class="legend_item">
+                            <img
+                              src="./img/quality/quality_1.svg"
+                              class="legend_icon"
+                            />
+                            <p class="legend_text">Low</p>
+                          </div>
+                          <div class="legend_item">
+                            <img
+                              src="./img/quality/quality_0.svg"
+                              class="legend_icon"
+                            />
+                            <p class="legend_text">Not determined</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="legend_spacer">&nbsp;</div>
+                      <div class="legend_single_grid" id="outcomes_legend">
+                        <div class="legend_hed_group">
+                          <h4 class="legend_hed">Outcome results</h4>
+                        </div>
+                        <div class="legend_item_group">
+                          <div class="legend_item">
+                            <img
+                              src="./img/outcome/positive.svg"
+                              class="legend_icon"
+                            />
+                            <p class="legend_text">Positive</p>
+                          </div>
+                          <div class="legend_item">
+                            <img
+                              src="./img/outcome/negative.svg"
+                              class="legend_icon"
+                            />
+                            <p class="legend_text">Negative</p>
+                          </div>
+                          <div class="legend_item">
+                            <img
+                              src="./img/outcome/mixed.svg"
+                              class="legend_icon"
+                            />
+                            <p class="legend_text">Mixed</p>
+                          </div>
+                          <div class="legend_item">
+                            <img
+                              src="./img/outcome/no_difference.svg"
+                              class="legend_icon"
+                            />
+                            <p class="legend_text">No significant difference</p>
+                          </div>
+                          <div class="legend_item legend_item_last">
+                            <img
+                              src="./img/outcome/multiple_interventions.svg"
+                              class="legend_icon"
+                            />
+                            <p class="legend_text">Multiple interventions</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="vis_intro_description">
+                  <p>
+                    This evidence map contains information about
+                    <strong
+                      ><span id="total_study_number">100+</span> studies</strong
+                    >
+                    on social needs interventions.
+                    <span class="text_spacer"></span>
+                    <strong>Each dot represents a study.</strong><br />
+                    <strong>The menus and filters to the left</strong> let you
+                    show or hide interventions, sort them, and color code
+                    them.<br />
+                    <strong>Hover over a dot</strong> to see basic information
+                    about the corresponding study.<br />
+                    <strong>Click on any dot</strong> to see detailed
+                    information about the study.
+                  </p>
+                </div>
+              </div>
+            </section>
+            <section class="vis_visualization">
+              <div class="vis_working_container">
+                <div
+                  class="contenedor-visualizacion"
+                  data-tipo-visualizacion="puntos"
+                  data-articulos="pcori_20210316"
+                ></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+      <section id="sdb" class="hidden">
+        <div class="map_structure">
+          <div class="panel_left">
+            <section class="sdb_menu_container">
+              <p class="sdb_description">
+                When you select options below,<br />
+                only studies that fit what you selected<br />will remain on the
+                list to the right.
+              </p>
+              <div class="sdb_reset">
+                <span class="sdb_reset_text">RESET SELECTIONS</span>
+              </div>
+              <section class="sdb_filters">
+                <!-- social need addressed -->
+                <div class="accordion_unit" id="sdb_filter_0">
+                  <div class="accordion_title">
+                    <div class="accordion_title_text">
+                      <div
+                        class="tooltip_icon_container"
+                        id="tooltip_sdb_0"
+                      ></div>
+                      Social need addressed
+                    </div>
+                    <div class="toggle_segment">
+                      <span
+                        class="items_selected"
+                        id="selected_0"
+                        style="visibility: hidden"
+                        >&nbsp;</span
+                      >
+                      <span class="toggle_element">▼</span>
+                    </div>
+                  </div>
+                  <div class="accordion_content hidden">
+                    <ul class="accordion_options" id="sdb_options_0"></ul>
+                  </div>
+                </div>
+                <!-- study population recruited -->
+                <div class="accordion_unit" id="sdb_filter_1">
+                  <div class="accordion_title">
+                    <div class="accordion_title_text">
+                      <div
+                        class="tooltip_icon_container"
+                        id="tooltip_sdb_1"
+                      ></div>
+                      Study population recruited
+                    </div>
+                    <div class="toggle_segment">
+                      <span
+                        class="items_selected"
+                        id="selected_1"
+                        style="visibility: hidden"
+                        >&nbsp;</span
+                      >
+                      <span class="toggle_element">▼</span>
+                    </div>
+                  </div>
+                  <div class="accordion_content hidden">
+                    <ul class="accordion_options" id="sdb_options_1"></ul>
+                  </div>
+                </div>
+                <!-- study characteristics -->
+                <div class="accordion_unit" id="sdb_filter_7">
+                  <div class="accordion_title">
+                    <div class="accordion_title_text">
+                      <div
+                        class="tooltip_icon_container"
+                        id="tooltip_sdb_7"
+                      ></div>
+                      Study characteristics
+                    </div>
+                    <div class="toggle_segment">
+                      <span
+                        class="items_selected"
+                        id="selected_8"
+                        style="visibility: hidden"
+                        >&nbsp;</span
+                      >
+                      <span class="toggle_element">▼</span>
+                    </div>
+                  </div>
+                  <div class="accordion_content hidden">
+                    <h3 class="subsection_hed">Study design</h3>
+                    <ul class="accordion_options" id="sdb_options_10"></ul>
+                    <div class="sdb_spacer"></div>
+                    <div class="sdb_spacer"></div>
+                    <h3 class="subsection_hed">
+                      Individual vs. Systems intervention
+                    </h3>
+                    <ul class="accordion_options" id="sdb_options_12"></ul>
+                  </div>
+                </div>
+
+                <!-- participant characteristics -->
+                <div class="accordion_unit" id="sdb_filter_2">
+                  <div class="accordion_title">
+                    <div class="accordion_title_text">
+                      <div
+                        class="tooltip_icon_container"
+                        id="tooltip_sdb_2"
+                      ></div>
+                      Participant characteristics
+                    </div>
+                    <div class="toggle_segment">
+                      <span
+                        class="items_selected"
+                        id="selected_2"
+                        style="visibility: hidden"
+                        >&nbsp;</span
+                      >
+                      <span class="toggle_element">▼</span>
+                    </div>
+                  </div>
+                  <div class="accordion_content hidden">
+                    <h3 class="subsection_hed">Age groups</h3>
+                    <ul class="accordion_options" id="sdb_options_2"></ul>
+                    <div class="sdb_spacer"></div>
+                    <h3 class="subsection_hed">Majority ethnic/racial group</h3>
+                    <ul class="accordion_options" id="sdb_options_3"></ul>
+                    <div class="sdb_spacer"></div>
+                    <h3 class="subsection_hed">Sex (percent male)</h3>
+                    <ul class="accordion_options" id="sdb_options_4"></ul>
+                    <div class="sdb_spacer"></div>
+                    <h3 class="subsection_hed">Percentage of immigrants (%)</h3>
+                    <ul class="accordion_options" id="sdb_options_5"></ul>
+                  </div>
+                </div>
+                <!-- behavioral outcomes -->
+                <div class="accordion_unit" id="sdb_filter_11">
+                  <div class="accordion_title">
+                    <div class="accordion_title_text">
+                      <div
+                        class="tooltip_icon_container"
+                        id="tooltip_sdb_11"
+                      ></div>
+                      Behavioral outcomes
+                    </div>
+                    <div class="toggle_segment">
+                      <span
+                        class="items_selected"
+                        id="selected_12"
+                        style="visibility: hidden"
+                        >&nbsp;</span
+                      >
+                      <span class="toggle_element">▼</span>
+                    </div>
+                  </div>
+                  <div class="accordion_content hidden">
+                    <span id="sdb_options_16"></span>
+                    <ul class="accordion_options" id="sdb_outcomes_0"></ul>
+                    <div class="sdb_spacer"></div>
+                    <h3 class="subsection_hed">Outcome results</h3>
+                    <ul class="accordion_options" id="sdb_results_0"></ul>
+                  </div>
+                </div>
+                <!-- health outcomes -->
+                <div class="accordion_unit" id="sdb_filter_12">
+                  <div class="accordion_title">
+                    <div class="accordion_title_text">
+                      <div
+                        class="tooltip_icon_container"
+                        id="tooltip_sdb_12"
+                      ></div>
+                      Health outcomes
+                    </div>
+                    <div class="toggle_segment">
+                      <span
+                        class="items_selected"
+                        id="selected_13"
+                        style="visibility: hidden"
+                        >&nbsp;</span
+                      >
+                      <span class="toggle_element">▼</span>
+                    </div>
+                  </div>
+                  <div class="accordion_content hidden">
+                    <span id="sdb_options_17"></span>
+                    <ul class="accordion_options" id="sdb_outcomes_1"></ul>
+                    <div class="sdb_spacer"></div>
+                    <h3 class="subsection_hed">Outcome results</h3>
+                    <ul class="accordion_options" id="sdb_results_1"></ul>
+                  </div>
+                </div>
+                <!-- use of healthcare services outcomes -->
+                <div class="accordion_unit" id="sdb_filter_13">
+                  <div class="accordion_title">
+                    <div class="accordion_title_text">
+                      <div
+                        class="tooltip_icon_container"
+                        id="tooltip_sdb_13"
+                      ></div>
+                      Use of healthcare services outcomes
+                    </div>
+                    <div class="toggle_segment">
+                      <span
+                        class="items_selected"
+                        id="selected_14"
+                        style="visibility: hidden"
+                        >&nbsp;</span
+                      >
+                      <span class="toggle_element">▼</span>
+                    </div>
+                  </div>
+                  <div class="accordion_content hidden">
+                    <span id="sdb_options_18"></span>
+                    <ul class="accordion_options" id="sdb_outcomes_2"></ul>
+                    <div class="sdb_spacer"></div>
+                    <h3 class="subsection_hed">Outcome results</h3>
+                    <ul class="accordion_options" id="sdb_results_2"></ul>
+                    <div class="sdb_spacer"></div>
+                    <!-- <h3 class="subsection_hed">Intended direction</h3>
+                    <ul class="accordion_options" id="sdb_direction_2"></ul> -->
+                  </div>
+                </div>
+                <!-- study quality -->
+                <div class="accordion_unit" id="sdb_filter_14">
+                  <div class="accordion_title">
+                    <div class="accordion_title_text">
+                      <div
+                        class="tooltip_icon_container"
+                        id="tooltip_sdb_7"
+                      ></div>
+                      Study quality
+                    </div>
+                    <div class="toggle_segment">
+                      <span
+                        class="items_selected"
+                        id="selected_15"
+                        style="visibility: hidden"
+                        >&nbsp;</span
+                      >
+                      <span class="toggle_element">▼</span>
+                    </div>
+                  </div>
+                  <div class="accordion_content hidden">
+                    <h3 class="subsection_hed">Study quality</h3>
+                    <ul class="accordion_options" id="sdb_options_11"></ul>
+                  </div>
+                </div>
+                <!-- intervention target -->
+                <div class="accordion_unit" id="sdb_filter_3">
+                  <div class="accordion_title">
+                    <div class="accordion_title_text">
+                      <div
+                        class="tooltip_icon_container"
+                        id="tooltip_sdb_3"
+                      ></div>
+                      Intervention target
+                    </div>
+                    <div class="toggle_segment">
+                      <span
+                        class="items_selected"
+                        id="selected_4"
+                        style="visibility: hidden"
+                        >&nbsp;</span
+                      >
+                      <span class="toggle_element">▼</span>
+                    </div>
+                  </div>
+                  <div class="accordion_content hidden">
+                    <ul class="accordion_options" id="sdb_options_6"></ul>
+                  </div>
+                </div>
+                <!-- intervention setting -->
+                <div class="accordion_unit" id="sdb_filter_4">
+                  <div class="accordion_title">
+                    <div class="accordion_title_text">
+                      <div
+                        class="tooltip_icon_container"
+                        id="tooltip_sdb_4"
+                      ></div>
+                      Intervention setting
+                    </div>
+                    <div class="toggle_segment">
+                      <span
+                        class="items_selected"
+                        id="selected_5"
+                        style="visibility: hidden"
+                        >&nbsp;</span
+                      >
+                      <span class="toggle_element">▼</span>
+                    </div>
+                  </div>
+                  <div class="accordion_content hidden">
+                    <ul class="accordion_options" id="sdb_options_7"></ul>
+                  </div>
+                </div>
+                <!-- specific intervention components -->
+                <div class="accordion_unit" id="sdb_filter_5">
+                  <div class="accordion_title">
+                    <div class="accordion_title_text">
+                      <div
+                        class="tooltip_icon_container"
+                        id="tooltip_sdb_5"
+                      ></div>
+                      Specific intervention components
+                    </div>
+                    <div class="toggle_segment">
+                      <span
+                        class="items_selected"
+                        id="selected_6"
+                        style="visibility: hidden"
+                        >&nbsp;</span
+                      >
+                      <span class="toggle_element">▼</span>
+                    </div>
+                  </div>
+                  <div class="accordion_content hidden">
+                    <ul class="accordion_options" id="sdb_options_8"></ul>
+                  </div>
+                </div>
+                <!-- recruitment setting -->
+                <div class="accordion_unit" id="sdb_filter_6">
+                  <div class="accordion_title">
+                    <div class="accordion_title_text">
+                      <div
+                        class="tooltip_icon_container"
+                        id="tooltip_sdb_6"
+                      ></div>
+                      Recruitment setting
+                    </div>
+                    <div class="toggle_segment">
+                      <span
+                        class="items_selected"
+                        id="selected_7"
+                        style="visibility: hidden"
+                        >&nbsp;</span
+                      >
+                      <span class="toggle_element">▼</span>
+                    </div>
+                  </div>
+                  <div class="accordion_content hidden">
+                    <ul class="accordion_options" id="sdb_options_9"></ul>
+                  </div>
+                </div>
+
+                <!-- type of social need study -->
+                <div class="accordion_unit" id="sdb_filter_8">
+                  <div class="accordion_title">
+                    <div class="accordion_title_text">
+                      <div
+                        class="tooltip_icon_container"
+                        id="tooltip_sdb_8"
+                      ></div>
+                      Type of social need study
+                    </div>
+                    <div class="toggle_segment">
+                      <span
+                        class="items_selected"
+                        id="selected_9"
+                        style="visibility: hidden"
+                        >&nbsp;</span
+                      >
+                      <span class="toggle_element">▼</span>
+                    </div>
+                  </div>
+                  <div class="accordion_content hidden">
+                    <ul class="accordion_options" id="sdb_options_13"></ul>
+                  </div>
+                </div>
+                <!-- service provider -->
+                <div class="accordion_unit" id="sdb_filter_9">
+                  <div class="accordion_title">
+                    <div class="accordion_title_text">
+                      <div
+                        class="tooltip_icon_container"
+                        id="tooltip_sdb_9"
+                      ></div>
+                      Service provider
+                    </div>
+                    <div class="toggle_segment">
+                      <span
+                        class="items_selected"
+                        id="selected_10"
+                        style="visibility: hidden"
+                        >&nbsp;</span
+                      >
+                      <span class="toggle_element">▼</span>
+                    </div>
+                  </div>
+                  <div class="accordion_content hidden">
+                    <ul class="accordion_options" id="sdb_options_14"></ul>
+                  </div>
+                </div>
+                <!-- type of comparator -->
+                <div class="accordion_unit" id="sdb_filter_10">
+                  <div class="accordion_title">
+                    <div class="accordion_title_text">
+                      <div
+                        class="tooltip_icon_container"
+                        id="tooltip_sdb_10"
+                      ></div>
+                      Type of comparator
+                    </div>
+                    <div class="toggle_segment">
+                      <span
+                        class="items_selected"
+                        id="selected_11"
+                        style="visibility: hidden"
+                        >&nbsp;</span
+                      >
+                      <span class="toggle_element">▼</span>
+                    </div>
+                  </div>
+                  <div class="accordion_content hidden">
+                    <ul class="accordion_options" id="sdb_options_15"></ul>
+                  </div>
+                </div>
+
+                <!-- end of filters -->
+              </section>
+            </section>
+          </div>
+          <div class="panel_right">
+            <section class="study_section">
+              <!-- <section class="sdb_search">
+                <div class="horizontal_spacer"></div>
+                <div class="sdb_search_box">
+                  <input class="sdb_search_input" type="text" />
+                  <span>@@</span>
+                </div>
+              </section> -->
+              <div class="sdb_header">
+                <h2 class="secondary_menu">FILTERED LIST OF STUDIES</h2>
+                <div class="sdb_reset sdb_download">
+                  <div class="sdb_reset_text" id="download_studies_sdb">
+                    DOWNLOAD THIS LIST OF STUDIES
+                  </div>
+                </div>
+              </div>
+              <div class="sdb_studies">
+                <table>
+                  <thead>
+                    <tr>
+                      <th class="sort_header study_author" id="sdb_sort_0">
+                        Authors
+                        <span class="sdb_study_sort_icon">&#x2195;</span>
+                      </th>
+                      <th class="sort_header study_year" id="sdb_sort_1">
+                        Year <span class="sdb_study_sort_icon">&#x2195;</span>
+                      </th>
+                      <th class="sort_header study_title" id="sdb_sort_2">
+                        Title <span class="sdb_study_sort_icon">&#x2195;</span>
+                      </th>
+                      <th class="sort_header study_publication" id="sdb_sort_3">
+                        Publication
+                        <span class="sdb_study_sort_icon">&#x2195;</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody id="sdb_study_rows"></tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+      <div id="modal_section" class="modal">
+        <div class="modal_box">
+          <div class="modal_header">
+            <div class="modal_header_text">STUDY YOU'VE SELECTED</div>
+
+            <div class="modal_close">
+              <div class="modal_close_txt">&times;</div>
+            </div>
+          </div>
+          <div id="modal_content"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- dependencies -->
+    <script src="./js/d3.v5.min.js"></script>
+    <script src="./js/jquery-1.10.0.min.js"></script>
+    <script src="./js/tooltipster.bundle.min.js"></script>
+    <script src="./js/lodash.js"></script>
+    <script src="./js/he.js"></script>
+
+    <!-- scripts for working with data -->
+    <script src="./js/accessors.js"></script>
+    <script src="./js/vis_text_variants.js"></script>
+    <script src="./js/sdb_manager.js"></script>
+    <script src="./js/vis_manager.js"></script>
+
+    <script src="./js/dependencias.min.js"></script>
+    <script src="./js/aplicacion.js"></script>
+
+    <script src="./js/main.js"></script>
+
+    <!-- scripts for tooltips -->
+
+    <script></script>
+  </body>
+</html>
